@@ -9,7 +9,7 @@ Sentry.init({
     Sentry.replayIntegration({
       // Capture 10% of all sessions,
       // plus 100% of sessions with an error
-      replaysSessionSampleRate: 0.1,
+      sessionSampleRate: 0.1,
       replaysOnErrorSampleRate: 1.0,
     }),
   ],

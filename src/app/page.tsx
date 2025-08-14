@@ -182,7 +182,7 @@ export default function TestPage() {
                 </div>
                 <div className="ml-3">
                   <p className="text-sm text-gray-500">
-                    Copy/Translation System: {copy ? 'Active' : 'Inactive'}
+                    Copy/Translation System: {typeof copy === 'function' ? 'Active' : 'Inactive'}
                   </p>
                 </div>
               </div>

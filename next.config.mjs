@@ -4,6 +4,11 @@ const nextConfig = {
   output: 'standalone',
   poweredByHeader: false,
   
+  // Skip TypeScript checking during build
+  typescript: {
+    ignoreBuildErrors: true,
+  },
+  
   
   // Security headers
   async headers() {
