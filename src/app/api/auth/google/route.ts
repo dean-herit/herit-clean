@@ -19,11 +19,11 @@ export async function GET(request: NextRequest) {
     
     // Store state in a cookie for verification
     const response = NextResponse.redirect(
-      `https://accounts.google.com/oauth/authorize?` +
+      `https://accounts.google.com/o/oauth2/auth?` +
       `client_id=${encodeURIComponent(googleClientId)}&` +
       `redirect_uri=${encodeURIComponent(redirectUri)}&` +
       `response_type=code&` +
-      `scope=${encodeURIComponent('email profile')}&` +
+      `scope=${encodeURIComponent('openid email profile')}&` +
       `state=${encodeURIComponent(state)}`
     )
     
