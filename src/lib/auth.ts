@@ -1,6 +1,6 @@
 import { SignJWT, jwtVerify } from 'jose'
 import { cookies } from 'next/headers'
-import * as argon2 from 'argon2'
+// Note: argon2 is imported conditionally to avoid Vercel serverless issues
 import { redirect } from 'next/navigation'
 import * as Sentry from '@sentry/nextjs'
 import { db } from '@/db/db'
@@ -62,6 +62,7 @@ export type SessionResult = Session | NoSession
  */
 export async function hashPassword(password: string): Promise<string> {
   try {
+    const argon2 = await import('argon2')
     return await argon2.hash(password, {
       type: argon2.argon2id,
       memoryCost: 2 ** 16, // 64 MB
@@ -79,6 +80,7 @@ export async function hashPassword(password: string): Promise<string> {
  */
 export async function verifyPassword(password: string, hash: string): Promise<boolean> {
   try {
+    const argon2 = await import('argon2')
     return await argon2.verify(hash, password)
   } catch (error) {
     Sentry.captureException(error)
