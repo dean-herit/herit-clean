@@ -1,5 +1,14 @@
 # 🚀 **HERIT-CLEAN DEPLOYMENT GUIDE**
 
+## 🚨 **SECURITY INCIDENT RESOLVED** 
+
+**CRITICAL**: Production secrets were accidentally committed to Git repository on 2025-08-14. **Git history has been cleaned** and all exposed credentials **MUST BE ROTATED** before deployment.
+
+**Exposed credentials requiring immediate rotation:**
+- Database password: `IrVtjNgWe7LkL1jH` 
+- Kinde OAuth client secret: `zKnp7EH9PtMIgMiz6tOvv1GvAin60MRhysjLkMTivkNp3Hkn2`
+- Persona API key: `api_Q4uq7MtTbpsQeC8DA1U9fsBhEGos`
+
 ## ✅ **CURRENT STATUS: 95% COMPLETE**
 
 The ultra-clean Herit estate planning application has been **successfully built and is ready for deployment**. All major development work is complete.
@@ -28,9 +37,9 @@ rm -rf .vercel
 vercel --prod --confirm
 
 # 2. Set environment variables
-vercel env add JWT_SECRET "ultra-secure-jwt-secret-for-herit-production-2025-32chars" production
-vercel env add POSTGRES_URL "postgres://postgres.iwtwwnbwdvlsfzwbotxu:IrVtjNgWe7LkL1jH@aws-0-eu-west-1.pooler.supabase.com:6543/postgres?sslmode=require&supa=base-pooler.x" production
-vercel env add POSTGRES_PRISMA_URL "postgres://postgres.iwtwwnbwdvlsfzwbotxu:IrVtjNgWe7LkL1jH@aws-0-eu-west-1.pooler.supabase.com:6543/postgres?sslmode=require&pgbouncer=true" production
+vercel env add JWT_SECRET "YOUR_NEW_JWT_SECRET_32_CHARS" production
+vercel env add POSTGRES_URL "YOUR_NEW_POSTGRES_URL_FROM_SUPABASE_DASHBOARD" production
+vercel env add POSTGRES_PRISMA_URL "YOUR_NEW_POSTGRES_PRISMA_URL_FROM_SUPABASE_DASHBOARD" production
 
 # 3. Deploy
 vercel --prod
@@ -44,9 +53,9 @@ vercel --prod
 5. Root Directory: `.` (root)
 6. Environment Variables:
    ```
-   JWT_SECRET = ultra-secure-jwt-secret-for-herit-production-2025-32chars
-   POSTGRES_URL = postgres://postgres.iwtwwnbwdvlsfzwbotxu:IrVtjNgWe7LkL1jH@aws-0-eu-west-1.pooler.supabase.com:6543/postgres?sslmode=require&supa=base-pooler.x
-   POSTGRES_PRISMA_URL = postgres://postgres.iwtwwnbwdvlsfzwbotxu:IrVtjNgWe7LkL1jH@aws-0-eu-west-1.pooler.supabase.com:6543/postgres?sslmode=require&pgbouncer=true
+   JWT_SECRET = YOUR_NEW_JWT_SECRET_32_CHARS
+   POSTGRES_URL = YOUR_NEW_POSTGRES_URL_FROM_SUPABASE_DASHBOARD  
+   POSTGRES_PRISMA_URL = YOUR_NEW_POSTGRES_PRISMA_URL_FROM_SUPABASE_DASHBOARD
    ```
 7. Deploy
 
