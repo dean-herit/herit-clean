@@ -30,10 +30,10 @@ export function LoginForm({ onSignIn }: LoginFormProps) {
   return (
     <div className="w-full max-w-md mx-auto space-y-6">
       <div className="text-center space-y-3">
-        <h1 className="text-3xl font-brand font-bold text-herit-900">
+        <h1 className="text-3xl font-brand font-bold text-white">
           Welcome to Herit
         </h1>
-        <p className="text-herit-600 text-lg">
+        <p className="text-white/80 text-lg">
           Digital Estate Planning Made Simple
         </p>
       </div>
@@ -48,13 +48,13 @@ export function LoginForm({ onSignIn }: LoginFormProps) {
       {/* Email Authentication Forms */}
       {showEmailAuth ? (
         <div className="space-y-6">
-          <div className="flex border-b border-herit-200">
+          <div className="flex border-b border-white/20">
             <button
               onClick={() => setAuthMode('login')}
               className={`flex-1 py-3 px-4 text-sm font-semibold border-b-2 transition-colors ${
                 authMode === 'login'
-                  ? 'border-brand-500 text-brand-600'
-                  : 'border-transparent text-herit-500 hover:text-herit-700'
+                  ? 'border-brand-500 text-brand-400'
+                  : 'border-transparent text-white/60 hover:text-white/80'
               }`}
             >
               Sign In
@@ -63,8 +63,8 @@ export function LoginForm({ onSignIn }: LoginFormProps) {
               onClick={() => setAuthMode('signup')}
               className={`flex-1 py-3 px-4 text-sm font-semibold border-b-2 transition-colors ${
                 authMode === 'signup'
-                  ? 'border-brand-500 text-brand-600'
-                  : 'border-transparent text-herit-500 hover:text-herit-700'
+                  ? 'border-brand-500 text-brand-400'
+                  : 'border-transparent text-white/60 hover:text-white/80'
               }`}
             >
               Sign Up
@@ -86,7 +86,7 @@ export function LoginForm({ onSignIn }: LoginFormProps) {
           <div className="text-center">
             <button
               onClick={() => setShowEmailAuth(false)}
-              className="text-sm text-herit-500 hover:text-herit-700 underline font-medium transition-colors"
+              className="text-sm text-white/60 hover:text-white/80 underline font-medium transition-colors"
             >
               ← Back to other sign-in options
             </button>
@@ -97,7 +97,7 @@ export function LoginForm({ onSignIn }: LoginFormProps) {
           {/* Email Authentication Button */}
           <button
             onClick={() => setShowEmailAuth(true)}
-            className="w-full px-6 py-4 bg-herit-50 hover:bg-herit-100 text-herit-700 font-semibold rounded-xl transition-all duration-200 border border-herit-200 hover:border-herit-300 hover:shadow-md"
+            className="w-full px-6 py-4 bg-white/10 hover:bg-white/20 text-white font-semibold rounded-xl transition-all duration-200 border border-white/20 hover:border-white/30"
             type="button"
           >
             📧 Continue with Email
@@ -106,10 +106,10 @@ export function LoginForm({ onSignIn }: LoginFormProps) {
           {/* Divider */}
           <div className="relative my-8">
             <div className="absolute inset-0 flex items-center">
-              <div className="w-full border-t border-herit-200" />
+              <div className="w-full border-t border-white/20" />
             </div>
             <div className="relative flex justify-center text-sm">
-              <span className="px-4 bg-white text-herit-500 font-medium">
+              <span className="px-4 bg-transparent text-white/60 font-medium">
                 Or continue with
               </span>
             </div>
@@ -128,14 +128,14 @@ export function LoginForm({ onSignIn }: LoginFormProps) {
         </div>
       )}
 
-      <div className="text-center text-xs text-herit-500">
+      <div className="text-center text-xs text-white/50">
         <p>
           By continuing, you agree to our{' '}
-          <a href="/terms" className="text-brand-600 hover:text-brand-700 underline font-medium">
+          <a href="/terms" className="text-brand-400 hover:text-brand-300 underline font-medium">
             Terms of Service
           </a>{' '}
           and{' '}
-          <a href="/privacy" className="text-brand-600 hover:text-brand-700 underline font-medium">
+          <a href="/privacy" className="text-brand-400 hover:text-brand-300 underline font-medium">
             Privacy Policy
           </a>
         </p>

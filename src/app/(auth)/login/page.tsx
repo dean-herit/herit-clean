@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { LoginForm } from '@/components/auth/LoginForm'
 import { BackgroundLayout } from '@/components/ui/BackgroundLayout'
+import { Header } from '@/components/ui/Header'
 
 export default function LoginPage() {
   const router = useRouter()
@@ -41,6 +42,7 @@ export default function LoginPage() {
   if (isLoading) {
     return (
       <BackgroundLayout>
+        <Header />
         <div className="min-h-screen flex items-center justify-center">
           <div className="animate-spin h-8 w-8 border-4 border-white border-t-transparent rounded-full"></div>
         </div>
@@ -50,14 +52,12 @@ export default function LoginPage() {
 
   return (
     <BackgroundLayout>
-      <div className="min-h-screen flex items-center justify-center p-4">
+      <Header />
+      <div className="min-h-screen flex items-center justify-center p-4 pt-24">
         <div className="w-full max-w-md">
           {/* Logo */}
-          <div className="flex items-center justify-center gap-x-3 mb-12">
-            <div className="flex h-14 w-14 items-center justify-center rounded-xl bg-white/90 backdrop-blur-sm shadow-lg">
-              <span className="text-2xl font-brand font-bold text-herit-800">H</span>
-            </div>
-            <span className="text-4xl font-brand font-bold text-white drop-shadow-lg">
+          <div className="flex items-center justify-center mb-12">
+            <span className="text-5xl font-brand font-bold text-white drop-shadow-lg">
               Herit
             </span>
           </div>
@@ -70,7 +70,7 @@ export default function LoginPage() {
           )}
 
           {/* Login Form */}
-          <div className="bg-white/95 backdrop-blur-md p-8 rounded-2xl shadow-2xl border border-white/20">
+          <div className="bg-transparent backdrop-blur-md p-8 rounded-2xl border border-white/30">
             <LoginForm onSignIn={handleSignIn} />
           </div>
         </div>
