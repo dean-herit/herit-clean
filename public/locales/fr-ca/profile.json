@@ -1,0 +1,68 @@
+{
+  "page": {
+    "title": "Profil",
+    "description": "Gérez vos informations personnelles et préférences"
+  },
+  "sections": {
+    "personal_information": {
+      "title": "Informations personnelles",
+      "description": "Utilisez une adresse permanente où vous pouvez recevoir du courrier."
+    },
+    "notifications": {
+      "title": "Notifications",
+      "description": "Nous vous informerons toujours des changements importants, mais vous choisissez ce dont vous voulez entendre parler d'autre."
+    }
+  },
+  "fields": {
+    "profile_photo": {
+      "label": "Photo de profil",
+      "help_text": "Ajoutez une photo de profil pour aider les gens à vous reconnaître. PNG, JPG, GIF jusqu'à 10 Mo.",
+      "current_photo": "Remplacer la photo actuelle"
+    },
+    "address_line_2": {
+      "label": "Adresse ligne 2"
+    },
+    "region": {
+      "label": "Province / État"
+    },
+    "postal_code": {
+      "label": "Code postal"
+    }
+  },
+  "photo_upload": {
+    "drag_drop_text": "Téléverser un fichier ou glisser-déposer",
+    "file_types": "PNG, JPG, GIF jusqu'à 10 Mo",
+    "selected_file": "Sélectionné : {{filename}}"
+  },
+  "notifications": {
+    "email_section": {
+      "title": "Par courriel"
+    },
+    "push_section": {
+      "title": "Notifications push",
+      "description": "Celles-ci sont livrées par SMS sur votre téléphone mobile."
+    },
+    "comments": {
+      "label": "Commentaires",
+      "description": "Être notifié lorsque quelqu'un poste un commentaire sur une publication."
+    },
+    "candidates": {
+      "label": "Candidats", 
+      "description": "Être notifié lorsqu'un candidat postule pour un emploi."
+    },
+    "offers": {
+      "label": "Offres",
+      "description": "Être notifié lorsqu'un candidat accepte ou rejette une offre."
+    },
+    "push_everything": "Tout",
+    "push_same_as_email": "Comme les courriels",
+    "push_nothing": "Aucune notification push"
+  },
+  "messages": {
+    "profile_updated": "Informations personnelles mises à jour avec succès",
+    "profile_photo_updated": "Photo de profil mise à jour avec succès",
+    "notifications_updated": "Préférences de notification mises à jour avec succès",
+    "upload_failed": "Échec du téléversement de la photo de profil",
+    "update_failed": "Échec de la mise à jour du profil"
+  }
+}

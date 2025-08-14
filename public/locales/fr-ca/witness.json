@@ -1,0 +1,148 @@
+{
+  "page": {
+    "title": "Portail des témoins",
+    "dashboard_title": "Tableau de bord des témoins",
+    "description": "Gérez vos demandes de témoignage et votre horaire"
+  },
+  "navigation": {
+    "back_to_portal": "Retour au portail des témoins"
+  },
+  "stats": {
+    "pending_requests": "Demandes en attente",
+    "scheduled": "Planifié",
+    "completed": "Terminé",
+    "total_witnessed": "Total témoigné"
+  },
+  "quick_actions": {
+    "title": "Actions rapides",
+    "manage_schedule": "Gérer l'horaire",
+    "manage_schedule_description": "Mettre à jour votre disponibilité",
+    "update_profile": "Mettre à jour le profil",
+    "update_profile_description": "Gérer votre profil de témoin",
+    "get_help": "Obtenir de l'aide",
+    "get_help_description": "Support et directives"
+  },
+  "tabs": {
+    "pending": "En attente",
+    "scheduled": "Planifié",
+    "completed": "Terminé"
+  },
+  "request_actions": {
+    "schedule": "Planifier",
+    "view_details": "Voir les détails",
+    "join_session": "Rejoindre la session",
+    "details": "Détails",
+    "view_report": "Voir le rapport"
+  },
+  "empty_states": {
+    "no_requests": "Aucune demande {{selectedTab}}",
+    "pending_description": "Les nouvelles demandes de témoignage apparaîtront ici.",
+    "scheduled_description": "Vos sessions planifiées s'afficheront ici.",
+    "completed_description": "Vos sessions de témoignage terminées apparaîtront ici."
+  },
+  "profile": {
+    "title": "Profil de témoin",
+    "tabs": {
+      "personal_info": "Informations personnelles",
+      "professional": "Professionnel",
+      "verification": "Vérification",
+      "preferences": "Préférences"
+    },
+    "professional": {
+      "bio_placeholder": "Parlez-nous de votre expérience et de vos qualifications...",
+      "languages_placeholder": "p. ex., français, anglais, espagnol",
+      "witness_types": {
+        "certified_witness": "Témoin certifié",
+        "notary_public": "Notaire public",
+        "solicitor": "Avocat",
+        "commissioner_for_oaths": "Commissaire aux serments"
+      },
+      "specializations": {
+        "estate_planning": "Planification successorale",
+        "general_witness": "Services de témoignage général",
+        "business_documents": "Documents d'entreprise",
+        "family_law": "Droit de la famille"
+      }
+    }
+  },
+  "schedule": {
+    "title": "Gérer l'horaire",
+    "weekly_availability": "Disponibilité hebdomadaire",
+    "availability_description": "Définissez vos heures disponibles pour les sessions de témoignage",
+    "days": {
+      "monday": "Lundi",
+      "tuesday": "Mardi",
+      "wednesday": "Mercredi",
+      "thursday": "Jeudi",
+      "friday": "Vendredi",
+      "saturday": "Samedi",
+      "sunday": "Dimanche"
+    },
+    "time_slot_management": "Gestion des créneaux horaires",
+    "add_time_slot": "Ajouter un créneau horaire",
+    "no_time_slots": "Aucun créneau horaire configuré",
+    "start_time": "Heure de début",
+    "end_time": "Heure de fin",
+    "schedule_settings": "Paramètres d'horaire",
+    "time_zone": "Fuseau horaire",
+    "default_session_duration": "Durée de session par défaut (minutes)",
+    "buffer_time_between_sessions": "Temps de tampon entre les sessions (minutes)",
+    "time_zones": {
+      "europe_dublin": "Europe/Dublin (Irlande)",
+      "europe_london": "Europe/London (RU)",
+      "america_new_york": "America/New_York (EST)",
+      "america_los_angeles": "America/Los_Angeles (PST)"
+    },
+    "save_settings": "Sauvegarder les paramètres",
+    "upcoming_sessions": "Sessions à venir",
+    "no_upcoming_sessions": "Aucune session à venir",
+    "no_upcoming_sessions_description": "Vos sessions de témoignage planifiées apparaîtront ici",
+    "view_details": "Voir les détails",
+    "duration": "Durée : {{duration}} minutes",
+    "availability": "Disponibilité",
+    "edit_time_slot": "Modifier le créneau horaire"
+  },
+  "labels": {
+    "witness_license_number": "Numéro de licence de témoin",
+    "witness_type": "Type de témoin",
+    "specialization": "Spécialisation",
+    "years_experience": "Années d'expérience",
+    "languages_spoken": "Langues parlées",
+    "professional_body": "Ordre professionnel",
+    "membership_number": "Numéro de membre",
+    "insurance_provider": "Fournisseur d'assurance",
+    "policy_number": "Numéro de police",
+    "insurance_expiry": "Expiration de l'assurance",
+    "bio": "Biographie",
+    "identity_verified": "Identité vérifiée",
+    "background_check_completed": "Vérification des antécédents terminée",
+    "bank_name": "Nom de la banque",
+    "account_holder_name": "Nom du titulaire du compte",
+    "iban": "IBAN",
+    "bic_swift": "Code BIC/SWIFT",
+    "preferred_session_duration": "Durée de session préférée",
+    "max_sessions_per_day": "Max. de sessions par jour",
+    "buffer_time": "Temps de tampon (minutes)",
+    "no_buffer": "Aucun tampon",
+    "5_minutes": "5 minutes",
+    "10_minutes": "10 minutes",
+    "15_minutes": "15 minutes"
+  },
+  "preferences": {
+    "time_slots": {
+      "15_minutes": "15 minutes",
+      "30_minutes": "30 minutes",
+      "45_minutes": "45 minutes",
+      "60_minutes": "60 minutes"
+    },
+    "notifications": {
+      "auto_accept_requests": "Accepter automatiquement les demandes de témoignage pendant les heures disponibles",
+      "email_notifications": "Recevoir des notifications par courriel pour les nouvelles demandes",
+      "sms_notifications": "Recevoir des notifications SMS pour les demandes urgentes"
+    }
+  },
+  "verification": {
+    "verified_on": "Vérifié le {{date}}",
+    "completed_on": "Terminé le {{date}}"
+  }
+}

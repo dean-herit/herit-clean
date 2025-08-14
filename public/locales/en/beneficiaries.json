@@ -1,0 +1,147 @@
+{
+  "page": {
+    "title": "Beneficiaries",
+    "description": "Manage your family and friends who will inherit your assets"
+  },
+  "navigation": {
+    "back_to_beneficiaries": "Back to Beneficiaries"
+  },
+  "actions": {
+    "add_beneficiary": "Add Beneficiary",
+    "edit_beneficiary": "Edit Beneficiary",
+    "save_beneficiary": "Save Beneficiary",
+    "save_send_invitation": "Save & Send Invitation",
+    "send_invitation": "Send Invitation",
+    "resend": "Resend",
+    "edit": "Edit",
+    "delete": "Delete",
+    "cancel": "Cancel"
+  },
+  "stats": {
+    "total_beneficiaries": "Total Beneficiaries",
+    "accepted_invitations": "Accepted Invitations", 
+    "pending_invitations": "Pending Invitations",
+    "inheritance_allocated": "Inheritance Allocated"
+  },
+  "warnings": {
+    "inheritance_exceeds": "Inheritance allocation exceeds 100%",
+    "inheritance_incomplete": "Inheritance allocation is incomplete"
+  },
+  "search": {
+    "placeholder": "Search beneficiaries...",
+    "relationship_filter": "Relationship:",
+    "all_relationships": "All Relationships"
+  },
+  "relationships": {
+    "spouse_partner": "Spouse/Partner",
+    "child": "Child",
+    "parent": "Parent",
+    "sibling": "Sibling",
+    "grandparent": "Grandparent",
+    "grandchild": "Grandchild",
+    "aunt_uncle": "Aunt/Uncle",
+    "niece_nephew": "Niece/Nephew",
+    "cousin": "Cousin",
+    "friend": "Friend",
+    "other": "Other"
+  },
+  "list": {
+    "beneficiaries_count": "Beneficiaries ({{count}})",
+    "inheritance_allocation": "Inheritance allocation",
+    "primary_label": "Primary",
+    "accepted_status": "Accepted",
+    "invited_status": "Invited", 
+    "pending_status": "Pending",
+    "invitation_not_sent": "Invitation Not Sent"
+  },
+  "empty_states": {
+    "no_beneficiaries": "No beneficiaries found",
+    "adjust_search": "Try adjusting your search or filter criteria.",
+    "get_started": "Get started by adding your first beneficiary."
+  },
+  "create": {
+    "title": "Add New Beneficiary",
+    "personal_info": "Personal Information",
+    "address_info": "Address Information", 
+    "inheritance_details": "Inheritance Details",
+    "invitation_preview": "Invitation Preview"
+  },
+  "fields": {
+    "name_label": "Full Name",
+    "relationship_label": "Relationship",
+    "email_label": "Email Address",
+    "phone_label": "Phone Number",
+    "address_line_1_label": "Address Line 1",
+    "address_line_2_label": "Address Line 2",
+    "city_label": "City",
+    "county_label": "County",
+    "eircode_label": "Eircode",
+    "country_label": "Country",
+    "percentage_label": "Inheritance Percentage",
+    "conditions_label": "Conditions",
+    "first_name": {
+      "label": "First Name",
+      "placeholder": "Enter first name"
+    },
+    "last_name": {
+      "label": "Last Name", 
+      "placeholder": "Enter last name"
+    },
+    "relationship": {
+      "label": "Relationship",
+      "placeholder": "Select relationship"
+    },
+    "email": {
+      "label": "Email Address",
+      "placeholder": "Enter email address"
+    },
+    "phone": {
+      "label": "Phone Number",
+      "placeholder": "Enter phone number"
+    },
+    "date_of_birth": {
+      "label": "Date of Birth",
+      "placeholder": "Select date"
+    },
+    "display_name": {
+      "label": "Display Name",
+      "help_text": "Auto-generated from first and last name"
+    },
+    "inheritance_percentage": {
+      "label": "Inheritance Percentage",
+      "placeholder": "0%"
+    },
+    "specific_bequests": {
+      "label": "Specific Bequests",
+      "placeholder": "List any specific assets or amounts"
+    },
+    "notes": {
+      "label": "Notes",
+      "placeholder": "Additional notes about this beneficiary"
+    },
+    "primary_beneficiary": {
+      "label": "Primary Beneficiary",
+      "help_text": "Primary beneficiaries receive assets first"
+    },
+    "notify_updates": {
+      "label": "Notify on will updates",
+      "help_text": "Send notifications when the will is updated"
+    },
+    "send_invitation_immediately": {
+      "label": "Send invitation email immediately",
+      "help_text": "Send invitation now or save as draft"
+    }
+  },
+  "invitation": {
+    "preview_title": "Email Invitation Preview",
+    "subject": "You've been named as a beneficiary",
+    "preview_text": "Preview of the invitation email that will be sent to the beneficiary"
+  },
+  "status": {
+    "primary": "Primary",
+    "accepted": "Accepted", 
+    "invited": "Invited",
+    "pending": "Pending",
+    "draft": "Draft"
+  }
+}

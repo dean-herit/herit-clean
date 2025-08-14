@@ -1,0 +1,40 @@
+{
+  "title": "Will Builder",
+  "subtitle": "Create your legally valid will",
+  "steps": {
+    "personal": "Personal Details",
+    "assets": "Your Assets",
+    "beneficiaries": "Beneficiaries",
+    "executors": "Executors",
+    "wishes": "Final Wishes",
+    "review": "Review & Sign"
+  },
+  "buttons": {
+    "start": "Start Building My Will",
+    "continue": "Continue Building",
+    "save": "Save Progress",
+    "preview": "Preview Will",
+    "sign": "Sign Will"
+  },
+  "messages": {
+    "draft": "Your will is currently a draft",
+    "complete": "Your will is complete and legally valid",
+    "progress": "{{completed}} of {{total}} sections completed"
+  },
+  "progress": {
+    "steps": {
+      "assets_cataloged": "Assets Cataloged",
+      "heirs_added": "Heirs Added",
+      "distributions_configured": "Distributions Configured",
+      "executors_appointed": "Executors Appointed",
+      "witnesses_arranged": "Witnesses Arranged"
+    }
+  },
+  "quick_actions_descriptions": {
+    "catalog_assets": "Document your assets to include in your will",
+    "add_beneficiaries": "Specify who will inherit your assets",
+    "configure_distributions": "Decide how your assets will be distributed",
+    "appoint_executors": "Choose who will execute your will",
+    "arrange_witnesses": "Set up witnesses for your will signing"
+  }
+}

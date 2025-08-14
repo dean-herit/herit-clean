@@ -1,0 +1,105 @@
+{
+  "header": {
+    "title": "Willkommen bei Herit.",
+    "subtitle": "Bevor Sie mit der Erstellung Ihres Testaments beginnen, müssen wir uns besser kennenlernen."
+  },
+  "steps": {
+    "personalInfo": {
+      "title": "Persönliche Angaben",
+      "description": "Grundlegende Details und irische Adresse",
+      "heading": "Persönliche Angaben"
+    },
+    "legalConsent": {
+      "title": "Rechtliche Zustimmung", 
+      "description": "Erforderliche rechtliche Vereinbarungen",
+      "heading": "Rechtliche Zustimmung",
+      "subtitle": "Bitte prüfen und akzeptieren Sie die erforderlichen rechtlichen Erklärungen und Bedingungen"
+    },
+    "verification": {
+      "title": "Identitätsverifikation",
+      "description": "Sichere Identitätsverifikation",
+      "heading": "Identitätsverifikation",
+      "subtitle": "Vervollständigen Sie die Identitätsverifikation, um Ihr Konto zu sichern und die Testamentserstellung zu ermöglichen",
+      "required": "Identitätsverifikation erforderlich",
+      "details": "Wir verwenden eine sichere Identitätsverifikation, um die rechtliche Gültigkeit Ihres Testaments zu gewährleisten. Dieser Prozess dauert nur wenige Minuten und umfasst Dokumentenverifikation und Lebenderkennung.",
+      "startButton": "Verifikation starten"
+    },
+    "step": "Schritt {{number}}"
+  },
+  "personalInfo": {
+    "fields": {
+      "firstName": "Vorname",
+      "lastName": "Nachname",
+      "dateOfBirth": "Geburtsdatum",
+      "phoneNumber": "Telefonnummer",
+      "addressLine1": "Straßenadresse",
+      "addressLine2": "Adresszusatz",
+      "city": "Stadt",
+      "county": "Grafschaft",
+      "eircode": "Eircode"
+    },
+    "placeholders": {
+      "firstName": "Geben Sie Ihren Vornamen ein",
+      "lastName": "Geben Sie Ihren Nachnamen ein",
+      "phoneNumber": "+353 1 234 5678",
+      "addressLine1": "Geben Sie Ihre Straßenadresse ein",
+      "addressLine2": "Wohnung, Suite, etc. (optional)",
+      "city": "Stadt eingeben",
+      "county": "Grafschaft auswählen",
+      "eircode": "D02 XY45"
+    },
+    "validation": {
+      "firstName": "Bitte geben Sie einen gültigen Vornamen ein",
+      "lastName": "Bitte geben Sie einen gültigen Nachnamen ein",
+      "dateOfBirth": "Geburtsdatum ist erforderlich",
+      "ageRequirement": "Muss mindestens 18 Jahre alt sein",
+      "phoneNumber": "Bitte geben Sie eine gültige irische Telefonnummer ein",
+      "addressLine1": "Bitte geben Sie Ihre Straßenadresse ein",
+      "city": "Bitte geben Sie Ihre Stadt ein",
+      "county": "Bitte wählen Sie Ihre Grafschaft",
+      "eircode": "Bitte geben Sie einen gültigen Eircode ein (z.B. D02 XY45)"
+    }
+  },
+  "legalConsent": {
+    "allRequired": "Bitte stimmen Sie allen erforderlichen Zustimmungen zu, um fortzufahren",
+    "loading": "Rechtliche Haftungsausschlüsse werden geladen...",
+    "failed": "Fehler beim Laden der rechtlichen Haftungsausschlüsse",
+    "retry": "Bitte aktualisieren Sie die Seite, um es erneut zu versuchen.",
+    "none_available": "Keine rechtlichen Haftungsausschlüsse verfügbar",
+    "contact_support": "Bitte kontaktieren Sie den Support, wenn dieses Problem weiterhin besteht.",
+    "consents": {
+      "sound_mind": {
+        "title": "Erklärung der geistigen Gesundheit",
+        "content": "Ich erkläre, dass ich bei klarem Verstand bin und die geistige Fähigkeit besitze, dieses Testament zu erstellen."
+      },
+      "no_duress": {
+        "title": "Erklärung ohne Zwang",
+        "content": "Ich erkläre, dass ich dieses Testament aus freiem Willen und ohne unzulässige Beeinflussung erstelle."
+      },
+      "terms_of_service": {
+        "title": "Nutzungsbedingungen",
+        "content": "Ich habe die Herit-Nutzungsbedingungen gelesen und stimme ihnen zu."
+      },
+      "privacy_policy": {
+        "title": "Datenschutzerklärung",
+        "content": "Ich habe die Herit-Datenschutzerklärung gelesen und stimme ihr zu."
+      }
+    },
+    "buttons": {
+      "agree": "Ich stimme zu",
+      "agreed": "Zugestimmt ✓"
+    }
+  },
+  "buttons": {
+    "submitConsents": "Zustimmungen absenden",
+    "completeVerification": "Verifikation abschließen"
+  },
+  "errors": {
+    "loadingFailed": "Fehler beim Laden der Onboarding-Daten. Bitte aktualisieren Sie die Seite.",
+    "saveFailed": "Fehler beim Speichern von {{section}}. Bitte versuchen Sie es erneut.",
+    "verificationFailed": "Verifikation fehlgeschlagen. Bitte versuchen Sie es erneut."
+  },
+  "loading": {
+    "onboarding": "Onboarding wird geladen..."
+  }
+}

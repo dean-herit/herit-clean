@@ -1,0 +1,148 @@
+{
+  "page": {
+    "title": "Witness Portal",
+    "dashboard_title": "Witness Dashboard",
+    "description": "Manage your witness requests and schedule"
+  },
+  "navigation": {
+    "back_to_portal": "Back to Witness Portal"
+  },
+  "stats": {
+    "pending_requests": "Pending Requests",
+    "scheduled": "Scheduled",
+    "completed": "Completed",
+    "total_witnessed": "Total Witnessed"
+  },
+  "quick_actions": {
+    "title": "Quick Actions",
+    "manage_schedule": "Manage Schedule",
+    "manage_schedule_description": "Update your availability",
+    "update_profile": "Update Profile",
+    "update_profile_description": "Manage your witness profile",
+    "get_help": "Get Help",
+    "get_help_description": "Support and guidelines"
+  },
+  "tabs": {
+    "pending": "Pending",
+    "scheduled": "Scheduled",
+    "completed": "Completed"
+  },
+  "request_actions": {
+    "schedule": "Schedule",
+    "view_details": "View Details",
+    "join_session": "Join Session",
+    "details": "Details",
+    "view_report": "View Report"
+  },
+  "empty_states": {
+    "no_requests": "No {{selectedTab}} requests",
+    "pending_description": "New witness requests will appear here.",
+    "scheduled_description": "Your scheduled sessions will show here.",
+    "completed_description": "Your completed witness sessions will appear here."
+  },
+  "profile": {
+    "title": "Witness Profile",
+    "tabs": {
+      "personal_info": "Personal Info",
+      "professional": "Professional",
+      "verification": "Verification",
+      "preferences": "Preferences"
+    },
+    "professional": {
+      "bio_placeholder": "Tell us about your experience and qualifications...",
+      "languages_placeholder": "e.g., English, Irish, French",
+      "witness_types": {
+        "certified_witness": "Certified Witness",
+        "notary_public": "Notary Public",
+        "solicitor": "Solicitor",
+        "commissioner_for_oaths": "Commissioner for Oaths"
+      },
+      "specializations": {
+        "estate_planning": "Estate Planning",
+        "general_witness": "General Witness Services",
+        "business_documents": "Business Documents",
+        "family_law": "Family Law"
+      }
+    }
+  },
+  "schedule": {
+    "title": "Manage Schedule",
+    "weekly_availability": "Weekly Availability",
+    "availability_description": "Set your available hours for witness sessions",
+    "days": {
+      "monday": "Monday",
+      "tuesday": "Tuesday",
+      "wednesday": "Wednesday",
+      "thursday": "Thursday",
+      "friday": "Friday",
+      "saturday": "Saturday",
+      "sunday": "Sunday"
+    },
+    "time_slot_management": "Time Slot Management",
+    "add_time_slot": "Add Time Slot",
+    "no_time_slots": "No time slots configured",
+    "start_time": "Start Time",
+    "end_time": "End Time",
+    "schedule_settings": "Schedule Settings",
+    "time_zone": "Time Zone",
+    "default_session_duration": "Default Session Duration (minutes)",
+    "buffer_time_between_sessions": "Buffer Time Between Sessions (minutes)",
+    "time_zones": {
+      "europe_dublin": "Europe/Dublin (Ireland)",
+      "europe_london": "Europe/London (UK)",
+      "america_new_york": "America/New_York (EST)",
+      "america_los_angeles": "America/Los_Angeles (PST)"
+    },
+    "save_settings": "Save Settings",
+    "upcoming_sessions": "Upcoming Sessions",
+    "no_upcoming_sessions": "No upcoming sessions",
+    "no_upcoming_sessions_description": "Your scheduled witness sessions will appear here",
+    "view_details": "View Details",
+    "duration": "Duration: {{duration}} minutes",
+    "availability": "Availability",
+    "edit_time_slot": "Edit Time Slot"
+  },
+  "labels": {
+    "witness_license_number": "Witness License Number",
+    "witness_type": "Witness Type",
+    "specialization": "Specialization",
+    "years_experience": "Years of Experience",
+    "languages_spoken": "Languages Spoken",
+    "professional_body": "Professional Body",
+    "membership_number": "Membership Number",
+    "insurance_provider": "Insurance Provider",
+    "policy_number": "Policy Number",
+    "insurance_expiry": "Insurance Expiry Date",
+    "bio": "Bio",
+    "identity_verified": "Identity Verified",
+    "background_check_completed": "Background Check Completed",
+    "bank_name": "Bank Name",
+    "account_holder_name": "Account Holder Name",
+    "iban": "IBAN",
+    "bic_swift": "BIC/SWIFT Code",
+    "preferred_session_duration": "Preferred Session Duration",
+    "max_sessions_per_day": "Max Sessions per Day",
+    "buffer_time": "Buffer Time (minutes)",
+    "no_buffer": "No buffer",
+    "5_minutes": "5 minutes",
+    "10_minutes": "10 minutes",
+    "15_minutes": "15 minutes"
+  },
+  "preferences": {
+    "time_slots": {
+      "15_minutes": "15 minutes",
+      "30_minutes": "30 minutes",
+      "45_minutes": "45 minutes",
+      "60_minutes": "60 minutes"
+    },
+    "notifications": {
+      "auto_accept_requests": "Automatically accept witness requests during available hours",
+      "email_notifications": "Receive email notifications for new requests",
+      "sms_notifications": "Receive SMS notifications for urgent requests"
+    }
+  },
+  "verification": {
+    "verified_on": "Verified on {{date}}",
+    "completed_on": "Completed on {{date}}"
+  }
+}

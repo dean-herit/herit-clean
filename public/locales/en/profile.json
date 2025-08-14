@@ -1,0 +1,68 @@
+{
+  "page": {
+    "title": "Profile",
+    "description": "Manage your personal information and preferences"
+  },
+  "sections": {
+    "personal_information": {
+      "title": "Personal Information",
+      "description": "Use a permanent address where you can receive mail."
+    },
+    "notifications": {
+      "title": "Notifications",
+      "description": "We'll always let you know about important changes, but you pick what else you want to hear about."
+    }
+  },
+  "fields": {
+    "profile_photo": {
+      "label": "Profile Photo",
+      "help_text": "Add a profile photo to help people recognize you. PNG, JPG, GIF up to 10MB.",
+      "current_photo": "Replace current photo"
+    },
+    "address_line_2": {
+      "label": "Address Line 2"
+    },
+    "region": {
+      "label": "State / Province"
+    },
+    "postal_code": {
+      "label": "ZIP / Postal code"
+    }
+  },
+  "photo_upload": {
+    "drag_drop_text": "Upload a file or drag and drop",
+    "file_types": "PNG, JPG, GIF up to 10MB",
+    "selected_file": "Selected: {{filename}}"
+  },
+  "notifications": {
+    "email_section": {
+      "title": "By email"
+    },
+    "push_section": {
+      "title": "Push notifications",
+      "description": "These are delivered via SMS to your mobile phone."
+    },
+    "comments": {
+      "label": "Comments",
+      "description": "Get notified when someone posts a comment on a posting."
+    },
+    "candidates": {
+      "label": "Candidates", 
+      "description": "Get notified when a candidate applies for a job."
+    },
+    "offers": {
+      "label": "Offers",
+      "description": "Get notified when a candidate accepts or rejects an offer."
+    },
+    "push_everything": "Everything",
+    "push_same_as_email": "Same as email",
+    "push_nothing": "No push notifications"
+  },
+  "messages": {
+    "profile_updated": "Personal information updated successfully",
+    "profile_photo_updated": "Profile photo updated successfully",
+    "notifications_updated": "Notification preferences updated successfully",
+    "upload_failed": "Failed to upload profile photo",
+    "update_failed": "Failed to update profile"
+  }
+}

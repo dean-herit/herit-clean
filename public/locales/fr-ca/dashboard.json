@@ -1,0 +1,27 @@
+{
+  "title": "Tableau de bord",
+  "welcome": "Bon retour, {{name}}",
+  "sections": {
+    "overview": "Aperçu du compte",
+    "quickActions": "Actions rapides",
+    "recentActivity": "Activité récente",
+    "willStatus": "Statut du testament"
+  },
+  "quickActions": {
+    "createWill": "Créer votre testament",
+    "addAsset": "Ajouter un actif",
+    "addBeneficiary": "Ajouter un bénéficiaire",
+    "viewProfile": "Voir le profil"
+  },
+  "willStatus": {
+    "notStarted": "Pas commencé",
+    "inProgress": "En cours", 
+    "completed": "Terminé",
+    "signed": "Signé et légal"
+  },
+  "stats": {
+    "assets": "Actifs",
+    "beneficiaries": "Bénéficiaires",
+    "executors": "Exécuteurs testamentaires"
+  }
+}

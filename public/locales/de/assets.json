@@ -1,0 +1,110 @@
+{
+  "page": {
+    "title": "Vermögensverwaltung",
+    "description": "Verwalten Sie Ihre Vermögenswerte und deren Verteilung in Ihrem Testament"
+  },
+  "navigation": {
+    "back_to_assets": "Zurück zu Vermögen"
+  },
+  "actions": {
+    "add_asset": "Vermögenswert hinzufügen",
+    "save_asset": "Vermögenswert speichern",
+    "saving": "Wird gespeichert...",
+    "cancel": "Abbrechen",
+    "edit": "Bearbeiten",
+    "delete": "Löschen",
+    "retry": "Erneut versuchen"
+  },
+  "stats": {
+    "total_assets": "Vermögenswerte gesamt",
+    "total_value": "Gesamtwert",
+    "verified": "Verifiziert",
+    "pending": "Ausstehend"
+  },
+  "search": {
+    "placeholder": "Vermögenswerte suchen...",
+    "all_assets": "Alle Vermögenswerte",
+    "financial": "Finanziell",
+    "real_estate": "Immobilien",
+    "business": "Unternehmen",
+    "physical": "Physisch",
+    "digital": "Digital"
+  },
+  "list": {
+    "assets_count": "Vermögenswerte ({{count}})",
+    "added_date": "Hinzugefügt {{date}}",
+    "verified_status": "Verifiziert",
+    "pending_status": "Ausstehend"
+  },
+  "empty_states": {
+    "no_assets": "Keine Vermögenswerte gefunden",
+    "adjust_search": "Versuchen Sie, Ihre Such- oder Filterkriterien anzupassen.",
+    "get_started": "Beginnen Sie mit dem Hinzufügen Ihres ersten Vermögenswerts."
+  },
+  "create": {
+    "title": "Neuen Vermögenswert hinzufügen",
+    "asset_type_section": "Vermögensart",
+    "asset_details_section": "Vermögensdetails",
+    "asset_details_description": "Geben Sie die grundlegenden Informationen zu Ihrem Vermögenswert an.",
+    "supporting_documents": "Unterstützende Dokumente",
+    "upload_documents": "Dokumente zu diesem Vermögenswert hochladen",
+    "upload_photos": "Fotos von diesem Vermögenswert hochladen"
+  },
+  "types": {
+    "financial": {
+      "name": "Finanziell",
+      "description": "Bankkonten, Investitionen, Rentenfonds, Versicherungspolicen"
+    },
+    "real_estate": {
+      "name": "Immobilien", 
+      "description": "Immobilien, Grundstücke, Gewerbeimmobilien"
+    },
+    "business": {
+      "name": "Unternehmen",
+      "description": "Geschäftsanteile, Partnerschaften, geistiges Eigentum"
+    },
+    "physical": {
+      "name": "Physisch", 
+      "description": "Schmuck, Kunst, Sammlerobjekte, Fahrzeuge, Möbel"
+    },
+    "digital": {
+      "name": "Digital",
+      "description": "Kryptowährung, digitale Konten, Online-Vermögen"
+    }
+  },
+  "fields": {
+    "asset_name": {
+      "label": "Vermögensname",
+      "placeholder": "Vermögensname eingeben"
+    },
+    "asset_subtype": {
+      "label": "Vermögensunterart",
+      "placeholder": "Unterart auswählen"
+    },
+    "description": {
+      "label": "Beschreibung",
+      "placeholder": "Vermögenswert beschreiben"
+    },
+    "estimated_value": {
+      "label": "Geschätzter Wert",
+      "placeholder": "€0.00"
+    },
+    "location": {
+      "label": "Standort",
+      "placeholder": "Wo befindet sich dieser Vermögenswert?"
+    },
+    "institution_bank": {
+      "label": "Institution/Bankname",
+      "placeholder": "Name der Finanzinstitution"
+    },
+    "account_number": {
+      "label": "Kontonummer",
+      "placeholder": "Konto- oder Referenznummer"
+    }
+  },
+  "status": {
+    "verified": "Verifiziert",
+    "pending": "Ausstehend",
+    "draft": "Entwurf"
+  }
+}

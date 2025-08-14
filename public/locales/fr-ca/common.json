@@ -1,0 +1,204 @@
+{
+  "branding": {
+    "app_name": "Herit",
+    "tagline": "Planification successorale numérique",
+    "description": "Sécurisez l'avenir de votre famille avec la planification successorale numérique"
+  },
+  "navigation": {
+    "home": "Accueil",
+    "dashboard": "Tableau de bord",
+    "assets": "Actifs", 
+    "beneficiaries": "Bénéficiaires",
+    "will_creation": "Création de testament",
+    "your_profile": "Votre profil",
+    "sign_out": "Se déconnecter",
+    "language": "Langue",
+    "menu": "Menu",
+    "profile": "Profil"
+  },
+  "buttons": {
+    "save": "Sauvegarder",
+    "cancel": "Annuler",
+    "submit": "Soumettre",
+    "continue": "Continuer",
+    "back": "Retour",
+    "next": "Suivant",
+    "skip": "Passer",
+    "finish": "Terminer",
+    "upload": "Téléverser",
+    "choose_file": "Choisir un fichier",
+    "remove": "Supprimer",
+    "edit": "Modifier",
+    "delete": "Supprimer",
+    "add": "Ajouter",
+    "create": "Créer",
+    "update": "Mettre à jour",
+    "login": "Se connecter",
+    "logout": "Se déconnecter",
+    "signup": "S'inscrire",
+    "try_again": "Réessayer",
+    "learn_more": "En savoir plus",
+    "get_started": "Commencer",
+    "close": "Fermer",
+    "confirm": "Confirmer",
+    "reject": "Rejeter"
+  },
+  "labels": {
+    "first_name": "Prénom",
+    "last_name": "Nom de famille", 
+    "email": "Adresse courriel",
+    "phone": "Numéro de téléphone",
+    "phone_number": "Numéro de téléphone",
+    "date_of_birth": "Date de naissance",
+    "country": "Pays",
+    "address": "Adresse",
+    "address_line_2": "Adresse ligne 2",
+    "city": "Ville",
+    "county": "Comté",
+    "postal_code": "Code postal",
+    "eircode": "Code postal",
+    "profile_photo": "Photo de profil",
+    "optional": "(optionnel)",
+    "required": "(requis)",
+    "current_password": "Mot de passe actuel",
+    "new_password": "Nouveau mot de passe",
+    "confirm_password": "Confirmer le mot de passe",
+    "username": "Nom d'utilisateur",
+    "full_name": "Nom complet",
+    "relationship": "Relation",
+    "description": "Description",
+    "value": "Valeur",
+    "percentage": "Pourcentage",
+    "status": "Statut",
+    "type": "Type",
+    "category": "Catégorie",
+    "notes": "Notes"
+  },
+  "status": {
+    "loading": "Chargement...",
+    "saving": "Sauvegarde...",
+    "saved": "Sauvegardé",
+    "error": "Erreur",
+    "success": "Succès",
+    "pending": "En attente",
+    "completed": "Terminé",
+    "in_progress": "En cours",
+    "failed": "Échoué",
+    "draft": "Brouillon",
+    "published": "Publié"
+  },
+  "messages": {
+    "required_field": "Ce champ est requis",
+    "invalid_email": "Veuillez entrer une adresse courriel valide",
+    "invalid_phone": "Veuillez entrer un numéro de téléphone valide",
+    "passwords_dont_match": "Les mots de passe ne correspondent pas",
+    "password_too_short": "Le mot de passe doit contenir au moins 8 caractères",
+    "changes_saved": "Changements sauvegardés avec succès",
+    "changes_discarded": "Changements annulés",
+    "operation_failed": "L'opération a échoué. Veuillez réessayer.",
+    "network_error": "Erreur réseau. Veuillez vérifier votre connexion et réessayer.",
+    "unauthorized": "Vous n'êtes pas autorisé à effectuer cette action",
+    "session_expired": "Votre session a expiré. Veuillez vous reconnecter.",
+    "file_too_large": "La taille du fichier doit être inférieure à 10MB",
+    "invalid_file_type": "Veuillez sélectionner un type de fichier valide",
+    "upload_failed": "Téléversement échoué. Veuillez réessayer.",
+    "authentication_processing": "Traitement de l'authentification...",
+    "authentication_successful": "Authentification réussie! Redirection...",
+    "authentication_failed": "Authentification échouée: {{error}}",
+    "redirecting_home": "Redirection vers la page d'accueil...",
+    "redirecting_kinde": "Redirection vers Kinde pour l'authentification..."
+  },
+  "forms": {
+    "required": "Requis",
+    "optional": "Optionnel",
+    "invalidEmail": "Veuillez entrer une adresse courriel valide",
+    "invalidPhone": "Veuillez entrer un numéro de téléphone valide",
+    "invalidDate": "Veuillez entrer une date valide",
+    "minLength": "Doit contenir au moins {{min}} caractères",
+    "maxLength": "Ne doit pas dépasser {{max}} caractères"
+  },
+  "placeholders": {
+    "first_name": "Entrez votre prénom",
+    "last_name": "Entrez votre nom de famille",
+    "email": "vous@exemple.com",
+    "phone": "+1 514 234 5678",
+    "phone_number": "+1 514 234 5678",
+    "address": "123 Rue Principale",
+    "address_line_2": "Appartement, suite, etc.",
+    "city": "Montréal",
+    "postal_code": "Pour les adresses non-irlandaises",
+    "eircode": "H3A 1B9",
+    "search": "Rechercher...",
+    "enter_text": "Entrez le texte ici..."
+  },
+  "time": {
+    "days": ["Dimanche", "Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi"],
+    "months": ["Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre"],
+    "date_format": "DD/MM/YYYY",
+    "today": "Aujourd'hui",
+    "yesterday": "Hier",
+    "tomorrow": "Demain",
+    "last_week": "La semaine dernière",
+    "last_month": "Le mois dernier"
+  },
+  "home": {
+    "error_occurred": "Une erreur s'est produite",
+    "try_again_message": "Veuillez réessayer ou contacter le support si le problème persiste"
+  },
+  "auth_callback": {
+    "loading_fallback": "Chargement..."
+  },
+  "will_preview": {
+    "navigation": {
+      "back_to_will_builder": "Retour au générateur de testament",
+      "page_title": "Aperçu du testament"
+    },
+    "actions": {
+      "print": "Imprimer",
+      "download_pdf": "Télécharger PDF",
+      "publish_will": "Publier le testament",
+      "cancel": "Annuler"
+    },
+    "sections": {
+      "testator_information": "Informations du testateur",
+      "declaration": "Déclaration",
+      "executor": "Exécuteur testamentaire",
+      "assets": "Actifs",
+      "beneficiaries_distribution": "Bénéficiaires et distribution",
+      "special_instructions": "Instructions spéciales",
+      "witnesses": "Témoins",
+      "signatures": "Signatures"
+    },
+    "labels": {
+      "full_name": "Nom complet",
+      "date_of_birth": "Date de naissance",
+      "address": "Adresse",
+      "name": "Nom",
+      "relationship": "Relation",
+      "total_estate_value": "Valeur totale de la succession",
+      "specific_bequests": "Legs spécifiques:",
+      "profession": "Profession",
+      "signed_date": "Date de signature",
+      "date": "Date",
+      "witness_number": "Témoin {{number}}"
+    },
+    "legal": {
+      "declaration_text": "Moi, {{testator_name}}, de {{testator_address}}, étant sain d'esprit et de mémoire, fais, publie et déclare ceci comme étant mon dernier testament, révoquant par les présentes tous les testaments et codicilles antérieurs faits par moi.",
+      "executor_appointment": "Je nomme par les présentes {{executor_name}} comme exécuteur de ce testament, et je prescris qu'aucune caution ou autre garantie ne soit exigée de mon exécuteur.",
+      "witness_whereof": "EN FOI DE QUOI, j'ai apposé ma main et mon sceau ce {{date}}.",
+      "testator_signature": "{{testator_name}} (Testateur)",
+      "witness_declaration": "Signé, scellé, publié et déclaré par le testateur susmentionné comme étant son dernier testament en notre présence, qui à sa demande, en sa présence et en présence l'un de l'autre, avons souscrit nos noms comme témoins.",
+      "legal_notice": "Ce document a été créé à l'aide de la plateforme de planification successorale numérique Herit. Il a été attesté et vérifié selon la loi irlandaise. Pour les questions juridiques, veuillez consulter un avocat qualifié."
+    },
+    "dialog": {
+      "publish_title": "Publier le testament",
+      "publish_message": "La publication de votre testament le rendra juridiquement contraignant et notifiera tous les bénéficiaires. Êtes-vous sûr de vouloir continuer?",
+      "cancel": "Annuler",
+      "publish": "Publier le testament"
+    },
+    "version": {
+      "created": "Créé: {{date}}",
+      "version": "Version {{number}}"
+    }
+  }
+}

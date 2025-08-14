@@ -1,0 +1,27 @@
+{
+  "title": "Dashboard",
+  "welcome": "Willkommen zurück, {{name}}",
+  "sections": {
+    "overview": "Kontoübersicht",
+    "quickActions": "Schnellaktionen",
+    "recentActivity": "Letzte Aktivität",
+    "willStatus": "Testament Status"
+  },
+  "quickActions": {
+    "createWill": "Testament Erstellen",
+    "addAsset": "Vermögen Hinzufügen",
+    "addBeneficiary": "Begünstigten Hinzufügen",
+    "viewProfile": "Profil Anzeigen"
+  },
+  "willStatus": {
+    "notStarted": "Nicht Begonnen",
+    "inProgress": "In Bearbeitung",
+    "completed": "Abgeschlossen",
+    "signed": "Unterzeichnet & Rechtsgültig"
+  },
+  "stats": {
+    "assets": "Vermögen",
+    "beneficiaries": "Begünstigte", 
+    "executors": "Testamentsvollstrecker"
+  }
+}

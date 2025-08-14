@@ -1,0 +1,24 @@
+{
+  "title": "Testament Ersteller",
+  "subtitle": "Erstellen Sie Ihr rechtsgültiges Testament",
+  "steps": {
+    "personal": "Persönliche Angaben",
+    "assets": "Ihr Vermögen",
+    "beneficiaries": "Begünstigte",
+    "executors": "Testamentsvollstrecker",
+    "wishes": "Letzte Wünsche",
+    "review": "Überprüfung & Unterschrift"
+  },
+  "buttons": {
+    "start": "Testament Erstellen",
+    "continue": "Weiter Erstellen",
+    "save": "Fortschritt Speichern",
+    "preview": "Testament Vorschau",
+    "sign": "Testament Unterzeichnen"
+  },
+  "messages": {
+    "draft": "Ihr Testament ist derzeit ein Entwurf",
+    "complete": "Ihr Testament ist vollständig und rechtsgültig",
+    "progress": "{{completed}} von {{total}} Abschnitten abgeschlossen"
+  }
+}

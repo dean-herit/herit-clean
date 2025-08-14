@@ -1,0 +1,117 @@
+{
+  "page": {
+    "title": "Tableau de bord de l'agent",
+    "description": "Gérez vos clients et modèles de testament"
+  },
+  "stats": {
+    "total_clients": "Total des clients",
+    "active_wills": "Testaments actifs",
+    "completed_wills": "Testaments terminés",
+    "assets_managed": "Actifs gérés"
+  },
+  "quick_actions": {
+    "title": "Actions rapides",
+    "add_new_client": "Ajouter un nouveau client",
+    "add_new_client_description": "Créer un nouveau compte client",
+    "manage_templates": "Gérer les modèles",
+    "manage_templates_description": "Créer et modifier les modèles de testament",
+    "generate_reports": "Générer des rapports",
+    "generate_reports_description": "Analyses client et entreprise"
+  },
+  "clients": {
+    "search_placeholder": "Rechercher des clients...",
+    "status": {
+      "completed": "Terminé",
+      "in_progress": "En cours",
+      "draft": "Brouillon"
+    },
+    "create": {
+      "title": "Créer un nouveau client",
+      "placeholders": {
+        "full_name": "Entrez le nom complet du client",
+        "email": "Entrez l'adresse courriel",
+        "phone": "+1 514 123 4567",
+        "estate_value": "500000",
+        "address": "Entrez l'adresse civique",
+        "city": "Entrez la ville",
+        "postal_code": "H3A 1B9",
+        "notes": "Ajoutez des notes sur ce client..."
+      },
+      "sections": {
+        "personal_information": "Informations personnelles",
+        "contact_details": "Coordonnées",
+        "estate_information": "Informations sur la succession",
+        "address_information": "Informations d'adresse",
+        "additional_notes": "Notes supplémentaires"
+      },
+      "labels": {
+        "full_name": "Nom complet",
+        "email_address": "Adresse courriel", 
+        "phone_number": "Numéro de téléphone",
+        "date_of_birth": "Date de naissance",
+        "estimated_estate_value": "Valeur estimée de la succession (CAD)",
+        "street_address": "Adresse civique",
+        "city": "Ville",
+        "county": "Comté",
+        "eircode": "Code postal",
+        "select_county": "Sélectionner le comté",
+        "will_template": "Modèle de testament",
+        "select_template": "Sélectionner le modèle",
+        "agent_notes": "Notes de l'agent",
+        "priority_level": "Niveau de priorité",
+        "client_source": "Source du client"
+      },
+      "options": {
+        "priority": {
+          "low": "Faible",
+          "normal": "Normal", 
+          "high": "Élevé",
+          "urgent": "Urgent"
+        },
+        "client_source": {
+          "referral": "Référence",
+          "website": "Site web",
+          "marketing": "Marketing",
+          "existing_client": "Client existant",
+          "other": "Autre"
+        }
+      },
+      "checkboxes": {
+        "create_initial_will": "Créer un testament initial pour ce client",
+        "send_welcome_email": "Envoyer un courriel de bienvenue au client"
+      },
+      "will_templates": {
+        "simple": {
+          "name": "Testament simple",
+          "description": "Testament de base pour héritage simple"
+        },
+        "family": {
+          "name": "Testament familial", 
+          "description": "Testament complet pour familles avec enfants"
+        },
+        "business": {
+          "name": "Testament d'entreprise",
+          "description": "Testament spécialisé pour propriétaires d'entreprise"
+        },
+        "complex": {
+          "name": "Testament de succession complexe",
+          "description": "Testament avancé pour successions complexes"
+        }
+      }
+    }
+  },
+  "navigation": {
+    "back_to_portal": "Retour au portail de l'agent"
+  },
+  "actions": {
+    "cancel": "Annuler",
+    "create_client": "Créer le client"
+  },
+  "page_titles": {
+    "add_new_client": "Ajouter un nouveau client",
+    "client_information": "Informations du client",
+    "address_information": "Informations d'adresse", 
+    "will_setup": "Configuration du testament",
+    "agent_notes_settings": "Notes de l'agent et paramètres"
+  }
+}

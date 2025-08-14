@@ -1,0 +1,110 @@
+{
+  "page": {
+    "title": "Gestion des actifs",
+    "description": "Gérez vos actifs et leur distribution dans votre testament"
+  },
+  "navigation": {
+    "back_to_assets": "Retour aux actifs"
+  },
+  "actions": {
+    "add_asset": "Ajouter un actif",
+    "save_asset": "Sauvegarder l'actif",
+    "saving": "Sauvegarde en cours...",
+    "cancel": "Annuler",
+    "edit": "Modifier",
+    "delete": "Supprimer",
+    "retry": "Réessayer"
+  },
+  "stats": {
+    "total_assets": "Total des actifs",
+    "total_value": "Valeur totale",
+    "verified": "Vérifié",
+    "pending": "En attente"
+  },
+  "search": {
+    "placeholder": "Rechercher des actifs...",
+    "all_assets": "Tous les actifs",
+    "financial": "Financier",
+    "real_estate": "Immobilier",
+    "business": "Entreprise",
+    "physical": "Physique",
+    "digital": "Numérique"
+  },
+  "list": {
+    "assets_count": "Actifs ({{count}})",
+    "added_date": "Ajouté le {{date}}",
+    "verified_status": "Vérifié",
+    "pending_status": "En attente"
+  },
+  "empty_states": {
+    "no_assets": "Aucun actif trouvé",
+    "adjust_search": "Essayez d'ajuster vos critères de recherche ou de filtrage.",
+    "get_started": "Commencez en ajoutant votre premier actif."
+  },
+  "create": {
+    "title": "Ajouter un nouvel actif",
+    "asset_type_section": "Type d'actif",
+    "asset_details_section": "Détails de l'actif",
+    "asset_details_description": "Fournissez les informations de base sur votre actif.",
+    "supporting_documents": "Documents de support",
+    "upload_documents": "Téléverser des documents liés à cet actif",
+    "upload_photos": "Téléverser des photos de cet actif"
+  },
+  "types": {
+    "financial": {
+      "name": "Financier",
+      "description": "Comptes bancaires, investissements, fonds de retraite, polices d'assurance"
+    },
+    "real_estate": {
+      "name": "Immobilier", 
+      "description": "Propriétés, terrains, immobilier commercial"
+    },
+    "business": {
+      "name": "Entreprise",
+      "description": "Intérêts commerciaux, partenariats, propriété intellectuelle"
+    },
+    "physical": {
+      "name": "Physique", 
+      "description": "Bijoux, art, objets de collection, véhicules, meubles"
+    },
+    "digital": {
+      "name": "Numérique",
+      "description": "Cryptomonnaie, comptes numériques, actifs en ligne"
+    }
+  },
+  "fields": {
+    "asset_name": {
+      "label": "Nom de l'actif",
+      "placeholder": "Entrez le nom de l'actif"
+    },
+    "asset_subtype": {
+      "label": "Sous-type d'actif",
+      "placeholder": "Sélectionner le sous-type"
+    },
+    "description": {
+      "label": "Description",
+      "placeholder": "Décrivez l'actif"
+    },
+    "estimated_value": {
+      "label": "Valeur estimée",
+      "placeholder": "0,00 $"
+    },
+    "location": {
+      "label": "Emplacement",
+      "placeholder": "Où se trouve cet actif ?"
+    },
+    "institution_bank": {
+      "label": "Nom de l'institution/banque",
+      "placeholder": "Nom de l'institution financière"
+    },
+    "account_number": {
+      "label": "Numéro de compte",
+      "placeholder": "Numéro de compte ou de référence"
+    }
+  },
+  "status": {
+    "verified": "Vérifié",
+    "pending": "En attente",
+    "draft": "Brouillon"
+  }
+}

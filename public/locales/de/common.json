@@ -1,0 +1,204 @@
+{
+  "branding": {
+    "app_name": "Herit",
+    "tagline": "Digitale Nachlassplanung",
+    "description": "Sichern Sie die Zukunft Ihrer Familie mit digitaler Nachlassplanung"
+  },
+  "navigation": {
+    "home": "Startseite",
+    "dashboard": "Übersicht",
+    "assets": "Vermögen", 
+    "beneficiaries": "Begünstigte",
+    "will_creation": "Testament Erstellung",
+    "your_profile": "Ihr Profil",
+    "sign_out": "Abmelden",
+    "language": "Sprache",
+    "menu": "Menü",
+    "profile": "Profil"
+  },
+  "buttons": {
+    "save": "Speichern",
+    "cancel": "Abbrechen",
+    "submit": "Einreichen",
+    "continue": "Weiter",
+    "back": "Zurück",
+    "next": "Weiter",
+    "skip": "Überspringen",
+    "finish": "Beenden",
+    "upload": "Hochladen",
+    "choose_file": "Datei auswählen",
+    "remove": "Entfernen",
+    "edit": "Bearbeiten",
+    "delete": "Löschen",
+    "add": "Hinzufügen",
+    "create": "Erstellen",
+    "update": "Aktualisieren",
+    "login": "Anmelden",
+    "logout": "Abmelden",
+    "signup": "Registrieren",
+    "try_again": "Erneut versuchen",
+    "learn_more": "Mehr erfahren",
+    "get_started": "Loslegen",
+    "close": "Schließen",
+    "confirm": "Bestätigen",
+    "reject": "Ablehnen"
+  },
+  "labels": {
+    "first_name": "Vorname",
+    "last_name": "Nachname", 
+    "email": "E-Mail-Adresse",
+    "phone": "Telefonnummer",
+    "phone_number": "Telefonnummer",
+    "date_of_birth": "Geburtsdatum",
+    "country": "Land",
+    "address": "Adresse",
+    "address_line_2": "Adresszeile 2",
+    "city": "Stadt",
+    "county": "Landkreis",
+    "postal_code": "Postleitzahl",
+    "eircode": "Eircode",
+    "profile_photo": "Profilbild",
+    "optional": "(optional)",
+    "required": "(erforderlich)",
+    "current_password": "Aktuelles Passwort",
+    "new_password": "Neues Passwort",
+    "confirm_password": "Passwort bestätigen",
+    "username": "Benutzername",
+    "full_name": "Vollständiger Name",
+    "relationship": "Beziehung",
+    "description": "Beschreibung",
+    "value": "Wert",
+    "percentage": "Prozentsatz",
+    "status": "Status",
+    "type": "Typ",
+    "category": "Kategorie",
+    "notes": "Notizen"
+  },
+  "status": {
+    "loading": "Lädt...",
+    "saving": "Speichert...",
+    "saved": "Gespeichert",
+    "error": "Fehler",
+    "success": "Erfolgreich",
+    "pending": "Ausstehend",
+    "completed": "Abgeschlossen",
+    "in_progress": "In Bearbeitung",
+    "failed": "Fehlgeschlagen",
+    "draft": "Entwurf",
+    "published": "Veröffentlicht"
+  },
+  "messages": {
+    "required_field": "Dieses Feld ist erforderlich",
+    "invalid_email": "Bitte geben Sie eine gültige E-Mail-Adresse ein",
+    "invalid_phone": "Bitte geben Sie eine gültige Telefonnummer ein",
+    "passwords_dont_match": "Passwörter stimmen nicht überein",
+    "password_too_short": "Passwort muss mindestens 8 Zeichen lang sein",
+    "changes_saved": "Änderungen erfolgreich gespeichert",
+    "changes_discarded": "Änderungen verworfen",
+    "operation_failed": "Vorgang fehlgeschlagen. Bitte versuchen Sie es erneut.",
+    "network_error": "Netzwerkfehler. Bitte überprüfen Sie Ihre Verbindung und versuchen Sie es erneut.",
+    "unauthorized": "Sie sind nicht berechtigt, diese Aktion durchzuführen",
+    "session_expired": "Ihre Sitzung ist abgelaufen. Bitte melden Sie sich erneut an.",
+    "file_too_large": "Dateigröße muss kleiner als 10MB sein",
+    "invalid_file_type": "Bitte wählen Sie einen gültigen Dateityp",
+    "upload_failed": "Upload fehlgeschlagen. Bitte versuchen Sie es erneut.",
+    "authentication_processing": "Authentifizierung wird verarbeitet...",
+    "authentication_successful": "Authentifizierung erfolgreich! Weiterleitung...",
+    "authentication_failed": "Authentifizierung fehlgeschlagen: {{error}}",
+    "redirecting_home": "Weiterleitung zur Startseite...",
+    "redirecting_kinde": "Weiterleitung zu Kinde für Authentifizierung..."
+  },
+  "forms": {
+    "required": "Erforderlich",
+    "optional": "Optional",
+    "invalidEmail": "Bitte geben Sie eine gültige E-Mail-Adresse ein",
+    "invalidPhone": "Bitte geben Sie eine gültige Telefonnummer ein",
+    "invalidDate": "Bitte geben Sie ein gültiges Datum ein",
+    "minLength": "Muss mindestens {{min}} Zeichen lang sein",
+    "maxLength": "Darf nicht mehr als {{max}} Zeichen lang sein"
+  },
+  "placeholders": {
+    "first_name": "Geben Sie Ihren Vornamen ein",
+    "last_name": "Geben Sie Ihren Nachnamen ein",
+    "email": "sie@beispiel.com",
+    "phone": "+353 1 234 5678",
+    "phone_number": "+353 1 234 5678",
+    "address": "123 Hauptstraße",
+    "address_line_2": "Wohnung, Suite, etc.",
+    "city": "Dublin",
+    "postal_code": "Für nicht-irische Adressen",
+    "eircode": "D02 XY45",
+    "search": "Suchen...",
+    "enter_text": "Text hier eingeben..."
+  },
+  "time": {
+    "days": ["Sonntag", "Montag", "Dienstag", "Mittwoch", "Donnerstag", "Freitag", "Samstag"],
+    "months": ["Januar", "Februar", "März", "April", "Mai", "Juni", "Juli", "August", "September", "Oktober", "November", "Dezember"],
+    "date_format": "DD.MM.YYYY",
+    "today": "Heute",
+    "yesterday": "Gestern",
+    "tomorrow": "Morgen",
+    "last_week": "Letzte Woche",
+    "last_month": "Letzter Monat"
+  },
+  "home": {
+    "error_occurred": "Ein Fehler ist aufgetreten",
+    "try_again_message": "Bitte versuchen Sie es erneut oder kontaktieren Sie den Support, falls das Problem weiterhin besteht"
+  },
+  "auth_callback": {
+    "loading_fallback": "Lädt..."
+  },
+  "will_preview": {
+    "navigation": {
+      "back_to_will_builder": "Zurück zum Testament-Generator",
+      "page_title": "Testament-Vorschau"
+    },
+    "actions": {
+      "print": "Drucken",
+      "download_pdf": "PDF herunterladen",
+      "publish_will": "Testament veröffentlichen",
+      "cancel": "Abbrechen"
+    },
+    "sections": {
+      "testator_information": "Erblasser-Informationen",
+      "declaration": "Erklärung",
+      "executor": "Testamentsvollstrecker",
+      "assets": "Vermögen",
+      "beneficiaries_distribution": "Begünstigte und Verteilung",
+      "special_instructions": "Besondere Anweisungen",
+      "witnesses": "Zeugen",
+      "signatures": "Unterschriften"
+    },
+    "labels": {
+      "full_name": "Vollständiger Name",
+      "date_of_birth": "Geburtsdatum",
+      "address": "Adresse",
+      "name": "Name",
+      "relationship": "Beziehung",
+      "total_estate_value": "Gesamtvermögen",
+      "specific_bequests": "Spezielle Vermächtnisse:",
+      "profession": "Beruf",
+      "signed_date": "Unterschriftsdatum",
+      "date": "Datum",
+      "witness_number": "Zeuge {{number}}"
+    },
+    "legal": {
+      "declaration_text": "Ich, {{testator_name}}, von {{testator_address}}, bei klarem Verstand und guter Erinnerung, erstelle, veröffentliche und erkläre dies zu meinem letzten Willen und Testament und widerrufe hiermit alle früheren Testamente und Zusätze, die ich gemacht habe.",
+      "executor_appointment": "Ich bestelle hiermit {{executor_name}} zum Testamentsvollstrecker dieses Testaments und ordne an, dass von meinem Testamentsvollstrecker keine Kaution oder andere Sicherheit verlangt wird.",
+      "witness_whereof": "ZU ZEUGNIS DESSEN habe ich hierunter meine Hand und mein Siegel gesetzt am {{date}}.",
+      "testator_signature": "{{testator_name}} (Erblasser)",
+      "witness_declaration": "Unterzeichnet, gesiegelt, veröffentlicht und erklärt vom oben genannten Erblasser als und für sein letztes Testament in unserer Gegenwart, die wir auf seine Bitte, in seiner Gegenwart und in Gegenwart voneinander unsere Namen als Zeugen unterzeichnet haben.",
+      "legal_notice": "Dieses Dokument wurde mit der Herit Digital Estate Planning Platform erstellt. Es wurde gemäß irischem Recht bezeugt und verifiziert. Bei rechtlichen Fragen wenden Sie sich bitte an einen qualifizierten Anwalt."
+    },
+    "dialog": {
+      "publish_title": "Testament veröffentlichen",
+      "publish_message": "Die Veröffentlichung Ihres Testaments macht es rechtlich bindend und benachrichtigt alle Begünstigten. Sind Sie sicher, dass Sie fortfahren möchten?",
+      "cancel": "Abbrechen",
+      "publish": "Testament veröffentlichen"
+    },
+    "version": {
+      "created": "Erstellt: {{date}}",
+      "version": "Version {{number}}"
+    }
+  }
+}

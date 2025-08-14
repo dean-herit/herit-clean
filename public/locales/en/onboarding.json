@@ -1,0 +1,128 @@
+{
+  "header": {
+    "title": "Welcome to Herit.",
+    "subtitle": "Before you get started, let's get to know you a bit better."
+  },
+  "steps": {
+    "personalInfo": {
+      "title": "Personal Information",
+      "description": "Basic details and Irish address",
+      "heading": "Personal Information"
+    },
+    "legalConsent": {
+      "title": "Legal Consent", 
+      "description": "Required legal agreements",
+      "heading": "Legal Consent",
+      "subtitle": "Please review and accept the required legal declarations and terms"
+    },
+    "verification": {
+      "title": "Identity Verification",
+      "description": "Secure identity verification",
+      "heading": "Identity Verification",
+      "subtitle": "Complete identity verification to secure your account and enable will creation",
+      "required": "Identity Verification Required",
+      "details": "We use secure identity verification to ensure the legal validity of your will. This process takes just a few minutes and includes document verification and liveness detection.",
+      "startButton": "Start Verification"
+    },
+    "step": "Step {{number}}"
+  },
+  "personalInfo": {
+    "fields": {
+      "firstName": "First Name",
+      "lastName": "Last Name",
+      "dateOfBirth": "Date of Birth",
+      "phoneNumber": "Phone Number",
+      "addressLine1": "Street Address",
+      "addressLine2": "Address Line 2",
+      "city": "City",
+      "county": "County",
+      "eircode": "Eircode"
+    },
+    "placeholders": {
+      "firstName": "Enter your first name",
+      "lastName": "Enter your last name",
+      "phoneNumber": "+353 1 234 5678",
+      "addressLine1": "Enter your street address",
+      "addressLine2": "Apt, suite, etc. (optional)",
+      "city": "Enter city",
+      "county": "Select County",
+      "eircode": "D02 XY45"
+    },
+    "validation": {
+      "firstName": "Please enter a valid first name",
+      "lastName": "Please enter a valid last name",
+      "dateOfBirth": "Date of birth is required",
+      "ageRequirement": "Must be at least 18 years old",
+      "phoneNumber": "Please enter a valid Irish phone number",
+      "addressLine1": "Please enter your street address",
+      "city": "Please enter your city",
+      "county": "Please select your county",
+      "eircode": "Please enter a valid Eircode (e.g., D02 XY45)"
+    }
+  },
+  "legalConsent": {
+    "allRequired": "Please agree to all required consents to proceed",
+    "loading": "Loading legal disclaimers...",
+    "failed": "Failed to load legal disclaimers",
+    "retry": "Please refresh the page to try again.",
+    "none_available": "No legal disclaimers available",
+    "contact_support": "Please contact support if this issue persists.",
+    "consents": {
+      "sound_mind": {
+        "title": "Declaration of Sound Mind",
+        "content": "By signing, I confirm that I am of sound mind, capable of making my own decisions, and in good physical and mental health. I understand the nature and effect of creating and executing a will, and I have the capacity to do so at this time. I agree and understand that monitoring my own health and capabilities is my own responsibility, and in the event I fall ill will inform Herit as soon as possible."
+      },
+      "no_duress": {
+        "title": "Declaration of No Duress",
+        "content": "By signing, I confirm that I am acting entirely of my own free will, without any threat, pressure, coercion, or undue influence from any other person. I choose to use this platform voluntarily and without reservation."
+      },
+      "terms_of_service": {
+        "title": "Terms of Service",
+        "content": "By signing, I confirm I have read and agree to the Herit Terms of Service."
+      },
+      "privacy_policy": {
+        "title": "Privacy Policy",
+        "content": "By signing, I confirm I have read and agree to the Herit Privacy Policy."
+      }
+    },
+    "buttons": {
+      "agree": "I Agree",
+      "agreed": "Agreed ✓"
+    }
+  },
+  "buttons": {
+    "submitConsents": "Submit Consents",
+    "completeVerification": "Complete Verification"
+  },
+  "errors": {
+    "loadingFailed": "Failed to load onboarding data. Please refresh the page.",
+    "saveFailed": "Failed to save {{section}}. Please try again.",
+    "verificationFailed": "Verification failed. Please try again."
+  },
+  "loading": {
+    "onboarding": "Loading onboarding..."
+  },
+  "personal_info": {
+    "photo_section": {
+      "or_browse": "or browse",
+      "file_types": "PNG, JPG, GIF up to 10MB",
+      "selected_file": "Selected: {{filename}}",
+      "help_text": "Profile photos help our support team assist you better."
+    }
+  },
+  "phone_countries": {
+    "ie": "Ireland (+353)",
+    "uk": "United Kingdom (+44)",
+    "us": "United States (+1)",
+    "fr": "France (+33)",
+    "de": "Germany (+49)"
+  },
+  "counties": {
+    "select_county": "Select County"
+  },
+  "verification": {
+    "simple_verification": {
+      "button": "Complete Verification"
+    }
+  }
+}

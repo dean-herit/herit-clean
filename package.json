@@ -1,0 +1,48 @@
+{
+  "name": "herit-clean",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "typecheck": "tsc --noEmit --skipLibCheck",
+    "db:generate": "drizzle-kit generate",
+    "db:push": "drizzle-kit push:pg",
+    "db:studio": "drizzle-kit studio",
+    "deploy": "./scripts/deploy.sh",
+    "test:build": "npm run typecheck && npm run build"
+  },
+  "dependencies": {
+    "@headlessui/react": "^2.2.7",
+    "@heroicons/react": "^2.2.0",
+    "@sentry/nextjs": "^10.5.0",
+    "@sentry/profiling-node": "^10.5.0",
+    "@tanstack/react-query": "^5.85.2",
+    "@types/pg": "^8.15.5",
+    "@vercel/postgres": "^0.10.0",
+    "argon2": "^0.44.0",
+    "clsx": "^2.1.1",
+    "drizzle-kit": "^0.31.4",
+    "drizzle-orm": "^0.44.4",
+    "jose": "^6.0.12",
+    "libphonenumber-js": "^1.12.12",
+    "next": "14.2.30",
+    "react": "^18",
+    "react-dom": "^18",
+    "stripe": "^18.4.0",
+    "tailwind-merge": "^3.3.1",
+    "zod": "^4.0.17"
+  },
+  "devDependencies": {
+    "@types/node": "^20",
+    "@types/react": "^18",
+    "@types/react-dom": "^18",
+    "eslint": "^8",
+    "eslint-config-next": "14.2.30",
+    "postcss": "^8",
+    "tailwindcss": "^3.4.1",
+    "typescript": "^5"
+  }
+}

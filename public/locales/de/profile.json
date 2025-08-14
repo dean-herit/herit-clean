@@ -1,0 +1,68 @@
+{
+  "page": {
+    "title": "Profil",
+    "description": "Verwalten Sie Ihre persönlichen Informationen und Einstellungen"
+  },
+  "sections": {
+    "personal_information": {
+      "title": "Persönliche Informationen",
+      "description": "Verwenden Sie eine dauerhafte Adresse, unter der Sie Post erhalten können."
+    },
+    "notifications": {
+      "title": "Benachrichtigungen",
+      "description": "Wir informieren Sie immer über wichtige Änderungen, aber Sie können wählen, worüber Sie sonst noch hören möchten."
+    }
+  },
+  "fields": {
+    "profile_photo": {
+      "label": "Profilbild",
+      "help_text": "Fügen Sie ein Profilbild hinzu, damit andere Sie erkennen können. PNG, JPG, GIF bis zu 10MB.",
+      "current_photo": "Aktuelles Foto ersetzen"
+    },
+    "address_line_2": {
+      "label": "Adresszeile 2"
+    },
+    "region": {
+      "label": "Bundesland / Provinz"
+    },
+    "postal_code": {
+      "label": "PLZ / Postleitzahl"
+    }
+  },
+  "photo_upload": {
+    "drag_drop_text": "Datei hochladen oder per Drag & Drop",
+    "file_types": "PNG, JPG, GIF bis zu 10MB",
+    "selected_file": "Ausgewählt: {{filename}}"
+  },
+  "notifications": {
+    "email_section": {
+      "title": "Per E-Mail"
+    },
+    "push_section": {
+      "title": "Push-Benachrichtigungen",
+      "description": "Diese werden per SMS an Ihr Mobiltelefon gesendet."
+    },
+    "comments": {
+      "label": "Kommentare",
+      "description": "Benachrichtigung erhalten, wenn jemand einen Kommentar zu einem Beitrag postet."
+    },
+    "candidates": {
+      "label": "Kandidaten", 
+      "description": "Benachrichtigung erhalten, wenn sich ein Kandidat auf eine Stelle bewirbt."
+    },
+    "offers": {
+      "label": "Angebote",
+      "description": "Benachrichtigung erhalten, wenn ein Kandidat ein Angebot annimmt oder ablehnt."
+    },
+    "push_everything": "Alles",
+    "push_same_as_email": "Wie E-Mail",
+    "push_nothing": "Keine Push-Benachrichtigungen"
+  },
+  "messages": {
+    "profile_updated": "Persönliche Informationen erfolgreich aktualisiert",
+    "profile_photo_updated": "Profilbild erfolgreich aktualisiert",
+    "notifications_updated": "Benachrichtigungseinstellungen erfolgreich aktualisiert",
+    "upload_failed": "Profilbild-Upload fehlgeschlagen",
+    "update_failed": "Profil-Update fehlgeschlagen"
+  }
+}

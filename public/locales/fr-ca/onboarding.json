@@ -1,0 +1,105 @@
+{
+  "header": {
+    "title": "Bienvenue chez Herit.",
+    "subtitle": "Avant de commencer à créer votre testament, nous devons apprendre à nous connaître un peu mieux."
+  },
+  "steps": {
+    "personalInfo": {
+      "title": "Informations personnelles",
+      "description": "Détails de base et adresse irlandaise",
+      "heading": "Informations personnelles"
+    },
+    "legalConsent": {
+      "title": "Consentement légal", 
+      "description": "Accords légaux requis",
+      "heading": "Consentement légal",
+      "subtitle": "Veuillez examiner et accepter les déclarations légales et conditions requises"
+    },
+    "verification": {
+      "title": "Vérification d'identité",
+      "description": "Vérification d'identité sécurisée",
+      "heading": "Vérification d'identité",
+      "subtitle": "Complétez la vérification d'identité pour sécuriser votre compte et permettre la création de testament",
+      "required": "Vérification d'identité requise",
+      "details": "Nous utilisons une vérification d'identité sécurisée pour assurer la validité légale de votre testament. Ce processus prend seulement quelques minutes et inclut la vérification de documents et la détection de vivacité.",
+      "startButton": "Commencer la vérification"
+    },
+    "step": "Étape {{number}}"
+  },
+  "personalInfo": {
+    "fields": {
+      "firstName": "Prénom",
+      "lastName": "Nom de famille",
+      "dateOfBirth": "Date de naissance",
+      "phoneNumber": "Numéro de téléphone",
+      "addressLine1": "Adresse civique",
+      "addressLine2": "Adresse ligne 2",
+      "city": "Ville",
+      "county": "Comté",
+      "eircode": "Code postal"
+    },
+    "placeholders": {
+      "firstName": "Entrez votre prénom",
+      "lastName": "Entrez votre nom de famille",
+      "phoneNumber": "+1 514 234 5678",
+      "addressLine1": "Entrez votre adresse civique",
+      "addressLine2": "App, suite, etc. (optionnel)",
+      "city": "Entrez la ville",
+      "county": "Sélectionnez le comté",
+      "eircode": "H3A 1B9"
+    },
+    "validation": {
+      "firstName": "Veuillez entrer un prénom valide",
+      "lastName": "Veuillez entrer un nom de famille valide",
+      "dateOfBirth": "La date de naissance est requise",
+      "ageRequirement": "Doit avoir au moins 18 ans",
+      "phoneNumber": "Veuillez entrer un numéro de téléphone canadien valide",
+      "addressLine1": "Veuillez entrer votre adresse civique",
+      "city": "Veuillez entrer votre ville",
+      "county": "Veuillez sélectionner votre comté",
+      "eircode": "Veuillez entrer un code postal valide (ex: H3A 1B9)"
+    }
+  },
+  "legalConsent": {
+    "allRequired": "Veuillez accepter tous les consentements requis pour continuer",
+    "loading": "Chargement des clauses de non-responsabilité légales...",
+    "failed": "Échec du chargement des clauses de non-responsabilité légales",
+    "retry": "Veuillez actualiser la page pour réessayer.",
+    "none_available": "Aucune clause de non-responsabilité légale disponible",
+    "contact_support": "Veuillez contacter le support si ce problème persiste.",
+    "consents": {
+      "sound_mind": {
+        "title": "Déclaration de santé mentale",
+        "content": "Je déclare que je suis sain d'esprit et que j'ai la capacité mentale de créer ce testament."
+      },
+      "no_duress": {
+        "title": "Déclaration d'absence de contrainte",
+        "content": "Je déclare que je crée ce testament de mon plein gré et sans aucune influence indue."
+      },
+      "terms_of_service": {
+        "title": "Conditions de service",
+        "content": "J'ai lu et j'accepte les Conditions de service de Herit."
+      },
+      "privacy_policy": {
+        "title": "Politique de confidentialité",
+        "content": "J'ai lu et j'accepte la Politique de confidentialité de Herit."
+      }
+    },
+    "buttons": {
+      "agree": "J'accepte",
+      "agreed": "Accepté ✓"
+    }
+  },
+  "buttons": {
+    "submitConsents": "Soumettre les consentements",
+    "completeVerification": "Terminer la vérification"
+  },
+  "errors": {
+    "loadingFailed": "Échec du chargement des données d'accueil. Veuillez actualiser la page.",
+    "saveFailed": "Échec de la sauvegarde de {{section}}. Veuillez réessayer.",
+    "verificationFailed": "La vérification a échoué. Veuillez réessayer."
+  },
+  "loading": {
+    "onboarding": "Chargement de l'accueil..."
+  }
+}

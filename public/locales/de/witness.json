@@ -1,0 +1,148 @@
+{
+  "page": {
+    "title": "Zeugen-Portal",
+    "dashboard_title": "Zeugen-Dashboard",
+    "description": "Verwalten Sie Ihre Zeugenanfragen und Ihren Zeitplan"
+  },
+  "navigation": {
+    "back_to_portal": "Zurück zum Zeugen-Portal"
+  },
+  "stats": {
+    "pending_requests": "Ausstehende Anfragen",
+    "scheduled": "Geplant",
+    "completed": "Abgeschlossen",
+    "total_witnessed": "Insgesamt bezeugt"
+  },
+  "quick_actions": {
+    "title": "Schnellaktionen",
+    "manage_schedule": "Zeitplan verwalten",
+    "manage_schedule_description": "Ihre Verfügbarkeit aktualisieren",
+    "update_profile": "Profil aktualisieren",
+    "update_profile_description": "Ihr Zeugenprofil verwalten",
+    "get_help": "Hilfe erhalten",
+    "get_help_description": "Support und Richtlinien"
+  },
+  "tabs": {
+    "pending": "Ausstehend",
+    "scheduled": "Geplant",
+    "completed": "Abgeschlossen"
+  },
+  "request_actions": {
+    "schedule": "Planen",
+    "view_details": "Details anzeigen",
+    "join_session": "Session beitreten",
+    "details": "Details",
+    "view_report": "Bericht anzeigen"
+  },
+  "empty_states": {
+    "no_requests": "Keine {{selectedTab}} Anfragen",
+    "pending_description": "Neue Zeugenanfragen werden hier erscheinen.",
+    "scheduled_description": "Ihre geplanten Sessions werden hier angezeigt.",
+    "completed_description": "Ihre abgeschlossenen Zeugensessions erscheinen hier."
+  },
+  "profile": {
+    "title": "Zeugenprofil",
+    "tabs": {
+      "personal_info": "Persönliche Informationen",
+      "professional": "Beruflich",
+      "verification": "Verifizierung",
+      "preferences": "Einstellungen"
+    },
+    "professional": {
+      "bio_placeholder": "Erzählen Sie uns von Ihrer Erfahrung und Ihren Qualifikationen...",
+      "languages_placeholder": "z.B. Deutsch, Englisch, Französisch",
+      "witness_types": {
+        "certified_witness": "Zertifizierter Zeuge",
+        "notary_public": "Notar",
+        "solicitor": "Rechtsanwalt",
+        "commissioner_for_oaths": "Eideskommissar"
+      },
+      "specializations": {
+        "estate_planning": "Nachlassplanung",
+        "general_witness": "Allgemeine Zeugendienste",
+        "business_documents": "Geschäftsdokumente",
+        "family_law": "Familienrecht"
+      }
+    }
+  },
+  "schedule": {
+    "title": "Zeitplan verwalten",
+    "weekly_availability": "Wöchentliche Verfügbarkeit",
+    "availability_description": "Legen Sie Ihre verfügbaren Stunden für Zeugensessions fest",
+    "days": {
+      "monday": "Montag",
+      "tuesday": "Dienstag",
+      "wednesday": "Mittwoch",
+      "thursday": "Donnerstag",
+      "friday": "Freitag",
+      "saturday": "Samstag",
+      "sunday": "Sonntag"
+    },
+    "time_slot_management": "Zeitfenster-Verwaltung",
+    "add_time_slot": "Zeitfenster hinzufügen",
+    "no_time_slots": "Keine Zeitfenster konfiguriert",
+    "start_time": "Startzeit",
+    "end_time": "Endzeit",
+    "schedule_settings": "Zeitplan-Einstellungen",
+    "time_zone": "Zeitzone",
+    "default_session_duration": "Standard-Session-Dauer (Minuten)",
+    "buffer_time_between_sessions": "Pufferzeit zwischen Sessions (Minuten)",
+    "time_zones": {
+      "europe_dublin": "Europe/Dublin (Irland)",
+      "europe_london": "Europe/London (UK)",
+      "america_new_york": "America/New_York (EST)",
+      "america_los_angeles": "America/Los_Angeles (PST)"
+    },
+    "save_settings": "Einstellungen speichern",
+    "upcoming_sessions": "Bevorstehende Sessions",
+    "no_upcoming_sessions": "Keine bevorstehenden Sessions",
+    "no_upcoming_sessions_description": "Ihre geplanten Zeugensessions werden hier erscheinen",
+    "view_details": "Details anzeigen",
+    "duration": "Dauer: {{duration}} Minuten",
+    "availability": "Verfügbarkeit",
+    "edit_time_slot": "Zeitfenster bearbeiten"
+  },
+  "labels": {
+    "witness_license_number": "Zeugenlizenz-Nummer",
+    "witness_type": "Zeugentyp",
+    "specialization": "Spezialisierung",
+    "years_experience": "Jahre Erfahrung",
+    "languages_spoken": "Gesprochene Sprachen",
+    "professional_body": "Berufsverband",
+    "membership_number": "Mitgliedsnummer",
+    "insurance_provider": "Versicherungsanbieter",
+    "policy_number": "Policennummer",
+    "insurance_expiry": "Versicherungsablauf",
+    "bio": "Biografie",
+    "identity_verified": "Identität verifiziert",
+    "background_check_completed": "Hintergrundprüfung abgeschlossen",
+    "bank_name": "Bankname",
+    "account_holder_name": "Kontoinhaber",
+    "iban": "IBAN",
+    "bic_swift": "BIC/SWIFT-Code",
+    "preferred_session_duration": "Bevorzugte Session-Dauer",
+    "max_sessions_per_day": "Max. Sessions pro Tag",
+    "buffer_time": "Pufferzeit (Minuten)",
+    "no_buffer": "Kein Puffer",
+    "5_minutes": "5 Minuten",
+    "10_minutes": "10 Minuten",
+    "15_minutes": "15 Minuten"
+  },
+  "preferences": {
+    "time_slots": {
+      "15_minutes": "15 Minuten",
+      "30_minutes": "30 Minuten",
+      "45_minutes": "45 Minuten",
+      "60_minutes": "60 Minuten"
+    },
+    "notifications": {
+      "auto_accept_requests": "Zeugenanfragen während verfügbarer Stunden automatisch annehmen",
+      "email_notifications": "E-Mail-Benachrichtigungen für neue Anfragen erhalten",
+      "sms_notifications": "SMS-Benachrichtigungen für dringende Anfragen erhalten"
+    }
+  },
+  "verification": {
+    "verified_on": "Verifiziert am {{date}}",
+    "completed_on": "Abgeschlossen am {{date}}"
+  }
+}

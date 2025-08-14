@@ -1,0 +1,134 @@
+{
+  "page": {
+    "title": "Bénéficiaires",
+    "description": "Gérez votre famille et vos amis qui hériteront de vos actifs"
+  },
+  "navigation": {
+    "back_to_beneficiaries": "Retour aux bénéficiaires"
+  },
+  "actions": {
+    "add_beneficiary": "Ajouter un bénéficiaire",
+    "save_beneficiary": "Sauvegarder le bénéficiaire",
+    "save_send_invitation": "Sauvegarder et envoyer l'invitation",
+    "send_invitation": "Envoyer l'invitation",
+    "resend": "Renvoyer",
+    "edit": "Modifier",
+    "delete": "Supprimer",
+    "cancel": "Annuler"
+  },
+  "stats": {
+    "total_beneficiaries": "Total des bénéficiaires",
+    "accepted_invitations": "Invitations acceptées", 
+    "pending_invitations": "Invitations en attente",
+    "inheritance_allocated": "Héritage alloué"
+  },
+  "warnings": {
+    "inheritance_exceeds": "L'allocation d'héritage dépasse 100%",
+    "inheritance_incomplete": "L'allocation d'héritage est incomplète"
+  },
+  "search": {
+    "placeholder": "Rechercher des bénéficiaires...",
+    "relationship_filter": "Relation :",
+    "all_relationships": "Toutes les relations"
+  },
+  "relationships": {
+    "spouse_partner": "Époux/Partenaire",
+    "child": "Enfant",
+    "parent": "Parent",
+    "sibling": "Frère/Sœur",
+    "grandparent": "Grand-parent",
+    "grandchild": "Petit-enfant",
+    "aunt_uncle": "Tante/Oncle",
+    "niece_nephew": "Nièce/Neveu",
+    "cousin": "Cousin/Cousine",
+    "friend": "Ami",
+    "other": "Autre"
+  },
+  "list": {
+    "beneficiaries_count": "Bénéficiaires ({{count}})",
+    "inheritance_allocation": "Allocation d'héritage",
+    "primary_label": "Primaire",
+    "accepted_status": "Accepté",
+    "invited_status": "Invité", 
+    "pending_status": "En attente",
+    "invitation_not_sent": "Invitation non envoyée"
+  },
+  "empty_states": {
+    "no_beneficiaries": "Aucun bénéficiaire trouvé",
+    "adjust_search": "Essayez d'ajuster vos critères de recherche ou de filtrage.",
+    "get_started": "Commencez en ajoutant votre premier bénéficiaire."
+  },
+  "create": {
+    "title": "Ajouter un nouveau bénéficiaire",
+    "personal_info": "Informations personnelles",
+    "address_info": "Informations d'adresse", 
+    "inheritance_details": "Détails de l'héritage",
+    "invitation_preview": "Aperçu de l'invitation"
+  },
+  "fields": {
+    "first_name": {
+      "label": "Prénom",
+      "placeholder": "Entrez le prénom"
+    },
+    "last_name": {
+      "label": "Nom de famille", 
+      "placeholder": "Entrez le nom de famille"
+    },
+    "relationship": {
+      "label": "Relation",
+      "placeholder": "Sélectionnez la relation"
+    },
+    "email": {
+      "label": "Adresse courriel",
+      "placeholder": "Entrez l'adresse courriel"
+    },
+    "phone": {
+      "label": "Numéro de téléphone",
+      "placeholder": "Entrez le numéro de téléphone"
+    },
+    "date_of_birth": {
+      "label": "Date de naissance",
+      "placeholder": "Sélectionnez la date"
+    },
+    "display_name": {
+      "label": "Nom d'affichage",
+      "help_text": "Généré automatiquement à partir du prénom et du nom de famille"
+    },
+    "inheritance_percentage": {
+      "label": "Pourcentage d'héritage",
+      "placeholder": "0%"
+    },
+    "specific_bequests": {
+      "label": "Legs spécifiques",
+      "placeholder": "Listez tous les actifs ou montants spécifiques"
+    },
+    "notes": {
+      "label": "Notes",
+      "placeholder": "Notes supplémentaires sur ce bénéficiaire"
+    },
+    "primary_beneficiary": {
+      "label": "Bénéficiaire principal",
+      "help_text": "Les bénéficiaires principaux reçoivent les actifs en premier"
+    },
+    "notify_updates": {
+      "label": "Notifier lors des mises à jour du testament",
+      "help_text": "Envoyer des notifications lorsque le testament est mis à jour"
+    },
+    "send_invitation_immediately": {
+      "label": "Envoyer l'invitation par courriel immédiatement",
+      "help_text": "Envoyer l'invitation maintenant ou sauvegarder comme brouillon"
+    }
+  },
+  "invitation": {
+    "preview_title": "Aperçu de l'invitation par courriel",
+    "subject": "Vous avez été nommé comme bénéficiaire",
+    "preview_text": "Aperçu du courriel d'invitation qui sera envoyé au bénéficiaire"
+  },
+  "status": {
+    "primary": "Primaire",
+    "accepted": "Accepté", 
+    "invited": "Invité",
+    "pending": "En attente",
+    "draft": "Brouillon"
+  }
+}

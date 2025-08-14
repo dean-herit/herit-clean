@@ -1,0 +1,61 @@
+{
+  "page": {
+    "title": "Dashboard",
+    "welcome": "Welcome back, {{name}}",
+    "subtitle": "Track your estate planning progress and manage your digital legacy"
+  },
+  "sections": {
+    "overview": "Account Overview",
+    "quickActions": "Quick Actions",
+    "recentActivity": "Recent Activity",
+    "willStatus": "Will Status",
+    "quick_actions": "Quick Actions",
+    "recent_activity": "Recent Activity",
+    "recent_assets": "Recent Assets",
+    "recent_beneficiaries": "Recent Beneficiaries",
+    "view_all": "View All",
+    "progress_overview": "Progress Overview"
+  },
+  "quick_actions": {
+    "title": "Quick Actions",
+    "add_assets": "Add Assets",
+    "add_assets_description": "Add your financial accounts, property, and valuables",
+    "add_beneficiaries": "Add Beneficiaries", 
+    "add_beneficiaries_description": "Specify who will inherit your assets",
+    "continue_will": "Continue Your Will",
+    "continue_will_description": "Complete your will creation process",
+    "view_will": "View Will",
+    "view_will_description": "Review your current will draft"
+  },
+  "actions": {
+    "view_all_assets": "View All Assets",
+    "add_asset": "Add Asset",
+    "view_all_beneficiaries": "View All Beneficiaries", 
+    "add_beneficiary": "Add Beneficiary",
+    "continue_will": "Continue Will",
+    "start_will": "Start Will"
+  },
+  "stats": {
+    "total_assets": "Total Assets",
+    "total_value": "Total Value", 
+    "total_beneficiaries": "Total Beneficiaries",
+    "beneficiaries": "Beneficiaries",
+    "will_progress": "Will Progress",
+    "verification_percentage": "Verification Progress",
+    "invitations_sent": "Invitations Sent",
+    "invitations_accepted": "Invitations Accepted"
+  },
+  "status": {
+    "verified": "Verified",
+    "pending": "Pending",
+    "draft": "Draft",
+    "accepted": "Accepted", 
+    "invited": "Invited"
+  },
+  "empty_states": {
+    "no_assets": "No assets found",
+    "no_beneficiaries": "No beneficiaries found",
+    "add_first_asset": "Add your first asset",
+    "add_first_beneficiary": "Add your first beneficiary"
+  }
+}

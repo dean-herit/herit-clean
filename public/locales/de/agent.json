@@ -1,0 +1,117 @@
+{
+  "page": {
+    "title": "Agenten-Dashboard",
+    "description": "Verwalten Sie Ihre Kunden und Testament-Vorlagen"
+  },
+  "stats": {
+    "total_clients": "Kunden gesamt",
+    "active_wills": "Aktive Testamente",
+    "completed_wills": "Abgeschlossene Testamente",
+    "assets_managed": "Verwaltete Vermögenswerte"
+  },
+  "quick_actions": {
+    "title": "Schnellaktionen",
+    "add_new_client": "Neuen Kunden hinzufügen",
+    "add_new_client_description": "Neues Kundenkonto erstellen",
+    "manage_templates": "Vorlagen verwalten",
+    "manage_templates_description": "Testament-Vorlagen erstellen und bearbeiten",
+    "generate_reports": "Berichte generieren",
+    "generate_reports_description": "Kunden- und Geschäftsanalysen"
+  },
+  "clients": {
+    "search_placeholder": "Kunden suchen...",
+    "status": {
+      "completed": "Abgeschlossen",
+      "in_progress": "In Bearbeitung",
+      "draft": "Entwurf"
+    },
+    "create": {
+      "title": "Neuen Kunden erstellen",
+      "placeholders": {
+        "full_name": "Vollständigen Namen des Kunden eingeben",
+        "email": "E-Mail-Adresse eingeben",
+        "phone": "+49 30 123 4567",
+        "estate_value": "500000",
+        "address": "Straßenadresse eingeben",
+        "city": "Stadt eingeben",
+        "postal_code": "12345",
+        "notes": "Notizen zu diesem Kunden hinzufügen..."
+      },
+      "sections": {
+        "personal_information": "Persönliche Informationen",
+        "contact_details": "Kontaktdaten",
+        "estate_information": "Nachlass-Informationen",
+        "address_information": "Adress-Informationen",
+        "additional_notes": "Zusätzliche Notizen"
+      },
+      "labels": {
+        "full_name": "Vollständiger Name",
+        "email_address": "E-Mail-Adresse", 
+        "phone_number": "Telefonnummer",
+        "date_of_birth": "Geburtsdatum",
+        "estimated_estate_value": "Geschätzter Nachlasswert (EUR)",
+        "street_address": "Straßenadresse",
+        "city": "Stadt",
+        "county": "Landkreis",
+        "eircode": "Postleitzahl",
+        "select_county": "Landkreis auswählen",
+        "will_template": "Testament-Vorlage",
+        "select_template": "Vorlage auswählen",
+        "agent_notes": "Agenten-Notizen",
+        "priority_level": "Prioritätsstufe",
+        "client_source": "Kundenquelle"
+      },
+      "options": {
+        "priority": {
+          "low": "Niedrig",
+          "normal": "Normal", 
+          "high": "Hoch",
+          "urgent": "Dringend"
+        },
+        "client_source": {
+          "referral": "Empfehlung",
+          "website": "Website",
+          "marketing": "Marketing",
+          "existing_client": "Bestehender Kunde",
+          "other": "Andere"
+        }
+      },
+      "checkboxes": {
+        "create_initial_will": "Erstes Testament für diesen Kunden erstellen",
+        "send_welcome_email": "Willkommens-E-Mail an Kunden senden"
+      },
+      "will_templates": {
+        "simple": {
+          "name": "Einfaches Testament",
+          "description": "Grundlegendes Testament für unkomplizierte Erbschaft"
+        },
+        "family": {
+          "name": "Familien-Testament", 
+          "description": "Umfassendes Testament für Familien mit Kindern"
+        },
+        "business": {
+          "name": "Unternehmens-Testament",
+          "description": "Spezialisiertes Testament für Geschäftsinhaber"
+        },
+        "complex": {
+          "name": "Komplexes Nachlass-Testament",
+          "description": "Erweitertes Testament für komplexe Nachlässe"
+        }
+      }
+    }
+  },
+  "navigation": {
+    "back_to_portal": "Zurück zum Agenten-Portal"
+  },
+  "actions": {
+    "cancel": "Abbrechen",
+    "create_client": "Kunden erstellen"
+  },
+  "page_titles": {
+    "add_new_client": "Neuen Kunden hinzufügen",
+    "client_information": "Kundeninformationen",
+    "address_information": "Adress-Informationen", 
+    "will_setup": "Testament-Einrichtung",
+    "agent_notes_settings": "Agenten-Notizen & Einstellungen"
+  }
+}

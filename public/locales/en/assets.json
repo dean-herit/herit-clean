@@ -1,0 +1,118 @@
+{
+  "page": {
+    "title": "Asset Management",
+    "description": "Manage your assets and their distribution in your will"
+  },
+  "navigation": {
+    "back_to_assets": "Back to Assets"
+  },
+  "actions": {
+    "add_asset": "Add Asset",
+    "edit_asset": "Edit Asset",
+    "save_asset": "Save Asset",
+    "saving": "Saving...",
+    "cancel": "Cancel",
+    "edit": "Edit",
+    "delete": "Delete",
+    "retry": "Retry"
+  },
+  "stats": {
+    "total_assets": "Total Assets",
+    "total_value": "Total Value",
+    "verified": "Verified",
+    "pending": "Pending"
+  },
+  "search": {
+    "placeholder": "Search assets...",
+    "all_assets": "All Assets",
+    "financial": "Financial",
+    "real_estate": "Real Estate",
+    "business": "Business",
+    "physical": "Physical",
+    "digital": "Digital"
+  },
+  "list": {
+    "assets_count": "Assets ({{count}})",
+    "added_date": "Added {{date}}",
+    "verified_status": "Verified",
+    "pending_status": "Pending"
+  },
+  "empty_states": {
+    "no_assets": "No assets found",
+    "adjust_search": "Try adjusting your search or filter criteria.",
+    "get_started": "Get started by adding your first asset."
+  },
+  "create": {
+    "title": "Add New Asset",
+    "asset_type_section": "Asset Type",
+    "asset_details_section": "Asset Details",
+    "asset_details_description": "Provide the basic information about your asset.",
+    "supporting_documents": "Supporting Documents",
+    "upload_documents": "Upload documents related to this asset",
+    "upload_photos": "Upload photos of this asset"
+  },
+  "types": {
+    "financial": {
+      "name": "Financial",
+      "description": "Bank accounts, investments, retirement funds, insurance policies"
+    },
+    "real_estate": {
+      "name": "Real Estate", 
+      "description": "Properties, land, commercial real estate"
+    },
+    "business": {
+      "name": "Business",
+      "description": "Business interests, partnerships, intellectual property"
+    },
+    "physical": {
+      "name": "Physical", 
+      "description": "Jewelry, art, collectibles, vehicles, furniture"
+    },
+    "digital": {
+      "name": "Digital",
+      "description": "Cryptocurrency, digital accounts, online assets"
+    }
+  },
+  "fields": {
+    "name_label": "Asset Name",
+    "type_label": "Asset Type",
+    "value_label": "Estimated Value",
+    "description_label": "Description",
+    "account_number_label": "Account Number",
+    "bank_name_label": "Bank Name",
+    "property_address_label": "Property Address",
+    "asset_name": {
+      "label": "Asset Name",
+      "placeholder": "Enter asset name"
+    },
+    "asset_subtype": {
+      "label": "Asset Subtype",
+      "placeholder": "Select subtype"
+    },
+    "description": {
+      "label": "Description",
+      "placeholder": "Describe the asset"
+    },
+    "estimated_value": {
+      "label": "Estimated Value",
+      "placeholder": "€0.00"
+    },
+    "location": {
+      "label": "Location",
+      "placeholder": "Where is this asset located?"
+    },
+    "institution_bank": {
+      "label": "Institution/Bank Name",
+      "placeholder": "Name of financial institution"
+    },
+    "account_number": {
+      "label": "Account Number",
+      "placeholder": "Account or reference number"
+    }
+  },
+  "status": {
+    "verified": "Verified",
+    "pending": "Pending",
+    "draft": "Draft"
+  }
+}

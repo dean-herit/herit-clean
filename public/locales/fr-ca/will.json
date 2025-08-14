@@ -1,0 +1,24 @@
+{
+  "title": "Constructeur de testament",
+  "subtitle": "Créez votre testament légalement valide",
+  "steps": {
+    "personal": "Détails personnels",
+    "assets": "Vos actifs",
+    "beneficiaries": "Bénéficiaires",
+    "executors": "Exécuteurs testamentaires",
+    "wishes": "Dernières volontés",
+    "review": "Révision et signature"
+  },
+  "buttons": {
+    "start": "Commencer à créer mon testament",
+    "continue": "Continuer la création",
+    "save": "Sauvegarder le progrès",
+    "preview": "Aperçu du testament",
+    "sign": "Signer le testament"
+  },
+  "messages": {
+    "draft": "Votre testament est actuellement un brouillon",
+    "complete": "Votre testament est terminé et légalement valide",
+    "progress": "{{completed}} sur {{total}} sections terminées"
+  }
+}

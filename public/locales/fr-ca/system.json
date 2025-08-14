@@ -1,0 +1,86 @@
+{
+  "errors": {
+    "session": {
+      "get_failed": "Failed to get session value",
+      "set_failed": "Failed to set session value",
+      "remove_failed": "Failed to remove session value",
+      "clear_failed": "Failed to clear auth session"
+    },
+    "port": {
+      "mismatch_detected": "Port configuration mismatch detected"
+    },
+    "clipboard": {
+      "copy_failed": "Failed to copy to clipboard"
+    },
+    "storage": {
+      "clear_failed": "Failed to clear storage"
+    },
+    "unknown": "Unknown error",
+    "general": "An error occurred"
+  },
+  "api": {
+    "states": {
+      "not_started": "not started",
+      "attempting": "API call attempt",
+      "received": "API response received",
+      "failed": "API call failed",
+      "retrying": "Retrying API call"
+    },
+    "headers": {
+      "content_type": "Content-Type",
+      "application_json": "application/json"
+    },
+    "retry": {
+      "delay": "1 second"
+    }
+  },
+  "table_headers": {
+    "client": "Client",
+    "will_status": "Will Status",
+    "assets": "Assets",
+    "heirs": "Heirs",
+    "beneficiaries": "Beneficiaries",
+    "distributions": "Distributions",
+    "last_updated": "Last Updated",
+    "actions": "Actions",
+    "status": "Status"
+  },
+  "filters": {
+    "all_status": "All Status",
+    "search": "Search",
+    "filter": "Filter"
+  },
+  "logging": {
+    "auth": {
+      "success": "Authentication successful",
+      "failure": "Authentication failed",
+      "redirect": "Auth redirect"
+    },
+    "navigation": {
+      "route_change": "Route change",
+      "redirect_cooldown": "Redirect cooldown active"
+    },
+    "api": {
+      "request_started": "API request started",
+      "request_successful": "API request successful",
+      "request_failed": "API request failed"
+    },
+    "user": {
+      "action": "User action"
+    }
+  },
+  "page_sections": {
+    "quick_actions": "Quick Actions",
+    "manage_assets": "Manage Assets",
+    "manage_beneficiaries": "Manage Beneficiaries",
+    "configure_distributions": "Configure Distributions"
+  },
+  "test": {
+    "translation_test": "Translation Test",
+    "branding": "Branding",
+    "navigation": "Navigation",
+    "buttons": "Buttons",
+    "status_messages": "Status Messages",
+    "instructions": "Instructions"
+  }
+}

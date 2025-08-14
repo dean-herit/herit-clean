@@ -1,0 +1,134 @@
+{
+  "page": {
+    "title": "Begünstigte",
+    "description": "Verwalten Sie Ihre Familie und Freunde, die Ihre Vermögenswerte erben werden"
+  },
+  "navigation": {
+    "back_to_beneficiaries": "Zurück zu Begünstigte"
+  },
+  "actions": {
+    "add_beneficiary": "Begünstigten hinzufügen",
+    "save_beneficiary": "Begünstigten speichern",
+    "save_send_invitation": "Speichern & Einladung senden",
+    "send_invitation": "Einladung senden",
+    "resend": "Erneut senden",
+    "edit": "Bearbeiten",
+    "delete": "Löschen",
+    "cancel": "Abbrechen"
+  },
+  "stats": {
+    "total_beneficiaries": "Begünstigte gesamt",
+    "accepted_invitations": "Angenommene Einladungen", 
+    "pending_invitations": "Ausstehende Einladungen",
+    "inheritance_allocated": "Erbschaft zugeteilt"
+  },
+  "warnings": {
+    "inheritance_exceeds": "Erbschaftszuteilung überschreitet 100%",
+    "inheritance_incomplete": "Erbschaftszuteilung ist unvollständig"
+  },
+  "search": {
+    "placeholder": "Begünstigte suchen...",
+    "relationship_filter": "Beziehung:",
+    "all_relationships": "Alle Beziehungen"
+  },
+  "relationships": {
+    "spouse_partner": "Ehepartner/Partner",
+    "child": "Kind",
+    "parent": "Elternteil",
+    "sibling": "Geschwister",
+    "grandparent": "Großelternteil",
+    "grandchild": "Enkelkind",
+    "aunt_uncle": "Tante/Onkel",
+    "niece_nephew": "Nichte/Neffe",
+    "cousin": "Cousin/Cousine",
+    "friend": "Freund",
+    "other": "Andere"
+  },
+  "list": {
+    "beneficiaries_count": "Begünstigte ({{count}})",
+    "inheritance_allocation": "Erbschaftszuteilung",
+    "primary_label": "Primär",
+    "accepted_status": "Angenommen",
+    "invited_status": "Eingeladen", 
+    "pending_status": "Ausstehend",
+    "invitation_not_sent": "Einladung nicht gesendet"
+  },
+  "empty_states": {
+    "no_beneficiaries": "Keine Begünstigten gefunden",
+    "adjust_search": "Versuchen Sie, Ihre Such- oder Filterkriterien anzupassen.",
+    "get_started": "Beginnen Sie mit dem Hinzufügen Ihres ersten Begünstigten."
+  },
+  "create": {
+    "title": "Neuen Begünstigten hinzufügen",
+    "personal_info": "Persönliche Informationen",
+    "address_info": "Adressinformationen", 
+    "inheritance_details": "Erbschaftsdetails",
+    "invitation_preview": "Einladungsvorschau"
+  },
+  "fields": {
+    "first_name": {
+      "label": "Vorname",
+      "placeholder": "Vorname eingeben"
+    },
+    "last_name": {
+      "label": "Nachname", 
+      "placeholder": "Nachname eingeben"
+    },
+    "relationship": {
+      "label": "Beziehung",
+      "placeholder": "Beziehung auswählen"
+    },
+    "email": {
+      "label": "E-Mail-Adresse",
+      "placeholder": "E-Mail-Adresse eingeben"
+    },
+    "phone": {
+      "label": "Telefonnummer",
+      "placeholder": "Telefonnummer eingeben"
+    },
+    "date_of_birth": {
+      "label": "Geburtsdatum",
+      "placeholder": "Datum auswählen"
+    },
+    "display_name": {
+      "label": "Anzeigename",
+      "help_text": "Automatisch aus Vor- und Nachname generiert"
+    },
+    "inheritance_percentage": {
+      "label": "Erbschaftsprozentsatz",
+      "placeholder": "0%"
+    },
+    "specific_bequests": {
+      "label": "Spezifische Vermächtnisse",
+      "placeholder": "Spezifische Vermögenswerte oder Beträge auflisten"
+    },
+    "notes": {
+      "label": "Notizen",
+      "placeholder": "Zusätzliche Notizen zu diesem Begünstigten"
+    },
+    "primary_beneficiary": {
+      "label": "Hauptbegünstigter",
+      "help_text": "Hauptbegünstigte erhalten Vermögenswerte zuerst"
+    },
+    "notify_updates": {
+      "label": "Bei Testament-Updates benachrichtigen",
+      "help_text": "Benachrichtigungen senden, wenn das Testament aktualisiert wird"
+    },
+    "send_invitation_immediately": {
+      "label": "Einladungs-E-Mail sofort senden",
+      "help_text": "Einladung jetzt senden oder als Entwurf speichern"
+    }
+  },
+  "invitation": {
+    "preview_title": "E-Mail-Einladungsvorschau",
+    "subject": "Sie wurden als Begünstigter benannt",
+    "preview_text": "Vorschau der Einladungs-E-Mail, die an den Begünstigten gesendet wird"
+  },
+  "status": {
+    "primary": "Primär",
+    "accepted": "Angenommen", 
+    "invited": "Eingeladen",
+    "pending": "Ausstehend",
+    "draft": "Entwurf"
+  }
+}

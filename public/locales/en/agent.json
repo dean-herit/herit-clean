@@ -1,0 +1,117 @@
+{
+  "page": {
+    "title": "Agent Dashboard",
+    "description": "Manage your clients and will templates"
+  },
+  "stats": {
+    "total_clients": "Total Clients",
+    "active_wills": "Active Wills",
+    "completed_wills": "Completed Wills",
+    "assets_managed": "Assets Managed"
+  },
+  "quick_actions": {
+    "title": "Quick Actions",
+    "add_new_client": "Add New Client",
+    "add_new_client_description": "Create a new client account",
+    "manage_templates": "Manage Templates",
+    "manage_templates_description": "Create and edit will templates",
+    "generate_reports": "Generate Reports",
+    "generate_reports_description": "Client and business analytics"
+  },
+  "clients": {
+    "search_placeholder": "Search clients...",
+    "status": {
+      "completed": "Completed",
+      "in_progress": "In Progress",
+      "draft": "Draft"
+    },
+    "create": {
+      "title": "Create New Client",
+      "placeholders": {
+        "full_name": "Enter client's full name",
+        "email": "Enter email address",
+        "phone": "+353 85 123 4567",
+        "estate_value": "500000",
+        "address": "Enter street address",
+        "city": "Enter city",
+        "postal_code": "A65 F4E2",
+        "notes": "Add any notes about this client..."
+      },
+      "sections": {
+        "personal_information": "Personal Information",
+        "contact_details": "Contact Details",
+        "estate_information": "Estate Information",
+        "address_information": "Address Information",
+        "additional_notes": "Additional Notes"
+      },
+      "labels": {
+        "full_name": "Full Name",
+        "email_address": "Email Address", 
+        "phone_number": "Phone Number",
+        "date_of_birth": "Date of Birth",
+        "estimated_estate_value": "Estimated Estate Value (EUR)",
+        "street_address": "Street Address",
+        "city": "City",
+        "county": "County",
+        "eircode": "Eircode",
+        "select_county": "Select County",
+        "will_template": "Will Template",
+        "select_template": "Select template",
+        "agent_notes": "Agent Notes",
+        "priority_level": "Priority Level",
+        "client_source": "Client Source"
+      },
+      "options": {
+        "priority": {
+          "low": "Low",
+          "normal": "Normal", 
+          "high": "High",
+          "urgent": "Urgent"
+        },
+        "client_source": {
+          "referral": "Referral",
+          "website": "Website",
+          "marketing": "Marketing",
+          "existing_client": "Existing Client",
+          "other": "Other"
+        }
+      },
+      "checkboxes": {
+        "create_initial_will": "Create initial will for this client",
+        "send_welcome_email": "Send welcome email to client"
+      },
+      "will_templates": {
+        "simple": {
+          "name": "Simple Will",
+          "description": "Basic will for straightforward inheritance"
+        },
+        "family": {
+          "name": "Family Will", 
+          "description": "Comprehensive will for families with children"
+        },
+        "business": {
+          "name": "Business Will",
+          "description": "Specialized will for business owners"
+        },
+        "complex": {
+          "name": "Complex Estate Will",
+          "description": "Advanced will for complex estates"
+        }
+      }
+    }
+  },
+  "navigation": {
+    "back_to_portal": "Back to Agent Portal"
+  },
+  "actions": {
+    "cancel": "Cancel",
+    "create_client": "Create Client"
+  },
+  "page_titles": {
+    "add_new_client": "Add New Client",
+    "client_information": "Client Information",
+    "address_information": "Address Information", 
+    "will_setup": "Will Setup",
+    "agent_notes_settings": "Agent Notes & Settings"
+  }
+}
