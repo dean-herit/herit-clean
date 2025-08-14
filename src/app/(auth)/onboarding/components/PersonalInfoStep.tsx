@@ -1,0 +1,479 @@
+'use client'
+
+import { useState, useRef } from 'react'
+import { ArrowRightIcon, PhotoIcon, XMarkIcon } from '@heroicons/react/24/outline'
+import Image from 'next/image'
+
+// Irish counties for dropdown
+const IRISH_COUNTIES = [
+  'Antrim', 'Armagh', 'Carlow', 'Cavan', 'Clare', 'Cork', 'Derry', 'Donegal',
+  'Down', 'Dublin', 'Fermanagh', 'Galway', 'Kerry', 'Kildare', 'Kilkenny',
+  'Laois', 'Leitrim', 'Limerick', 'Longford', 'Louth', 'Mayo', 'Meath',
+  'Monaghan', 'Offaly', 'Roscommon', 'Sligo', 'Tipperary', 'Tyrone',
+  'Waterford', 'Westmeath', 'Wexford', 'Wicklow'
+]
+
+interface PersonalInfo {
+  first_name: string
+  last_name: string
+  email: string
+  date_of_birth: string
+  phone_number: string
+  address_line_1: string
+  address_line_2: string
+  city: string
+  county: string
+  eircode: string
+  profile_photo: string | null
+}
+
+interface PersonalInfoStepProps {
+  initialData: PersonalInfo
+  loading: boolean
+  onChange: (data: PersonalInfo) => void
+  onComplete: (data: PersonalInfo) => void
+  onBack?: () => void
+}
+
+export default function PersonalInfoStep({
+  initialData,
+  loading,
+  onChange,
+  onComplete,
+  onBack,
+}: PersonalInfoStepProps) {
+  const [formData, setFormData] = useState<PersonalInfo>(initialData)
+  const [errors, setErrors] = useState<Record<string, string>>({})
+  const [uploadingPhoto, setUploadingPhoto] = useState(false)
+  const fileInputRef = useRef<HTMLInputElement>(null)
+  
+  // Update parent state when form data changes
+  const updateFormData = (updates: Partial<PersonalInfo>) => {
+    const newData = { ...formData, ...updates }
+    setFormData(newData)
+    onChange(newData)
+  }
+  
+  // Basic validation
+  const validateForm = () => {
+    const newErrors: Record<string, string> = {}
+    
+    if (!formData.first_name.trim()) {
+      newErrors.first_name = 'First name is required'
+    }
+    
+    if (!formData.last_name.trim()) {
+      newErrors.last_name = 'Last name is required'
+    }
+    
+    if (!formData.date_of_birth) {
+      newErrors.date_of_birth = 'Date of birth is required'
+    } else {
+      const birthDate = new Date(formData.date_of_birth)
+      const eighteenYearsAgo = new Date()
+      eighteenYearsAgo.setFullYear(eighteenYearsAgo.getFullYear() - 18)
+      
+      if (birthDate > eighteenYearsAgo) {
+        newErrors.date_of_birth = 'You must be at least 18 years old'
+      }
+    }
+    
+    if (!formData.phone_number.trim()) {
+      newErrors.phone_number = 'Phone number is required'
+    }
+    
+    if (!formData.address_line_1.trim()) {
+      newErrors.address_line_1 = 'Street address is required'
+    }
+    
+    if (!formData.city.trim()) {
+      newErrors.city = 'City is required'
+    }
+    
+    if (!formData.county) {
+      newErrors.county = 'County is required'
+    }
+    
+    if (!formData.eircode.trim()) {
+      newErrors.eircode = 'Eircode is required'
+    } else {
+      const eircodePattern = /^[A-Z0-9]{3}\s?[A-Z0-9]{4}$/i
+      if (!eircodePattern.test(formData.eircode.replace(/\s/g, ''))) {
+        newErrors.eircode = 'Please enter a valid Eircode (e.g., D02 XY45)'
+      }
+    }
+    
+    setErrors(newErrors)
+    return Object.keys(newErrors).length === 0
+  }
+  
+  // Handle form submission
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault()
+    
+    if (validateForm()) {
+      onComplete(formData)
+    }
+  }
+  
+  // Handle photo upload
+  const handlePhotoUpload = async (file: File) => {
+    if (!file || !file.type.startsWith('image/')) {
+      setErrors(prev => ({ ...prev, photo: 'Please select an image file' }))
+      return
+    }
+    
+    if (file.size > 5 * 1024 * 1024) {
+      setErrors(prev => ({ ...prev, photo: 'Image must be smaller than 5MB' }))
+      return
+    }
+    
+    setUploadingPhoto(true)
+    setErrors(prev => ({ ...prev, photo: '' }))
+    
+    try {
+      const formData = new FormData()
+      formData.append('file', file)
+      
+      const response = await fetch('/api/upload/profile-photo', {
+        method: 'POST',
+        body: formData,
+      })
+      
+      if (!response.ok) {
+        throw new Error('Failed to upload photo')
+      }
+      
+      const result = await response.json()
+      updateFormData({ profile_photo: result.url })
+      
+    } catch (error) {
+      console.error('Photo upload error:', error)
+      setErrors(prev => ({ ...prev, photo: 'Failed to upload photo. Please try again.' }))
+    } finally {
+      setUploadingPhoto(false)
+    }
+  }
+  
+  // Handle file input change
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0]
+    if (file) {
+      handlePhotoUpload(file)
+    }
+  }
+  
+  // Remove photo
+  const handleRemovePhoto = () => {
+    updateFormData({ profile_photo: null })
+    if (fileInputRef.current) {
+      fileInputRef.current.value = ''
+    }
+  }
+  
+  return (
+    <form onSubmit={handleSubmit} className="space-y-6">
+      {/* Name Fields */}
+      <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
+        <div>
+          <label htmlFor="first_name" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
+            First Name *
+          </label>
+          <input
+            type="text"
+            id="first_name"
+            name="first_name"
+            value={formData.first_name}
+            onChange={(e) => updateFormData({ first_name: e.target.value })}
+            className={`mt-1 block w-full rounded-md border ${
+              errors.first_name ? 'border-red-300' : 'border-gray-300 dark:border-gray-600'
+            } px-3 py-2 text-gray-900 dark:text-white dark:bg-gray-700 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500`}
+            placeholder="Enter your first name"
+          />
+          {errors.first_name && (
+            <p className="mt-1 text-sm text-red-600">{errors.first_name}</p>
+          )}
+        </div>
+
+        <div>
+          <label htmlFor="last_name" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
+            Last Name *
+          </label>
+          <input
+            type="text"
+            id="last_name"
+            name="last_name"
+            value={formData.last_name}
+            onChange={(e) => updateFormData({ last_name: e.target.value })}
+            className={`mt-1 block w-full rounded-md border ${
+              errors.last_name ? 'border-red-300' : 'border-gray-300 dark:border-gray-600'
+            } px-3 py-2 text-gray-900 dark:text-white dark:bg-gray-700 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500`}
+            placeholder="Enter your last name"
+          />
+          {errors.last_name && (
+            <p className="mt-1 text-sm text-red-600">{errors.last_name}</p>
+          )}
+        </div>
+      </div>
+
+      {/* Email Field (read-only) */}
+      <div>
+        <label htmlFor="email" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
+          Email Address
+        </label>
+        <input
+          type="email"
+          id="email"
+          value={formData.email}
+          readOnly
+          className="mt-1 block w-full rounded-md border border-gray-300 dark:border-gray-600 px-3 py-2 bg-gray-50 dark:bg-gray-600 text-gray-500 dark:text-gray-400 cursor-not-allowed"
+        />
+        <p className="mt-1 text-xs text-gray-500 dark:text-gray-400">
+          This email is from your account and cannot be changed here.
+        </p>
+      </div>
+
+      {/* Date of Birth and Phone */}
+      <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
+        <div>
+          <label htmlFor="date_of_birth" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
+            Date of Birth *
+          </label>
+          <input
+            type="date"
+            id="date_of_birth"
+            name="date_of_birth"
+            value={formData.date_of_birth}
+            onChange={(e) => updateFormData({ date_of_birth: e.target.value })}
+            className={`mt-1 block w-full rounded-md border ${
+              errors.date_of_birth ? 'border-red-300' : 'border-gray-300 dark:border-gray-600'
+            } px-3 py-2 text-gray-900 dark:text-white dark:bg-gray-700 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500`}
+          />
+          {errors.date_of_birth && (
+            <p className="mt-1 text-sm text-red-600">{errors.date_of_birth}</p>
+          )}
+        </div>
+
+        <div>
+          <label htmlFor="phone_number" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
+            Phone Number *
+          </label>
+          <input
+            type="tel"
+            id="phone_number"
+            name="phone_number"
+            value={formData.phone_number}
+            onChange={(e) => updateFormData({ phone_number: e.target.value })}
+            className={`mt-1 block w-full rounded-md border ${
+              errors.phone_number ? 'border-red-300' : 'border-gray-300 dark:border-gray-600'
+            } px-3 py-2 text-gray-900 dark:text-white dark:bg-gray-700 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500`}
+            placeholder="+353 85 123 4567"
+          />
+          {errors.phone_number && (
+            <p className="mt-1 text-sm text-red-600">{errors.phone_number}</p>
+          )}
+        </div>
+      </div>
+
+      {/* Address Fields */}
+      <div className="space-y-6">
+        <div>
+          <label htmlFor="address_line_1" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
+            Street Address *
+          </label>
+          <input
+            type="text"
+            id="address_line_1"
+            name="address_line_1"
+            value={formData.address_line_1}
+            onChange={(e) => updateFormData({ address_line_1: e.target.value })}
+            className={`mt-1 block w-full rounded-md border ${
+              errors.address_line_1 ? 'border-red-300' : 'border-gray-300 dark:border-gray-600'
+            } px-3 py-2 text-gray-900 dark:text-white dark:bg-gray-700 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500`}
+            placeholder="Enter your street address"
+          />
+          {errors.address_line_1 && (
+            <p className="mt-1 text-sm text-red-600">{errors.address_line_1}</p>
+          )}
+        </div>
+
+        <div>
+          <label htmlFor="address_line_2" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
+            Address Line 2
+          </label>
+          <input
+            type="text"
+            id="address_line_2"
+            name="address_line_2"
+            value={formData.address_line_2}
+            onChange={(e) => updateFormData({ address_line_2: e.target.value })}
+            className="mt-1 block w-full rounded-md border border-gray-300 dark:border-gray-600 px-3 py-2 text-gray-900 dark:text-white dark:bg-gray-700 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
+            placeholder="Apartment, suite, etc. (optional)"
+          />
+        </div>
+      </div>
+
+      {/* City, County, and Eircode */}
+      <div className="grid grid-cols-1 gap-6 sm:grid-cols-3">
+        <div>
+          <label htmlFor="city" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
+            City *
+          </label>
+          <input
+            type="text"
+            id="city"
+            name="city"
+            value={formData.city}
+            onChange={(e) => updateFormData({ city: e.target.value })}
+            className={`mt-1 block w-full rounded-md border ${
+              errors.city ? 'border-red-300' : 'border-gray-300 dark:border-gray-600'
+            } px-3 py-2 text-gray-900 dark:text-white dark:bg-gray-700 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500`}
+            placeholder="Enter your city"
+          />
+          {errors.city && (
+            <p className="mt-1 text-sm text-red-600">{errors.city}</p>
+          )}
+        </div>
+
+        <div>
+          <label htmlFor="county" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
+            County *
+          </label>
+          <select
+            id="county"
+            name="county"
+            value={formData.county}
+            onChange={(e) => updateFormData({ county: e.target.value })}
+            className={`mt-1 block w-full rounded-md border ${
+              errors.county ? 'border-red-300' : 'border-gray-300 dark:border-gray-600'
+            } px-3 py-2 text-gray-900 dark:text-white dark:bg-gray-700 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500`}
+          >
+            <option value="">Select County</option>
+            {IRISH_COUNTIES.map(county => (
+              <option key={county} value={county}>{county}</option>
+            ))}
+          </select>
+          {errors.county && (
+            <p className="mt-1 text-sm text-red-600">{errors.county}</p>
+          )}
+        </div>
+
+        <div>
+          <label htmlFor="eircode" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
+            Eircode *
+          </label>
+          <input
+            type="text"
+            id="eircode"
+            name="eircode"
+            value={formData.eircode}
+            onChange={(e) => updateFormData({ eircode: e.target.value.toUpperCase() })}
+            className={`mt-1 block w-full rounded-md border ${
+              errors.eircode ? 'border-red-300' : 'border-gray-300 dark:border-gray-600'
+            } px-3 py-2 text-gray-900 dark:text-white dark:bg-gray-700 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500`}
+            placeholder="D02 XY45"
+          />
+          {errors.eircode && (
+            <p className="mt-1 text-sm text-red-600">{errors.eircode}</p>
+          )}
+        </div>
+      </div>
+
+      {/* Profile Photo Section */}
+      <div>
+        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-3">
+          Profile Photo (Optional)
+        </label>
+        
+        {formData.profile_photo ? (
+          <div className="flex items-center space-x-4">
+            <div className="relative">
+              <Image
+                src={formData.profile_photo}
+                alt="Profile"
+                width={80}
+                height={80}
+                className="w-20 h-20 rounded-lg object-cover border border-gray-300 dark:border-gray-600"
+              />
+            </div>
+            <div className="flex space-x-3">
+              <button
+                type="button"
+                onClick={() => fileInputRef.current?.click()}
+                disabled={uploadingPhoto}
+                className="text-sm text-blue-600 hover:text-blue-500 disabled:opacity-50"
+              >
+                Change Photo
+              </button>
+              <button
+                type="button"
+                onClick={handleRemovePhoto}
+                disabled={uploadingPhoto}
+                className="text-sm text-red-600 hover:text-red-500 disabled:opacity-50"
+              >
+                Remove
+              </button>
+            </div>
+          </div>
+        ) : (
+          <div
+            onClick={() => fileInputRef.current?.click()}
+            className="border-2 border-dashed border-gray-300 dark:border-gray-600 rounded-lg p-6 text-center cursor-pointer hover:border-blue-400 transition-colors"
+          >
+            {uploadingPhoto ? (
+              <div className="flex items-center justify-center">
+                <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
+                <span className="ml-3 text-gray-600 dark:text-gray-400">Uploading...</span>
+              </div>
+            ) : (
+              <>
+                <PhotoIcon className="mx-auto h-12 w-12 text-gray-400 mb-3" />
+                <p className="text-gray-600 dark:text-gray-400">
+                  Click to upload a profile photo
+                </p>
+                <p className="text-xs text-gray-500 dark:text-gray-500 mt-1">
+                  PNG, JPG up to 5MB
+                </p>
+              </>
+            )}
+          </div>
+        )}
+        
+        {errors.photo && (
+          <p className="mt-1 text-sm text-red-600">{errors.photo}</p>
+        )}
+        
+        <input
+          ref={fileInputRef}
+          type="file"
+          accept="image/*"
+          onChange={handleFileChange}
+          className="hidden"
+          disabled={uploadingPhoto}
+        />
+      </div>
+
+      {/* Submit Button */}
+      <div className="flex justify-between pt-6">
+        {onBack && (
+          <button
+            type="button"
+            onClick={onBack}
+            disabled={loading}
+            className="px-6 py-2 text-gray-600 dark:text-gray-400 hover:text-gray-800 dark:hover:text-gray-200 disabled:opacity-50"
+          >
+            Back
+          </button>
+        )}
+        <button
+          type="submit"
+          disabled={loading}
+          className="ml-auto inline-flex items-center gap-2 rounded-md bg-blue-600 px-6 py-2 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed"
+        >
+          {loading ? 'Saving...' : 'Continue'}
+          <ArrowRightIcon className="w-4 h-4" />
+        </button>
+      </div>
+    </form>
+  )
+}
