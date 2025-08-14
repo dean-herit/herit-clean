@@ -1,234 +1,330 @@
-# ✨ Herit - Estate Planning Platform
+# Herit - Irish Estate Planning Platform
 
-> **Ultra-clean, cloud-first estate planning application** with Next.js 15, TypeScript, and Drizzle ORM.
+> **Professional estate planning application** built with Next.js 14, JWT authentication, and Drizzle ORM.
 
-Herit is a professional legal-tech platform for creating and managing wills with OAuth authentication, identity verification (KYC), and comprehensive estate planning features.
+Herit is a comprehensive legal-tech platform for creating and managing wills in Ireland, featuring OAuth authentication, identity verification, and digital signature capabilities.
 
-## 🚀 Instant Setup
+## 🚀 Quick Start
 
 ```bash
-# 1. Clone and enter
+# 1. Clone and install
 git clone <repo-url> herit && cd herit
+npm install
 
-# 2. One-command setup  
-just setup
+# 2. Set up environment
+cp .env.example .env.local
+# Edit .env.local with your database URL and auth secrets
 
-# 3. Start developing
+# 3. Start development
 just dev
 ```
 
 **That's it!** 🎉 Visit http://localhost:3000
 
-## 💎 Clean Architecture
+## 🏗️ Architecture
+
+This is a **Next.js 14 monorepo** with integrated authentication and database:
 
 ```
 herit/
 ├── src/
-│   ├── app/              # Next.js 15 App Router
-│   ├── components/       # React components
-│   ├── db/               # Drizzle ORM (schema + connection)
-│   ├── actions/          # Server actions
-│   └── lib/              # Utilities (auth, sentry, etc.)
-├── drizzle/              # Database migrations
-├── public/locales/       # i18n (en, de, fr-ca)
-├── .env.example          # Environment template
-└── justfile              # All commands
+│   ├── app/                    # Next.js App Router
+│   │   ├── api/               # API routes (auth, onboarding, etc.)
+│   │   ├── (auth)/            # Auth-protected routes
+│   │   └── (dashboard)/       # Dashboard routes  
+│   ├── components/            # React components
+│   ├── db/                    # Drizzle ORM schema + connection
+│   ├── actions/               # Server actions
+│   ├── hooks/                 # Custom React hooks
+│   └── lib/                   # Utilities (auth, validation, etc.)
+├── public/locales/            # i18n translations (en, de, fr-ca)
+├── drizzle/                   # Database migrations
+└── scripts/                   # Deployment and setup scripts
 ```
-
-## ⚡ Core Commands
-
-| Command | Purpose |
-|---------|---------|
-| `just setup` | 🚀 **Complete environment setup** |
-| `just dev` | 💻 Start development server |
-| `just db-studio` | 🔍 Database management UI |
-| `just build` | 🏗️ Production build |
-| `just deploy` | 🚀 Deploy to Vercel |
-
-[See all commands](#commands) 👇
-
-## 🔧 Environment
-
-**Super simple**: Just 2 files!
-
-1. **`.env.example`** - Template with all variables
-2. **`.env.local`** - Your local configuration
-
-```bash
-# Copy template and configure
-cp .env.example .env.local
-# Edit .env.local with your database URL and auth secrets
-```
-
-**Required variables:**
-- `POSTGRES_URL` - Database connection (Supabase/Vercel/Neon)
-- `SESSION_SECRET` - JWT signing secret
-- Auth providers (Kinde, Google, Apple)
 
 ## 🛠️ Tech Stack
 
-- **Framework**: Next.js 15 with App Router
-- **Database**: PostgreSQL + Drizzle ORM (type-safe)
-- **Auth**: JWT + OAuth (Google, Apple, Kinde)
-- **Styling**: Tailwind CSS
-- **Deployment**: Vercel (cloud-first)
-- **Monitoring**: Sentry error tracking
+| Category | Technology |
+|----------|------------|
+| **Framework** | Next.js 14 with App Router |
+| **Database** | PostgreSQL + Drizzle ORM |
+| **Authentication** | Custom JWT + Google OAuth |
+| **Styling** | Tailwind CSS |
+| **Validation** | Zod schemas |
+| **Monitoring** | Sentry error tracking |
+| **Deployment** | Vercel |
+| **i18n** | Multi-language support |
 
-## 🗄️ Database
+## ⚡ Development Commands
 
-**Cloud-first** - no Docker required!
+| Command | Purpose |
+|---------|---------|
+| `just dev` | 🚀 **Start development server** |
+| `just db-studio` | 🔍 **Open database management UI** |
+| `just build` | 🏗️ **Production build** |
+| `just typecheck` | 🔎 **TypeScript validation** |
+| `just lint` | 🔍 **Code linting** |
+| `just deploy` | 🚀 **Deploy to Vercel** |
 
+[See all commands in justfile](#commands-reference)
+
+## 🔧 Environment Setup
+
+**Required variables:**
 ```bash
-just db-studio     # Open visual database editor
-just db-migrate    # Run migrations
-just db-generate   # Create new migration
+# Database
+POSTGRES_URL=postgresql://...
+
+# JWT Authentication  
+SESSION_SECRET=your_jwt_secret_32_chars_min
+
+# Google OAuth
+GOOGLE_CLIENT_ID=your_google_client_id
+GOOGLE_CLIENT_SECRET=your_google_client_secret
+
+# Optional: Sentry monitoring
+SENTRY_DSN=your_sentry_dsn
 ```
 
-Supports any PostgreSQL provider:
-- ✅ **Supabase** (recommended)
-- ✅ **Vercel Postgres**
-- ✅ **Neon**
-- ✅ **Any PostgreSQL instance**
+## 🔐 Authentication System
 
-## 📋 All Commands
+### **JWT-Based Authentication**
+- **Access tokens**: 15-minute JWT cookies (HTTP-only)
+- **Refresh tokens**: 30-day rotating tokens with family tracking
+- **Google OAuth**: Full PKCE flow implementation
+- **Session management**: Server-side session validation
 
-### 🚀 Quick Start
+### **Security Features**
+- HTTP-only secure cookies
+- Argon2 password hashing  
+- CSRF protection
+- Token rotation on refresh
+- Comprehensive audit logging
+
+## 🎯 Core Features
+
+### ✅ **Implemented Features**
+- **Multi-step onboarding** (personal info, signatures, legal consent, verification)
+- **Digital signature system** with audit trails
+- **Asset management** (bank accounts, property, investments)
+- **Beneficiary management** with inheritance rules
+- **Will creation workflow** (draft/review/finalize)
+- **Identity verification** (Stripe Identity integration)
+- **Dashboard analytics** with estate overview
+- **Multi-language support** (English, German, French-Canadian)
+
+### 🔄 **Onboarding Flow**
+1. **Personal Information** - Irish address validation with eircode
+2. **Digital Signatures** - Canvas drawing or image upload
+3. **Legal Consent** - Terms, privacy, and will creation agreements  
+4. **Identity Verification** - Document upload and validation
+
+### 📊 **Estate Planning**
+- **Assets**: Categorized asset management with valuations
+- **Beneficiaries**: Relationship tracking with inheritance percentages
+- **Wills**: Template-based will generation with legal review
+- **Audit Trail**: Complete activity logging for compliance
+
+## 🗄️ Database Schema
+
+### **Core Tables**
+```sql
+users              -- User profiles and onboarding status
+assets            -- Financial and physical assets  
+beneficiaries     -- Inheritance beneficiaries
+wills             -- Will documents and versions
+signatures        -- Digital signatures with metadata
+signature_usage   -- Signature audit trail
+audit_events      -- Comprehensive audit logging
+refresh_tokens    -- JWT refresh token families
+```
+
+### **Key Features**
+- **UUID primary keys** for security
+- **Timestamp tracking** for all records
+- **JSON fields** for flexible metadata
+- **Foreign key constraints** with cascade deletes
+- **Drizzle relations** for type-safe queries
+
+## 🌐 Internationalization
+
+**Supported Languages:**
+- 🇬🇧 **English** (primary)
+- 🇩🇪 **German** 
+- 🇫🇷 **French (Canadian)**
+
+**Translation Files:**
+```
+public/locales/{lang}/
+├── auth.json         # Authentication pages
+├── onboarding.json   # Onboarding flow
+├── dashboard.json    # Dashboard interface
+├── assets.json       # Asset management
+├── beneficiaries.json # Beneficiary forms
+├── will.json         # Will creation
+└── common.json       # Shared translations
+```
+
+## 🚀 Deployment
+
+### **Vercel Deployment**
 ```bash
-just setup        # Complete environment setup
-just dev          # Start development server  
-just status       # Check project health
-```
-
-### 📊 Development
-```bash
-just build        # Production build
-just typecheck    # TypeScript validation
-just lint         # Code linting
-just test         # Run tests
-```
-
-### 🗄️ Database
-```bash
-just db-studio    # Visual database editor
-just db-migrate   # Run migrations
-just db-generate  # Generate migration
-just db-push      # Push schema (dev only)
-```
-
-### 🚀 Deployment
-```bash
-just deploy       # Deploy to production
-just pre-deploy   # Pre-deployment checks
-just setup-vercel # Configure Vercel env
-```
-
-### 🛠️ Utilities
-```bash
-just check-env    # Validate environment
-just help         # Show all commands
-just status       # Project health check
-```
-
-## 🎯 Features
-
-### ✅ Current Implementation
-- **Next.js 15** with App Router
-- **TypeScript** throughout
-- **Drizzle ORM** for type-safe database
-- **Server Actions** for API
-- **Tailwind CSS** styling  
-- **Multi-language** support (en, de, fr-ca)
-- **JWT Authentication** with OAuth providers
-- **Database schema** for estate planning
-- **Sentry** error tracking
-- **Vercel** deployment ready
-
-### 📚 Legacy Reference  
-Complete feature reference in [`LEGACY_CODE_ARCHIVE.md`](LEGACY_CODE_ARCHIVE.md):
-- 20+ UI pages and 40+ components
-- 50+ API endpoints
-- Authentication system (JWT + OAuth)
-- Digital signature system  
-- Identity verification integration
-- Complete database schema
-
-## 🌟 Development Workflow
-
-1. **Reference**: Check [`LEGACY_CODE_ARCHIVE.md`](LEGACY_CODE_ARCHIVE.md) for specifications
-2. **Implement**: Build in `src/` using clean architecture  
-3. **Validate**: `just typecheck && just build`
-4. **Deploy**: `just deploy`
-
-## 📁 Project Organization
-
-### Components (`src/components/`)
-```
-auth/           # Authentication forms
-estate-planning/# Asset & beneficiary forms
-ui/            # Reusable UI components
-dashboard/     # Dashboard layouts
-```
-
-### Database (`src/db/`)
-```
-schema.ts      # Drizzle schema definitions
-db.ts          # Database connection
-```
-
-### Actions (`src/actions/`)
-```
-auth.ts        # Authentication actions
-assets.ts      # Asset management
-beneficiaries.ts# Beneficiary management
-```
-
-## 🚢 Deployment
-
-**One-command deployment** to Vercel:
-
-```bash
+# One-command deployment
 just deploy
+
+# Or manual deployment
+vercel --prod
 ```
 
-Or configure Vercel environment:
-```bash  
-just setup-vercel  # Auto-configure all env vars
-vercel --prod      # Manual deploy
+### **Environment Configuration**
+- **Production database**: Vercel Postgres or Supabase
+- **OAuth callbacks**: Configure redirect URIs in Google Console
+- **Environment variables**: Set via Vercel dashboard
+
+## 📋 Development Workflow
+
+### **Getting Started**
+1. **Setup environment**: `cp .env.example .env.local`
+2. **Install dependencies**: `npm install`  
+3. **Run migrations**: `just db-migrate`
+4. **Start development**: `just dev`
+
+### **Code Quality**
+```bash
+# Type checking
+just typecheck
+
+# Linting  
+just lint
+
+# Build validation
+just build
 ```
 
-## 🔒 Security
+### **Database Management**
+```bash
+# Open Drizzle Studio
+just db-studio
 
-- **JWT tokens** in HTTP-only cookies
-- **Argon2** password hashing
-- **Input validation** with Zod
-- **Type safety** with TypeScript
-- **Security headers** configured
-- **OAuth 2.0 + PKCE** flow
+# Generate migration
+just db-generate  
 
-## 🎨 Why This Architecture?
+# Run migrations
+just db-migrate
+```
 
-### ❌ Before (Legacy)
-- 50+ config files scattered everywhere
-- Docker complexity for simple development
-- 6 different `.env` files
-- Monolithic backend/frontend coupling
-- Complex validation framework
+## 🔍 API Routes
 
-### ✅ After (Clean) 
-- **5 core config files** only
-- **Cloud-first** - no Docker needed
-- **2 environment files** total
-- **Clean separation** of concerns
-- **Instant setup** - `just setup && just dev`
+### **Authentication**
+```
+GET/POST /api/auth/session     # Session management
+GET      /api/auth/google      # Google OAuth flow
+POST     /api/auth/login       # Email/password login  
+POST     /api/auth/logout      # Session termination
+POST     /api/auth/refresh     # Token refresh
+```
+
+### **Onboarding**
+```
+POST /api/onboarding/personal-info      # Save personal details
+POST /api/onboarding/signatures         # Create signatures
+POST /api/onboarding/legal-consent      # Legal agreements
+POST /api/onboarding/start-verification # Identity verification
+GET  /api/onboarding/verification-status # Check verification
+```
+
+### **File Uploads**
+```
+POST /api/upload/profile-photo    # Profile image upload
+POST /api/upload/signature-image  # Signature image upload
+```
+
+## 📁 Component Architecture
+
+### **UI Components** (`src/components/ui/`)
+```
+button.tsx         # Primary button variants
+forms/input.tsx    # Form input with validation
+forms/select.tsx   # Dropdown select component
+data-display/card.tsx # Content card wrapper
+Header.tsx         # Navigation header
+BackgroundLayout.tsx # Page background wrapper
+```
+
+### **Feature Components**
+```
+auth/              # Authentication forms
+├── LoginForm.tsx
+├── EmailLoginForm.tsx  
+├── EmailSignupForm.tsx
+└── GoogleSignInButton.tsx
+
+estate-planning/   # Estate planning features
+├── AssetForm.tsx
+└── BeneficiaryForm.tsx
+
+dashboard/         # Dashboard components  
+└── DashboardLayout.tsx
+```
+
+### **Onboarding Components**
+```
+onboarding/components/
+├── ProgressSteps.tsx      # Step progress indicator
+├── PersonalInfoStep.tsx   # Personal information form
+├── SignatureStep.tsx      # Digital signature creation
+├── LegalConsentStep.tsx   # Legal agreements
+└── VerificationStep.tsx   # Identity verification
+```
+
+## 🛡️ Security & Compliance
+
+### **Security Measures**
+- **JWT tokens** stored in HTTP-only cookies
+- **Argon2 password hashing** with secure parameters
+- **Input validation** with Zod schemas
+- **SQL injection prevention** via Drizzle ORM
+- **CSRF protection** on state-changing operations
+- **Security headers** configured via Next.js
+
+### **Compliance Features**
+- **Audit logging** for all sensitive operations
+- **Data retention** policies via database constraints
+- **GDPR compliance** ready for EU users
+- **Legal document** versioning and hash verification
+
+## 📞 Support & Commands Reference
+
+### **All Available Commands**
+```bash
+# Development
+just dev              # Start development server
+just build            # Production build
+just typecheck        # TypeScript checking
+just lint             # Code linting
+
+# Database  
+just db-studio        # Open database UI
+just db-generate      # Create migration
+just db-migrate       # Run migrations  
+just db-push          # Push schema changes
+
+# Deployment
+just deploy           # Deploy to Vercel
+just setup-vercel     # Configure Vercel env
+
+# Utilities
+just status           # Project health check
+just check-env        # Validate environment
+just help             # Show all commands
+```
+
+### **Troubleshooting**
+- **Authentication issues**: Check Google OAuth configuration
+- **Database connection**: Verify POSTGRES_URL environment variable
+- **Build failures**: Run `just typecheck` to identify TypeScript errors
+- **JWT errors**: Ensure SESSION_SECRET is set and 32+ characters
 
 ---
 
-## 📞 Support
-
-- **Commands**: `just help`
-- **Issues**: Create GitHub issue
-- **Architecture**: See [`LEGACY_CODE_ARCHIVE.md`](LEGACY_CODE_ARCHIVE.md)
-
----
-
-**Built with ❤️ using modern, clean architecture principles.**
+**Built with ❤️ for the Irish legal system using modern, secure web technologies.**
