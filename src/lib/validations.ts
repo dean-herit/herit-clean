@@ -130,7 +130,7 @@ export const personalInfoSchema = z.object({
  */
 export const assetSchema = z.object({
   name: z.string().min(1, 'Asset name is required').max(255),
-  assetType: z.enum(ASSET_TYPES as [string, ...string[]], { message: 'Please select a valid asset type' }),
+  assetType: z.enum(ASSET_TYPES, { message: 'Please select a valid asset type' }),
   value: z.number().min(0, 'Asset value must be positive'),
   description: z.string().max(1000, 'Description must be less than 1000 characters').optional(),
   accountNumber: z.string().max(255).optional(),
@@ -143,7 +143,7 @@ export const assetSchema = z.object({
  */
 export const beneficiarySchema = z.object({
   name: z.string().min(1, 'Beneficiary name is required').max(255),
-  relationshipType: z.enum(RELATIONSHIP_TYPES as [string, ...string[]], { message: 'Please select a valid relationship type' }),
+  relationshipType: z.enum(RELATIONSHIP_TYPES, { message: 'Please select a valid relationship type' }),
   email: z.string().email('Invalid email address').optional().or(z.literal('')),
   phone: z.string().max(50).optional().or(z.literal('')),
   
@@ -175,9 +175,9 @@ export const beneficiarySchema = z.object({
  */
 export const signatureSchema = z.object({
   name: z.string().min(1, 'Signature name is required').max(255),
-  signatureType: z.enum(SIGNATURE_TYPES as [string, ...string[]], { message: 'Invalid signature type' }),
+  signatureType: z.enum(SIGNATURE_TYPES, { message: 'Invalid signature type' }),
   data: z.string().min(1, 'Signature data is required'),
-  metadata: z.record(z.unknown()).optional().default({}),
+  metadata: z.record(z.string(), z.unknown()).optional(),
 })
 
 /**
@@ -187,7 +187,7 @@ export const willSchema = z.object({
   title: z.string().min(1, 'Will title is required').max(255).default('Last Will and Testament'),
   willType: z.string().max(100).default('simple'),
   content: z.string().optional(),
-  preferences: z.record(z.unknown()).optional().default({}),
+  preferences: z.record(z.string(), z.unknown()).optional(),
 })
 
 // Type exports

@@ -36,9 +36,9 @@ export default function AssetsPage() {
   const [selectedType, setSelectedType] = useState('all')
   const [searchTerm, setSearchTerm] = useState('')
   
-  const { assets, isLoading, error } = useAssets()
+  const { data: assets, isLoading, error } = useAssets()
 
-  const filteredAssets = (assets?.data || []).filter((asset: any) => {
+  const filteredAssets = (assets || []).filter((asset: any) => {
     const matchesType = selectedType === 'all' || asset.assetType === selectedType
     const matchesSearch = asset.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
                          (asset.description || '').toLowerCase().includes(searchTerm.toLowerCase())
@@ -107,7 +107,7 @@ export default function AssetsPage() {
             <div className="ml-4">
               <p className="text-sm font-medium text-gray-500 dark:text-gray-400">Total Assets</p>
               <p className="text-2xl font-bold text-gray-900 dark:text-white">
-                {isLoading ? '...' : (assets?.data?.length || 0)}
+                {isLoading ? '...' : (assets?.length || 0)}
               </p>
             </div>
           </div>
@@ -121,7 +121,7 @@ export default function AssetsPage() {
             <div className="ml-4">
               <p className="text-sm font-medium text-gray-500 dark:text-gray-400">Total Value</p>
               <p className="text-2xl font-bold text-gray-900 dark:text-white">
-                {isLoading ? '...' : formatCurrency((assets?.data || []).reduce((sum: number, asset: any) => sum + (asset.value || 0), 0))}
+                {isLoading ? '...' : formatCurrency((assets || []).reduce((sum: number, asset: any) => sum + (asset.value || 0), 0))}
               </p>
             </div>
           </div>
@@ -135,7 +135,7 @@ export default function AssetsPage() {
             <div className="ml-4">
               <p className="text-sm font-medium text-gray-500 dark:text-gray-400">Verified</p>
               <p className="text-2xl font-bold text-gray-900 dark:text-white">
-                {isLoading ? '...' : (assets?.data || []).filter((a: any) => a.verified).length}
+                {isLoading ? '...' : (assets || []).filter((a: any) => a.verified).length}
               </p>
             </div>
           </div>
@@ -149,7 +149,7 @@ export default function AssetsPage() {
             <div className="ml-4">
               <p className="text-sm font-medium text-gray-500 dark:text-gray-400">Pending</p>
               <p className="text-2xl font-bold text-gray-900 dark:text-white">
-                {isLoading ? '...' : (assets?.data || []).filter((a: any) => !a.verified).length}
+                {isLoading ? '...' : (assets || []).filter((a: any) => !a.verified).length}
               </p>
             </div>
           </div>

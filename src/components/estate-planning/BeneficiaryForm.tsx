@@ -114,8 +114,8 @@ export function BeneficiaryForm({
       <CardHeader>
         <CardTitle>
           {isEditing 
-            ? copy.beneficiaries?.form?.edit_beneficiary || 'Edit Beneficiary' 
-            : copy.beneficiaries?.form?.add_beneficiary || 'Add New Beneficiary'
+            ? copy('beneficiaries.form.edit_beneficiary', 'Edit Beneficiary') 
+            : copy('beneficiaries.form.add_beneficiary', 'Add New Beneficiary')
           }
         </CardTitle>
         {availablePercentage < 100 && (
@@ -139,7 +139,7 @@ export function BeneficiaryForm({
             <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
               <div>
                 <Input
-                  label={copy.beneficiaries?.form?.name_label || 'Full Name'}
+                  label={copy('beneficiaries.form.name_label', 'Full Name')}
                   value={formData.name}
                   onChange={(e) => handleInputChange('name', e.target.value)}
                   error={errors.name}
@@ -150,7 +150,7 @@ export function BeneficiaryForm({
               
               <div>
                 <Select
-                  label={copy.beneficiaries?.form?.relationship_label || 'Relationship'}
+                  label={copy('beneficiaries.form.relationship_label', 'Relationship')}
                   options={relationshipOptions}
                   value={formData.relationshipType}
                   onChange={(value) => handleInputChange('relationshipType', value as string)}
@@ -160,7 +160,7 @@ export function BeneficiaryForm({
               
               <div>
                 <Input
-                  label={copy.beneficiaries?.form?.email_label || 'Email (Optional)'}
+                  label={copy('beneficiaries.form.email_label', 'Email (Optional)')}
                   type="email"
                   value={formData.email || ''}
                   onChange={(e) => handleInputChange('email', e.target.value)}
@@ -171,7 +171,7 @@ export function BeneficiaryForm({
               
               <div>
                 <Input
-                  label={copy.beneficiaries?.form?.phone_label || 'Phone (Optional)'}
+                  label={copy('beneficiaries.form.phone_label', 'Phone (Optional)')}
                   type="tel"
                   value={formData.phone || ''}
                   onChange={(e) => handleInputChange('phone', e.target.value)}
@@ -188,7 +188,7 @@ export function BeneficiaryForm({
             <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
               <div>
                 <Input
-                  label={copy.beneficiaries?.form?.address_line_1_label || 'Address Line 1'}
+                  label={copy('beneficiaries.form.address_line_1_label', 'Address Line 1')}
                   value={formData.addressLine1 || ''}
                   onChange={(e) => handleInputChange('addressLine1', e.target.value)}
                   error={errors.addressLine1}
@@ -198,7 +198,7 @@ export function BeneficiaryForm({
               
               <div>
                 <Input
-                  label={copy.beneficiaries?.form?.address_line_2_label || 'Address Line 2'}
+                  label={copy('beneficiaries.form.address_line_2_label', 'Address Line 2')}
                   value={formData.addressLine2 || ''}
                   onChange={(e) => handleInputChange('addressLine2', e.target.value)}
                   error={errors.addressLine2}
@@ -208,7 +208,7 @@ export function BeneficiaryForm({
               
               <div>
                 <Input
-                  label={copy.beneficiaries?.form?.city_label || 'City'}
+                  label={copy('beneficiaries.form.city_label', 'City')}
                   value={formData.city || ''}
                   onChange={(e) => handleInputChange('city', e.target.value)}
                   error={errors.city}
@@ -218,7 +218,7 @@ export function BeneficiaryForm({
               
               <div>
                 <Select
-                  label={copy.beneficiaries?.form?.county_label || 'County'}
+                  label={copy('beneficiaries.form.county_label', 'County')}
                   options={countyOptions}
                   value={formData.county || ''}
                   onChange={(value) => handleInputChange('county', value as string)}
@@ -229,7 +229,7 @@ export function BeneficiaryForm({
               
               <div>
                 <Input
-                  label={copy.beneficiaries?.form?.eircode_label || 'Eircode'}
+                  label={copy('beneficiaries.form.eircode_label', 'Eircode')}
                   value={formData.eircode || ''}
                   onChange={(e) => handleInputChange('eircode', e.target.value)}
                   error={errors.eircode}
@@ -239,7 +239,7 @@ export function BeneficiaryForm({
               
               <div>
                 <Input
-                  label={copy.beneficiaries?.form?.country_label || 'Country'}
+                  label={copy('beneficiaries.form.country_label', 'Country')}
                   value={formData.country}
                   onChange={(e) => handleInputChange('country', e.target.value)}
                   error={errors.country}
@@ -254,10 +254,20 @@ export function BeneficiaryForm({
             <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
               <div>
                 <Input
-                  label={copy.beneficiaries?.form?.percentage_label || 'Percentage of Estate (%)'}
+                  label={copy('beneficiaries.form.percentage_label', 'Percentage of Estate (%)')}
                   type="number"
                   value={formData.percentage || ''}
-                  onChange={(e) => handleInputChange('percentage', parseFloat(e.target.value) || undefined)}
+                  onChange={(e) => {
+                    const value = e.target.value
+                    if (value === '') {
+                      handleInputChange('percentage', '')
+                    } else {
+                      const numValue = parseFloat(value)
+                      if (!isNaN(numValue)) {
+                        handleInputChange('percentage', numValue)
+                      }
+                    }
+                  }}
                   error={errors.percentage}
                   min="0"
                   max={availablePercentage}
@@ -270,7 +280,7 @@ export function BeneficiaryForm({
             
             <div className="mt-6">
               <label className="block text-sm font-medium leading-6 text-gray-900">
-                {copy.beneficiaries?.form?.conditions_label || 'Special Conditions (Optional)'}
+                {copy('beneficiaries.form.conditions_label', 'Special Conditions (Optional)')}
               </label>
               <div className="mt-1">
                 <textarea
@@ -295,10 +305,10 @@ export function BeneficiaryForm({
             className="flex-1 sm:flex-none"
           >
             {isSubmitting 
-              ? (copy.common?.messages?.saving || 'Saving...') 
+              ? (copy('common.messages.saving', 'Saving...')) 
               : isEditing 
-                ? (copy.common?.buttons?.save || 'Save Changes')
-                : (copy.common?.buttons?.add || 'Add Beneficiary')
+                ? (copy('common.buttons.save', 'Save Changes'))
+                : (copy('common.buttons.add', 'Add Beneficiary'))
             }
           </Button>
           
@@ -309,7 +319,7 @@ export function BeneficiaryForm({
               onClick={onCancel}
               disabled={isSubmitting}
             >
-              {copy.common?.buttons?.cancel || 'Cancel'}
+              {copy('common.buttons.cancel', 'Cancel')}
             </Button>
           )}
         </CardFooter>

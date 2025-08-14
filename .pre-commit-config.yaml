@@ -1,0 +1,67 @@
+# Pre-commit hooks to prevent CORS and other configuration issues
+repos:
+  - repo: local
+    hooks:
+      # CORS Configuration Validator
+      - id: validate-cors-config
+        name: Validate CORS Configuration
+        entry: python
+        language: python
+        args: [./.githooks/validate-cors.py]
+        files: ^backend/app/(config|main)\.py$
+        pass_filenames: false
+        
+      # Backend Configuration Validator  
+      - id: validate-backend-config
+        name: Validate Backend Configuration
+        entry: python
+        language: python
+        args: [./.githooks/validate-backend-config.py]
+        files: ^backend/app/config\.py$
+        pass_filenames: false
+        
+      # Frontend API Configuration Validator
+      - id: validate-frontend-api-config
+        name: Validate Frontend API Configuration
+        entry: node
+        language: node
+        args: [./.githooks/validate-frontend-api.js]
+        files: ^frontend/(lib/api|hooks/useAuth)\.ts$
+        pass_filenames: false
+        
+      # i18n Compliance Validator (hardcoded strings detection)
+      - id: validate-i18n-compliance
+        name: Validate i18n Compliance
+        entry: bash
+        language: system
+        args: [-c, "cd frontend && npm run validate:translations"]
+        files: ^frontend/.*\.(tsx?|jsx?)$
+        pass_filenames: false
+
+  # Standard pre-commit hooks
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.4.0
+    hooks:
+      - id: trailing-whitespace
+      - id: end-of-file-fixer
+      - id: check-yaml
+      - id: check-json
+      - id: check-merge-conflict
+      
+  # Python hooks
+  - repo: https://github.com/psf/black
+    rev: 23.3.0
+    hooks:
+      - id: black
+        files: ^backend/
+        
+  # TypeScript/JavaScript hooks
+  - repo: https://github.com/pre-commit/mirrors-eslint
+    rev: v8.44.0
+    hooks:
+      - id: eslint
+        files: ^frontend/
+        additional_dependencies:
+          - eslint@8.44.0
+          - '@typescript-eslint/eslint-plugin@5.60.0'
+          - '@typescript-eslint/parser@5.60.0'

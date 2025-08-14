@@ -1,5 +1,5 @@
 {
-  "name": "herit-clean",
+  "name": "herit",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -9,7 +9,8 @@
     "lint": "next lint",
     "typecheck": "tsc --noEmit --skipLibCheck",
     "db:generate": "drizzle-kit generate",
-    "db:push": "drizzle-kit push:pg",
+    "db:migrate": "drizzle-kit migrate",
+    "db:push": "drizzle-kit push",
     "db:studio": "drizzle-kit studio",
     "deploy": "./scripts/deploy.sh",
     "test:build": "npm run typecheck && npm run build"

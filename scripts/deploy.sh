@@ -1,11 +1,11 @@
 #!/bin/bash
 
-# Herit-Clean Deployment Script
-# Ultra-clean estate planning application deployment
+# Herit Deployment Script
+# Estate planning application deployment
 
 set -e
 
-echo "🚀 Starting Herit-Clean deployment..."
+echo "🚀 Starting Herit deployment..."
 
 # Environment validation
 if [ -z "$POSTGRES_URL" ]; then
@@ -13,8 +13,8 @@ if [ -z "$POSTGRES_URL" ]; then
     exit 1
 fi
 
-if [ -z "$JWT_SECRET" ]; then
-    echo "❌ JWT_SECRET environment variable is required"
+if [ -z "$SESSION_SECRET" ]; then
+    echo "❌ SESSION_SECRET environment variable is required"
     exit 1
 fi
 
@@ -24,7 +24,7 @@ npm ci
 
 # Run database migrations
 echo "🗄️  Running database migrations..."
-npx drizzle-kit push:pg
+npm run db:migrate
 
 # Build the application
 echo "🏗️  Building Next.js application..."

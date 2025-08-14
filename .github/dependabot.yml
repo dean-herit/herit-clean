@@ -1,0 +1,107 @@
+# Dependabot configuration for Herit project
+# Automatically updates dependencies with security patches and version updates
+version: 2
+updates:
+  # Frontend (Next.js/React) dependencies  
+  - package-ecosystem: "npm"
+    directory: "/frontend"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "06:00"
+    # Group minor/patch updates together to reduce noise
+    groups:
+      production-dependencies:
+        patterns:
+          - "@headlessui/*"
+          - "@heroicons/*" 
+          - "@tanstack/*"
+          - "next"
+          - "react*"
+        update-types:
+          - "minor"
+          - "patch"
+      development-dependencies:
+        patterns:
+          - "@types/*"
+          - "eslint*"
+          - "jest*"
+          - "@testing-library/*"
+        update-types:
+          - "minor"
+          - "patch"
+    # Security updates are always created immediately
+    open-pull-requests-limit: 10
+    allow:
+      - dependency-type: "direct"
+      - dependency-type: "indirect"
+        update-types: ["security"]
+    ignore:
+      # Pin critical packages that need manual review
+      - dependency-name: "next"
+        update-types: ["version-update:semver-major"]
+      - dependency-name: "react"
+        update-types: ["version-update:semver-major"]
+
+  # Root monorepo dependencies (Turbo, etc.)
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "06:00"
+    open-pull-requests-limit: 5
+    
+  # Automation dependencies
+  - package-ecosystem: "npm"
+    directory: "/automation"
+    schedule:
+      interval: "weekly"
+      day: "monday" 
+      time: "06:00"
+    open-pull-requests-limit: 3
+
+  # Backend Python dependencies
+  - package-ecosystem: "pip"
+    directory: "/backend"
+    schedule:
+      interval: "weekly"
+      day: "tuesday"
+      time: "06:00"
+    groups:
+      fastapi-stack:
+        patterns:
+          - "fastapi"
+          - "uvicorn*"
+          - "pydantic*" 
+          - "sqlalchemy"
+        update-types:
+          - "minor"
+          - "patch"
+      security-libraries:
+        patterns:
+          - "cryptography"
+          - "python-jose*"
+          - "PyJWT"
+          - "passlib*"
+        update-types:
+          - "minor" 
+          - "patch"
+    open-pull-requests-limit: 8
+    allow:
+      - dependency-type: "direct"
+      - dependency-type: "indirect"
+        update-types: ["security"]
+    ignore:
+      # Major version updates need manual review for breaking changes
+      - dependency-name: "fastapi"
+        update-types: ["version-update:semver-major"]
+      - dependency-name: "sqlalchemy"
+        update-types: ["version-update:semver-major"]
+        
+  # GitHub Actions workflows
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "monthly"
+    open-pull-requests-limit: 5

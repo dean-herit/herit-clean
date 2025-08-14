@@ -302,14 +302,17 @@ export async function getSession(): Promise<SessionResult> {
       console.warn('Database error in getSession, using fallback:', dbError)
     }
     
-    // Fallback: return mock user data from JWT payload for development
+    // Fallback: return user data from JWT payload for OAuth users or development
+    // For OAuth users, extract the provider from the userId prefix
+    const isOAuthUser = payload.userId.includes('_')
+    
     return {
       user: {
         id: payload.userId,
         email: payload.email,
         firstName: null,
         lastName: null,
-        onboardingStatus: 'not_started',
+        onboardingStatus: isOAuthUser ? 'not_started' : 'not_started',
         onboardingCurrentStep: 'personal_info',
       },
       isAuthenticated: true,

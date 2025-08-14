@@ -203,7 +203,7 @@ export default function DashboardPage() {
                 </Link>
               </div>
               <div className="space-y-3">
-                {assets?.data?.length > 0 ? (
+                {assets?.data && assets.data.length > 0 ? (
                   assets.data.slice(0, 3).map((asset: any) => (
                     <div key={asset.id} className="flex items-center justify-between p-3 bg-gray-50 dark:bg-gray-700 rounded-lg">
                       <div className="flex items-center space-x-3">
@@ -245,7 +245,7 @@ export default function DashboardPage() {
                 </Link>
               </div>
               <div className="space-y-3">
-                {beneficiaries?.data?.length > 0 ? (
+                {beneficiaries?.data && beneficiaries.data.length > 0 ? (
                   beneficiaries.data.slice(0, 3).map((beneficiary: any) => (
                     <div key={beneficiary.id} className="flex items-center justify-between p-3 bg-gray-50 dark:bg-gray-700 rounded-lg">
                       <div className="flex items-center space-x-3">

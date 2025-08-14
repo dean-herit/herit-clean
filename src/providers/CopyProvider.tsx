@@ -231,7 +231,10 @@ export function useCopyContext() {
   
   // During SSR or if provider is not properly initialized, return default context
   if (!context) {
-    console.warn('useCopyContext: CopyContext is null, returning default values')
+    // Don't log warnings during SSR to prevent build issues
+    if (typeof window !== 'undefined') {
+      console.warn('useCopyContext: CopyContext is null, returning default values')
+    }
     return defaultCopyContextValue
   }
   

@@ -7,9 +7,9 @@ interface GoogleSignInButtonProps {
 
 export function GoogleSignInButton({ onSignIn, className = '' }: GoogleSignInButtonProps) {
   const handleGoogleSignIn = () => {
-    // For now, this is a placeholder - would integrate with actual OAuth
-    console.log('Google sign-in clicked')
-    onSignIn?.()
+    onSignIn?.() // Call to trigger loading state
+    // Redirect to Google OAuth
+    window.location.href = '/api/auth/google'
   }
 
   return (

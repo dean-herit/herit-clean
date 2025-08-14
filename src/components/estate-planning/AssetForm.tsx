@@ -90,7 +90,7 @@ export function AssetForm({ asset, onSuccess, onCancel, className }: AssetFormPr
     <Card className={cn('w-full max-w-2xl', className)}>
       <CardHeader>
         <CardTitle>
-          {isEditing ? copy.assets?.form?.edit_asset || 'Edit Asset' : copy.assets?.form?.add_asset || 'Add New Asset'}
+          {isEditing ? copy('assets.form.edit_asset', 'Edit Asset') : copy('assets.form.add_asset', 'Add New Asset')}
         </CardTitle>
       </CardHeader>
       
@@ -105,7 +105,7 @@ export function AssetForm({ asset, onSuccess, onCancel, className }: AssetFormPr
           <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
             <div className="sm:col-span-2">
               <Input
-                label={copy.assets?.form?.name_label || 'Asset Name'}
+                label={copy('assets.form.name_label', 'Asset Name')}
                 value={formData.name}
                 onChange={(e) => handleInputChange('name', e.target.value)}
                 error={errors.name}
@@ -116,7 +116,7 @@ export function AssetForm({ asset, onSuccess, onCancel, className }: AssetFormPr
             
             <div>
               <Select
-                label={copy.assets?.form?.type_label || 'Asset Type'}
+                label={copy('assets.form.type_label', 'Asset Type')}
                 options={assetTypeOptions}
                 value={formData.assetType}
                 onChange={(value) => handleInputChange('assetType', value as string)}
@@ -126,7 +126,7 @@ export function AssetForm({ asset, onSuccess, onCancel, className }: AssetFormPr
             
             <div>
               <Input
-                label={copy.assets?.form?.value_label || 'Estimated Value (€)'}
+                label={copy('assets.form.value_label', 'Estimated Value (€)')}
                 type="number"
                 value={formData.value}
                 onChange={(e) => handleInputChange('value', parseFloat(e.target.value) || 0)}
@@ -146,7 +146,7 @@ export function AssetForm({ asset, onSuccess, onCancel, className }: AssetFormPr
               <>
                 <div>
                   <Input
-                    label={copy.assets?.form?.bank_name_label || 'Bank Name'}
+                    label={copy('assets.form.bank_name_label', 'Bank Name')}
                     value={formData.bankName || ''}
                     onChange={(e) => handleInputChange('bankName', e.target.value)}
                     error={errors.bankName}
@@ -156,7 +156,7 @@ export function AssetForm({ asset, onSuccess, onCancel, className }: AssetFormPr
                 
                 <div>
                   <Input
-                    label={copy.assets?.form?.account_number_label || 'Account Number'}
+                    label={copy('assets.form.account_number_label', 'Account Number')}
                     value={formData.accountNumber || ''}
                     onChange={(e) => handleInputChange('accountNumber', e.target.value)}
                     error={errors.accountNumber}
@@ -169,7 +169,7 @@ export function AssetForm({ asset, onSuccess, onCancel, className }: AssetFormPr
             {formData.assetType === 'property' && (
               <div className="sm:col-span-2">
                 <Input
-                  label={copy.assets?.form?.property_address_label || 'Property Address'}
+                  label={copy('assets.form.property_address_label', 'Property Address')}
                   value={formData.propertyAddress || ''}
                   onChange={(e) => handleInputChange('propertyAddress', e.target.value)}
                   error={errors.propertyAddress}
@@ -180,7 +180,7 @@ export function AssetForm({ asset, onSuccess, onCancel, className }: AssetFormPr
             
             <div className="sm:col-span-2">
               <label className="block text-sm font-medium leading-6 text-gray-900">
-                {copy.assets?.form?.description_label || 'Description (Optional)'}
+                {copy('assets.form.description_label', 'Description (Optional)')}
               </label>
               <div className="mt-1">
                 <textarea
@@ -205,10 +205,10 @@ export function AssetForm({ asset, onSuccess, onCancel, className }: AssetFormPr
             className="flex-1 sm:flex-none"
           >
             {isSubmitting 
-              ? (copy.common?.messages?.saving || 'Saving...') 
+              ? copy('common.messages.saving', 'Saving...') 
               : isEditing 
-                ? (copy.common?.buttons?.save || 'Save Changes')
-                : (copy.common?.buttons?.add || 'Add Asset')
+                ? copy('common.buttons.save', 'Save Changes')
+                : copy('common.buttons.add', 'Add Asset')
             }
           </Button>
           
@@ -219,7 +219,7 @@ export function AssetForm({ asset, onSuccess, onCancel, className }: AssetFormPr
               onClick={onCancel}
               disabled={isSubmitting}
             >
-              {copy.common?.buttons?.cancel || 'Cancel'}
+              {copy('common.buttons.cancel', 'Cancel')}
             </Button>
           )}
         </CardFooter>

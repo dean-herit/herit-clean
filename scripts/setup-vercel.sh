@@ -1,9 +1,9 @@
 #!/bin/bash
 
-# Herit-Clean Vercel Setup Script
+# Herit Vercel Setup Script
 set -e
 
-echo "🚀 Setting up Vercel environment variables for herit-clean..."
+echo "🚀 Setting up Vercel environment variables for Herit..."
 
 # Database (same as current deployment)
 vercel env add POSTGRES_URL "postgres://postgres.iwtwwnbwdvlsfzwbotxu:IrVtjNgWe7LkL1jH@aws-0-eu-west-1.pooler.supabase.com:6543/postgres?sslmode=require&supa=base-pooler.x" --scope production --yes

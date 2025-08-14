@@ -12,10 +12,18 @@ import VerificationStep from './components/VerificationStep'
 import ProgressSteps from './components/ProgressSteps'
 
 // Types
+type Signature = {
+  id: string
+  name: string
+  data: string
+  type: 'drawn' | 'uploaded' | 'template'
+  createdAt: string
+}
+
 interface OnboardingProgress {
   currentStep: number
   personalInfo: any
-  signature: any
+  signature: Signature | null
   consents: string[]
   completedSteps: number[]
 }
@@ -67,10 +75,10 @@ export default function OnboardingPage() {
     city: '',
     county: '',
     eircode: '',
-    profile_photo: null,
+    profile_photo: null as string | null,
   })
   
-  const [signature, setSignature] = useState(null)
+  const [signature, setSignature] = useState<Signature | null>(null)
   const [consents, setConsents] = useState<string[]>([])
   const [completedSteps, setCompletedSteps] = useState<number[]>([])
   
@@ -236,13 +244,17 @@ export default function OnboardingPage() {
           />
         )
       case 2:
-        return (
+        return signature ? (
           <LegalConsentStep
             {...commonProps}
             signature={signature}
             initialConsents={consents}
             onChange={setConsents}
           />
+        ) : (
+          <div className="text-center py-8">
+            <p className="text-gray-600">Please complete the signature step first.</p>
+          </div>
         )
       case 3:
         return (
