@@ -24,10 +24,10 @@ export async function GET(request: NextRequest) {
       return NextResponse.redirect(new URL('/login?error=invalid_state', request.url))
     }
     
-    // Exchange code for tokens
-    const googleClientId = process.env.GOOGLE_CLIENT_ID
-    const googleClientSecret = process.env.GOOGLE_CLIENT_SECRET
-    const redirectUri = process.env.GOOGLE_REDIRECT_URI || 'http://localhost:3001/api/auth/google/callback'
+    // Exchange code for tokens (trim to prevent newline issues)
+    const googleClientId = process.env.GOOGLE_CLIENT_ID?.trim()
+    const googleClientSecret = process.env.GOOGLE_CLIENT_SECRET?.trim()
+    const redirectUri = (process.env.GOOGLE_REDIRECT_URI || 'http://localhost:3001/api/auth/google/callback').trim()
     
     if (!googleClientId || !googleClientSecret) {
       return NextResponse.redirect(new URL('/login?error=oauth_config', request.url))
