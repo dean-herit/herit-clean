@@ -16,6 +16,8 @@ interface LegalDocument {
   title: string
   content: string
   required: boolean
+  category: string
+  version: string
 }
 
 interface LegalConsentStepProps {
@@ -26,34 +28,6 @@ interface LegalConsentStepProps {
   onComplete: (consents: string[]) => void
   onBack?: () => void
 }
-
-// Legal documents from the copy system
-const LEGAL_DOCUMENTS: LegalDocument[] = [
-  {
-    id: 'sound_mind',
-    title: 'Declaration of Sound Mind',
-    content: 'By signing, I confirm that I am of sound mind, capable of making my own decisions, and in good physical and mental health. I understand the nature and effect of creating and executing a will, and I have the capacity to do so at this time. I agree and understand that monitoring my own health and capabilities is my own responsibility, and in the event I fall ill will inform Herit as soon as possible.',
-    required: true,
-  },
-  {
-    id: 'no_duress',
-    title: 'Declaration of No Duress',
-    content: 'By signing, I confirm that I am acting entirely of my own free will, without any threat, pressure, coercion, or undue influence from any other person. I choose to use this platform voluntarily and without reservation.',
-    required: true,
-  },
-  {
-    id: 'terms_of_service',
-    title: 'Terms of Service',
-    content: 'By signing, I confirm I have read and agree to the Herit Terms of Service. I understand the terms and conditions of using this platform and agree to be bound by them.',
-    required: true,
-  },
-  {
-    id: 'privacy_policy',
-    title: 'Privacy Policy',
-    content: 'By signing, I confirm I have read and agree to the Herit Privacy Policy. I understand how my personal data will be collected, used, and protected.',
-    required: true,
-  },
-]
 
 export default function LegalConsentStep({
   signature,
@@ -66,8 +40,37 @@ export default function LegalConsentStep({
   const [signedConsents, setSignedConsents] = useState<string[]>(initialConsents)
   const [expandedDocument, setExpandedDocument] = useState<string | null>(null)
   const [signingDocument, setSigningDocument] = useState<string | null>(null)
+  const [legalDocuments, setLegalDocuments] = useState<LegalDocument[]>([])
+  const [loadingDocuments, setLoadingDocuments] = useState(true)
   const [error, setError] = useState('')
   
+  // Load legal documents on mount
+  useEffect(() => {
+    const fetchLegalDocuments = async () => {
+      try {
+        setLoadingDocuments(true)
+        const response = await fetch('/api/onboarding/legal-consent')
+        if (response.ok) {
+          const data = await response.json()
+          setLegalDocuments(data.disclaimers || [])
+          // If user has existing consents, load them
+          if (data.userConsents?.consents) {
+            setSignedConsents(data.userConsents.consents)
+          }
+        } else {
+          throw new Error('Failed to load legal documents')
+        }
+      } catch (error) {
+        console.error('Error loading legal documents:', error)
+        setError('Failed to load legal documents. Please refresh the page.')
+      } finally {
+        setLoadingDocuments(false)
+      }
+    }
+
+    fetchLegalDocuments()
+  }, [])
+
   // Update parent when consents change
   useEffect(() => {
     onChange(signedConsents)
@@ -80,7 +83,7 @@ export default function LegalConsentStep({
   
   // Check if all required documents are signed
   const allRequiredSigned = () => {
-    const requiredDocs = LEGAL_DOCUMENTS.filter(doc => doc.required)
+    const requiredDocs = legalDocuments.filter(doc => doc.required)
     return requiredDocs.every(doc => signedConsents.includes(doc.id))
   }
   
@@ -97,10 +100,7 @@ export default function LegalConsentStep({
     setError('')
     
     try {
-      // Simulate API call to record signature
-      await new Promise(resolve => setTimeout(resolve, 500))
-      
-      // Add to signed consents
+      // Add to signed consents immediately for UI feedback
       setSignedConsents(prev => [...prev, documentId])
       
       // Show success animation by keeping signingDocument for a moment
@@ -112,11 +112,13 @@ export default function LegalConsentStep({
       console.error('Error signing document:', error)
       setError('Failed to sign document. Please try again.')
       setSigningDocument(null)
+      // Remove from signed consents if there was an error
+      setSignedConsents(prev => prev.filter(id => id !== documentId))
     }
   }
   
   // Handle form submission
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     
     if (!allRequiredSigned()) {
@@ -124,11 +126,55 @@ export default function LegalConsentStep({
       return
     }
     
-    onComplete(signedConsents)
+    try {
+      // Save legal consents to backend
+      const response = await fetch('/api/onboarding/legal-consent', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          consents: signedConsents,
+          timestamp: new Date().toISOString(),
+        }),
+      })
+      
+      if (!response.ok) {
+        const errorData = await response.json()
+        throw new Error(errorData.error || 'Failed to save legal consents')
+      }
+      
+      // Complete this step
+      onComplete(signedConsents)
+      
+    } catch (error) {
+      console.error('Error saving legal consents:', error)
+      setError(error instanceof Error ? error.message : 'Failed to save legal consents. Please try again.')
+    }
   }
   
   const progress = signedConsents.length
-  const totalRequired = LEGAL_DOCUMENTS.filter(doc => doc.required).length
+  const totalRequired = legalDocuments.filter(doc => doc.required).length
+  
+  // Show loading state while documents are being fetched
+  if (loadingDocuments) {
+    return (
+      <div className="space-y-6">
+        <div className="text-center">
+          <h3 className="text-lg font-medium text-gray-900 dark:text-white">
+            Loading Legal Agreements
+          </h3>
+          <p className="mt-2 text-sm text-gray-600 dark:text-gray-400">
+            Please wait while we prepare your legal documents...
+          </p>
+        </div>
+        <div className="bg-white dark:bg-gray-800 rounded-lg p-8 text-center">
+          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600 mx-auto"></div>
+          <p className="mt-4 text-sm text-gray-600 dark:text-gray-400">Loading documents...</p>
+        </div>
+      </div>
+    )
+  }
   
   return (
     <form onSubmit={handleSubmit} className="space-y-6">
@@ -193,7 +239,7 @@ export default function LegalConsentStep({
       
       {/* Legal Documents */}
       <div className="space-y-4">
-        {LEGAL_DOCUMENTS.map((document) => {
+        {legalDocuments.map((document) => {
           const isSigned = isDocumentSigned(document.id)
           const isExpanded = expandedDocument === document.id
           const isSigning = signingDocument === document.id
@@ -249,9 +295,14 @@ export default function LegalConsentStep({
                 {isExpanded && (
                   <div className="mt-4 p-4 bg-gray-50 dark:bg-gray-700 rounded-lg">
                     <div className="prose prose-sm max-w-none dark:prose-invert">
-                      <p className="text-gray-700 dark:text-gray-300 whitespace-pre-wrap">
+                      <div className="text-gray-700 dark:text-gray-300 whitespace-pre-wrap">
                         {document.content}
-                      </p>
+                      </div>
+                      {document.version && (
+                        <div className="mt-4 text-xs text-gray-500 dark:text-gray-400">
+                          Version: {document.version} | Category: {document.category}
+                        </div>
+                      )}
                     </div>
                   </div>
                 )}

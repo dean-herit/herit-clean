@@ -23,6 +23,7 @@
     "@tanstack/react-query": "^5.85.2",
     "@tanstack/react-query-devtools": "^5.85.2",
     "@types/pg": "^8.15.5",
+    "@vercel/blob": "^1.1.1",
     "@vercel/postgres": "^0.10.0",
     "argon2": "^0.44.0",
     "clsx": "^2.1.1",

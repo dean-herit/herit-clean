@@ -12,7 +12,7 @@ interface PersonalInfo {
 interface Signature {
   id: string
   name: string
-  data: string // base64 image data
+  data: string // base64 image data or URL
   type: 'drawn' | 'uploaded' | 'template'
   createdAt: string
 }
@@ -35,13 +35,48 @@ export default function SignatureStep({
   onBack,
 }: SignatureStepProps) {
   const [selectedSignature, setSelectedSignature] = useState<Signature | null>(initialSignature)
+  const [existingSignatures, setExistingSignatures] = useState<Signature[]>([])
   const [isDrawing, setIsDrawing] = useState(false)
   const [uploading, setUploading] = useState(false)
+  const [savingSignature, setSavingSignature] = useState(false)
+  const [loadingSignatures, setLoadingSignatures] = useState(true)
   const [error, setError] = useState('')
   
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const fileInputRef = useRef<HTMLInputElement>(null)
   const isDrawingRef = useRef(false)
+  
+  // Load existing signatures on mount
+  useEffect(() => {
+    const fetchExistingSignatures = async () => {
+      try {
+        setLoadingSignatures(true)
+        const response = await fetch('/api/onboarding/signatures')
+        if (response.ok) {
+          const data = await response.json()
+          if (data.success && data.signatures) {
+            setExistingSignatures(data.signatures)
+            // If no initial signature selected, try to use the most recent
+            if (!selectedSignature && data.signatures.length > 0) {
+              const mostRecent = data.signatures[0] // Assuming API returns sorted by most recent
+              setSelectedSignature(mostRecent)
+            }
+          }
+        }
+      } catch (error) {
+        console.error('Error loading signatures:', error)
+      } finally {
+        setLoadingSignatures(false)
+      }
+    }
+
+    fetchExistingSignatures()
+  }, [])
+
+  // Update parent when signature changes
+  useEffect(() => {
+    onChange(selectedSignature)
+  }, [selectedSignature, onChange])
   
   // Generate template signatures
   const [templates] = useState<Signature[]>(() => {
@@ -72,11 +107,45 @@ export default function SignatureStep({
       },
     ]
   })
-  
-  // Update parent when signature changes
-  useEffect(() => {
-    onChange(selectedSignature)
-  }, [selectedSignature, onChange])
+
+  // Handle template selection (save to backend)
+  const selectTemplate = async (template: Signature) => {
+    setSavingSignature(true)
+    setError('')
+    
+    try {
+      const response = await fetch('/api/onboarding/signatures', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name: template.name,
+          data: template.data,
+          type: 'template',
+        }),
+      })
+      
+      if (!response.ok) {
+        throw new Error('Failed to save template signature')
+      }
+      
+      const result = await response.json()
+      if (result.success && result.signature) {
+        const newSignature = result.signature
+        setSelectedSignature(newSignature)
+        setExistingSignatures(prev => [newSignature, ...prev])
+      } else {
+        throw new Error(result.error || 'Failed to save template signature')
+      }
+      
+    } catch (error) {
+      console.error('Error saving template:', error)
+      setError(error instanceof Error ? error.message : 'Failed to save template signature')
+    } finally {
+      setSavingSignature(false)
+    }
+  }
   
   // Initialize canvas for drawing
   useEffect(() => {
@@ -136,21 +205,49 @@ export default function SignatureStep({
   }
   
   // Save drawn signature
-  const saveDrawnSignature = () => {
+  const saveDrawnSignature = async () => {
     const canvas = canvasRef.current
     if (!canvas) return
     
-    const dataURL = canvas.toDataURL('image/png')
-    const signature: Signature = {
-      id: `drawn-${Date.now()}`,
-      name: `${personalInfo.first_name} ${personalInfo.last_name}`,
-      data: dataURL,
-      type: 'drawn',
-      createdAt: new Date().toISOString(),
-    }
+    setSavingSignature(true)
+    setError('')
     
-    setSelectedSignature(signature)
-    setIsDrawing(false)
+    try {
+      const dataURL = canvas.toDataURL('image/png')
+      
+      // Save signature to backend
+      const response = await fetch('/api/onboarding/signatures', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name: `${personalInfo.first_name} ${personalInfo.last_name}`,
+          data: dataURL,
+          type: 'drawn',
+        }),
+      })
+      
+      if (!response.ok) {
+        throw new Error('Failed to save signature')
+      }
+      
+      const result = await response.json()
+      if (result.success && result.signature) {
+        const newSignature = result.signature
+        setSelectedSignature(newSignature)
+        setExistingSignatures(prev => [newSignature, ...prev])
+        setIsDrawing(false)
+      } else {
+        throw new Error(result.error || 'Failed to save signature')
+      }
+      
+    } catch (error) {
+      console.error('Error saving drawn signature:', error)
+      setError(error instanceof Error ? error.message : 'Failed to save signature')
+    } finally {
+      setSavingSignature(false)
+    }
   }
   
   // Clear canvas
@@ -179,26 +276,51 @@ export default function SignatureStep({
     setError('')
     
     try {
-      // Convert to base64
-      const reader = new FileReader()
-      reader.onload = (e) => {
-        const dataURL = e.target?.result as string
-        const signature: Signature = {
-          id: `uploaded-${Date.now()}`,
-          name: `${personalInfo.first_name} ${personalInfo.last_name}`,
-          data: dataURL,
-          type: 'uploaded',
-          createdAt: new Date().toISOString(),
-        }
-        
-        setSelectedSignature(signature)
-        setUploading(false)
+      // Upload image to get URL
+      const formData = new FormData()
+      formData.append('file', file)
+      
+      const uploadResponse = await fetch('/api/upload/signature-image', {
+        method: 'POST',
+        body: formData,
+      })
+      
+      if (!uploadResponse.ok) {
+        throw new Error('Failed to upload image')
       }
-      reader.readAsDataURL(file)
+      
+      const uploadResult = await uploadResponse.json()
+      
+      // Save signature to backend
+      const response = await fetch('/api/onboarding/signatures', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name: `${personalInfo.first_name} ${personalInfo.last_name}`,
+          data: uploadResult.url,
+          type: 'uploaded',
+        }),
+      })
+      
+      if (!response.ok) {
+        throw new Error('Failed to save signature')
+      }
+      
+      const result = await response.json()
+      if (result.success && result.signature) {
+        const newSignature = result.signature
+        setSelectedSignature(newSignature)
+        setExistingSignatures(prev => [newSignature, ...prev])
+      } else {
+        throw new Error(result.error || 'Failed to save signature')
+      }
       
     } catch (error) {
       console.error('Upload error:', error)
-      setError('Failed to upload signature')
+      setError(error instanceof Error ? error.message : 'Failed to upload signature')
+    } finally {
       setUploading(false)
     }
   }
@@ -244,125 +366,184 @@ export default function SignatureStep({
         </div>
       )}
       
-      {/* Signature Creation Options */}
-      <div className="space-y-6">
-        {/* Template Signatures */}
-        <div>
-          <h4 className="text-base font-medium text-gray-900 dark:text-white mb-4">
-            Choose from Templates
-          </h4>
-          <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
-            {templates.map((template) => (
-              <button
-                key={template.id}
-                type="button"
-                onClick={() => setSelectedSignature(template)}
-                className={`p-4 border-2 rounded-lg transition-colors ${
-                  selectedSignature?.id === template.id
-                    ? 'border-blue-500 bg-blue-50 dark:bg-blue-900/20'
-                    : 'border-gray-200 dark:border-gray-700 hover:border-blue-300'
-                }`}
-              >
-                <div className="bg-white dark:bg-gray-800 rounded p-3 min-h-[80px] flex items-center justify-center">
-                  <img
-                    src={template.data}
-                    alt={template.name}
-                    className="max-w-full h-auto object-contain"
-                  />
-                </div>
-              </button>
-            ))}
-          </div>
+      {/* Loading State */}
+      {loadingSignatures ? (
+        <div className="bg-white dark:bg-gray-800 rounded-lg p-8 text-center">
+          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600 mx-auto"></div>
+          <p className="mt-4 text-sm text-gray-600 dark:text-gray-400">Loading your signatures...</p>
         </div>
-        
-        {/* Draw Signature */}
-        <div>
-          <div className="flex items-center justify-between mb-4">
-            <h4 className="text-base font-medium text-gray-900 dark:text-white">
-              Draw Your Signature
-            </h4>
-            <button
-              type="button"
-              onClick={() => setIsDrawing(!isDrawing)}
-              className="text-sm text-blue-600 hover:text-blue-500"
-            >
-              {isDrawing ? 'Cancel Drawing' : 'Start Drawing'}
-            </button>
-          </div>
-          
-          {isDrawing && (
-            <div className="space-y-4">
-              <div className="border-2 border-gray-300 dark:border-gray-600 rounded-lg">
-                <canvas
-                  ref={canvasRef}
-                  className="w-full h-48 cursor-crosshair rounded-lg"
-                  onMouseDown={startDrawing}
-                  onMouseMove={draw}
-                  onMouseUp={stopDrawing}
-                  onMouseLeave={stopDrawing}
-                />
-              </div>
-              <div className="flex justify-between">
-                <button
-                  type="button"
-                  onClick={clearCanvas}
-                  className="flex items-center gap-2 px-4 py-2 text-sm text-gray-600 dark:text-gray-400 hover:text-gray-800 dark:hover:text-gray-200"
-                >
-                  <TrashIcon className="w-4 h-4" />
-                  Clear
-                </button>
-                <button
-                  type="button"
-                  onClick={saveDrawnSignature}
-                  className="flex items-center gap-2 px-4 py-2 text-sm bg-blue-600 text-white rounded-md hover:bg-blue-700"
-                >
-                  <PencilIcon className="w-4 h-4" />
-                  Save Signature
-                </button>
+      ) : (
+        <>
+          {/* Existing Signatures */}
+          {existingSignatures.length > 0 && (
+            <div>
+              <h4 className="text-base font-medium text-gray-900 dark:text-white mb-4">
+                Your Saved Signatures
+              </h4>
+              <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
+                {existingSignatures.map((signature) => (
+                  <button
+                    key={signature.id}
+                    type="button"
+                    onClick={() => setSelectedSignature(signature)}
+                    className={`p-4 border-2 rounded-lg transition-colors ${
+                      selectedSignature?.id === signature.id
+                        ? 'border-blue-500 bg-blue-50 dark:bg-blue-900/20'
+                        : 'border-gray-200 dark:border-gray-700 hover:border-blue-300'
+                    }`}
+                  >
+                    <div className="bg-white dark:bg-gray-800 rounded p-3 min-h-[80px] flex items-center justify-center">
+                      <img
+                        src={signature.data}
+                        alt={signature.name}
+                        className="max-w-full h-auto object-contain"
+                      />
+                    </div>
+                    <p className="text-xs text-gray-500 dark:text-gray-400 mt-2">
+                      {signature.type} • {new Date(signature.createdAt).toLocaleDateString()}
+                    </p>
+                  </button>
+                ))}
               </div>
             </div>
           )}
-        </div>
-        
-        {/* Upload Signature */}
-        <div>
-          <h4 className="text-base font-medium text-gray-900 dark:text-white mb-4">
-            Upload Signature Image
-          </h4>
-          <div
-            onClick={() => fileInputRef.current?.click()}
-            className="border-2 border-dashed border-gray-300 dark:border-gray-600 rounded-lg p-6 text-center cursor-pointer hover:border-blue-400 transition-colors"
-          >
-            {uploading ? (
-              <div className="flex items-center justify-center">
-                <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
-                <span className="ml-3 text-gray-600 dark:text-gray-400">Processing...</span>
+          
+          {/* Signature Creation Options */}
+          <div className="space-y-6">
+            {/* Template Signatures */}
+            <div>
+              <h4 className="text-base font-medium text-gray-900 dark:text-white mb-4">
+                Choose from Templates
+              </h4>
+              <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
+                {templates.map((template) => (
+                  <button
+                    key={template.id}
+                    type="button"
+                    onClick={() => selectTemplate(template)}
+                    disabled={savingSignature}
+                    className={`p-4 border-2 rounded-lg transition-colors disabled:opacity-50 disabled:cursor-not-allowed ${
+                      selectedSignature?.data === template.data
+                        ? 'border-blue-500 bg-blue-50 dark:bg-blue-900/20'
+                        : 'border-gray-200 dark:border-gray-700 hover:border-blue-300'
+                    }`}
+                  >
+                    <div className="bg-white dark:bg-gray-800 rounded p-3 min-h-[80px] flex items-center justify-center">
+                      {savingSignature ? (
+                        <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-blue-600"></div>
+                      ) : (
+                        <img
+                          src={template.data}
+                          alt={template.name}
+                          className="max-w-full h-auto object-contain"
+                        />
+                      )}
+                    </div>
+                  </button>
+                ))}
               </div>
-            ) : (
-              <>
-                <PhotoIcon className="mx-auto h-12 w-12 text-gray-400 mb-3" />
-                <p className="text-gray-600 dark:text-gray-400">
-                  Click to upload your signature
-                </p>
-                <p className="text-xs text-gray-500 dark:text-gray-500 mt-1">
-                  PNG, JPG up to 2MB
-                </p>
-              </>
-            )}
+            </div>
+            
+            {/* Draw Signature */}
+            <div>
+              <div className="flex items-center justify-between mb-4">
+                <h4 className="text-base font-medium text-gray-900 dark:text-white">
+                  Draw Your Signature
+                </h4>
+                <button
+                  type="button"
+                  onClick={() => setIsDrawing(!isDrawing)}
+                  className="text-sm text-blue-600 hover:text-blue-500"
+                >
+                  {isDrawing ? 'Cancel Drawing' : 'Start Drawing'}
+                </button>
+              </div>
+              
+              {isDrawing && (
+                <div className="space-y-4">
+                  <div className="border-2 border-gray-300 dark:border-gray-600 rounded-lg">
+                    <canvas
+                      ref={canvasRef}
+                      className="w-full h-48 cursor-crosshair rounded-lg"
+                      onMouseDown={startDrawing}
+                      onMouseMove={draw}
+                      onMouseUp={stopDrawing}
+                      onMouseLeave={stopDrawing}
+                    />
+                  </div>
+                  <div className="flex justify-between">
+                    <button
+                      type="button"
+                      onClick={clearCanvas}
+                      className="flex items-center gap-2 px-4 py-2 text-sm text-gray-600 dark:text-gray-400 hover:text-gray-800 dark:hover:text-gray-200"
+                    >
+                      <TrashIcon className="w-4 h-4" />
+                      Clear
+                    </button>
+                    <button
+                      type="button"
+                      onClick={saveDrawnSignature}
+                      disabled={savingSignature}
+                      className="flex items-center gap-2 px-4 py-2 text-sm bg-blue-600 text-white rounded-md hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed"
+                    >
+                      {savingSignature ? (
+                        <>
+                          <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white"></div>
+                          Saving...
+                        </>
+                      ) : (
+                        <>
+                          <PencilIcon className="w-4 h-4" />
+                          Save Signature
+                        </>
+                      )}
+                    </button>
+                  </div>
+                </div>
+              )}
+            </div>
+            
+            {/* Upload Signature */}
+            <div>
+              <h4 className="text-base font-medium text-gray-900 dark:text-white mb-4">
+                Upload Signature Image
+              </h4>
+              <div
+                onClick={() => fileInputRef.current?.click()}
+                className="border-2 border-dashed border-gray-300 dark:border-gray-600 rounded-lg p-6 text-center cursor-pointer hover:border-blue-400 transition-colors"
+              >
+                {uploading ? (
+                  <div className="flex items-center justify-center">
+                    <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
+                    <span className="ml-3 text-gray-600 dark:text-gray-400">Processing...</span>
+                  </div>
+                ) : (
+                  <>
+                    <PhotoIcon className="mx-auto h-12 w-12 text-gray-400 mb-3" />
+                    <p className="text-gray-600 dark:text-gray-400">
+                      Click to upload your signature
+                    </p>
+                    <p className="text-xs text-gray-500 dark:text-gray-500 mt-1">
+                      PNG, JPG up to 2MB
+                    </p>
+                  </>
+                )}
+              </div>
+              <input
+                ref={fileInputRef}
+                type="file"
+                accept="image/*"
+                onChange={(e) => {
+                  const file = e.target.files?.[0]
+                  if (file) handleFileUpload(file)
+                }}
+                className="hidden"
+                disabled={uploading}
+              />
+            </div>
           </div>
-          <input
-            ref={fileInputRef}
-            type="file"
-            accept="image/*"
-            onChange={(e) => {
-              const file = e.target.files?.[0]
-              if (file) handleFileUpload(file)
-            }}
-            className="hidden"
-            disabled={uploading}
-          />
-        </div>
-      </div>
+        </>
+      )}
       
       {/* Selected Signature Preview */}
       {selectedSignature && (

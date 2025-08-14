@@ -24,20 +24,21 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: 'File must be an image' }, { status: 400 })
     }
 
-    // Validate file size (5MB limit)
-    const maxSize = 5 * 1024 * 1024 // 5MB
+    // Validate file size (2MB limit for signatures)
+    const maxSize = 2 * 1024 * 1024 // 2MB
     if (file.size > maxSize) {
       return NextResponse.json({ 
-        error: 'File size must be less than 5MB' 
+        error: 'Signature image must be less than 2MB' 
       }, { status: 400 })
     }
 
-    // Generate unique filename
-    const fileExtension = file.name.split('.').pop() || 'jpg'
-    const fileName = `profile-photos/${session.user.email.replace('@', '_at_')}_${Date.now()}.${fileExtension}`
+    // Generate unique filename for signature
+    const fileExtension = file.name.split('.').pop() || 'png'
+    const signatureId = `sig_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`
+    const fileName = `signatures/${session.user.email.replace('@', '_at_')}/${signatureId}.${fileExtension}`
 
     try {
-      // Upload to Vercel Blob
+      // Upload to Vercel Blob with public access (will be secured via API)
       const blob = await put(fileName, file, {
         access: 'public',
         token: process.env.BLOB_READ_WRITE_TOKEN
@@ -52,14 +53,15 @@ export async function POST(request: NextRequest) {
         id: `audit_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`,
         userId: session.user.email,
         eventType: 'upload',
-        eventAction: 'profile_photo_uploaded',
-        resourceType: 'profile_photo',
+        eventAction: 'signature_image_uploaded',
+        resourceType: 'signature_image',
         resourceId: blob.url,
         eventData: {
           fileName: file.name,
           fileSize: file.size,
           fileType: file.type,
           blobUrl: blob.url,
+          signatureId,
           uploadedViaAPI: true
         },
         ipAddress,
@@ -70,7 +72,8 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({
         success: true,
         url: blob.url,
-        message: 'Profile photo uploaded successfully'
+        signatureId,
+        message: 'Signature image uploaded successfully'
       })
     } catch (blobError) {
       console.error('Vercel Blob upload error:', blobError)
@@ -86,15 +89,16 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({
         success: true,
         url: dataURL,
-        message: 'Profile photo uploaded successfully (base64 fallback)',
+        signatureId: `sig_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`,
+        message: 'Signature image uploaded successfully (base64 fallback)',
         fallback: true
       })
     }
 
   } catch (error) {
-    console.error('Error uploading profile photo:', error)
+    console.error('Error uploading signature image:', error)
     return NextResponse.json(
-      { error: 'Failed to upload profile photo' },
+      { error: 'Failed to upload signature image' },
       { status: 500 }
     )
   }

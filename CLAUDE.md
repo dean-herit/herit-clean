@@ -28,13 +28,34 @@
 
 #### First-Time Setup (REQUIRED)
 ```bash
-# 1. Copy the development environment template
-cp .env.development .env.development.local
+# 1. Copy the environment template
+cp .env.example .env.local
 
-# 2. Edit .env.development.local and uncomment POSTGRES_PRISMA_URL
-# Get your connection string from: https://supabase.com/dashboard/project/qcxpuhlxhjjhfqzaprqn/settings/database
+# 2. Edit .env.local with required values:
+# - POSTGRES_URL: PostgreSQL connection string (Supabase/Vercel Postgres)
+# - SESSION_SECRET: Generate with: openssl rand -hex 32
+# - GOOGLE_CLIENT_ID & GOOGLE_CLIENT_SECRET: OAuth credentials
+# - BLOB_READ_WRITE_TOKEN: Vercel Blob storage token (for file uploads)
 
-# 3. Add your SESSION_SECRET for JWT signing
+# 3. Optional: Set up Stripe Identity (STRIPE_SECRET_KEY, STRIPE_PUBLISHABLE_KEY)
+```
+
+#### Vercel Blob Storage Setup (Required for File Uploads)
+```bash
+# 1. Install Vercel CLI (if not already installed)
+npm i -g vercel
+
+# 2. Login to Vercel
+vercel login
+
+# 3. Create a Blob store (from project root)
+vercel blob create
+
+# 4. Get the read-write token
+vercel blob ls --token
+
+# 5. Add BLOB_READ_WRITE_TOKEN to your .env.local file
+echo "BLOB_READ_WRITE_TOKEN=vercel_blob_rw_..." >> .env.local
 ```
 
 #### Daily Development

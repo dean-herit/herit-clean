@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useRef } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import { ArrowRightIcon, PhotoIcon, XMarkIcon } from '@heroicons/react/24/outline'
 import Image from 'next/image'
 
@@ -45,8 +45,48 @@ export default function PersonalInfoStep({
   const [formData, setFormData] = useState<PersonalInfo>(initialData)
   const [errors, setErrors] = useState<Record<string, string>>({})
   const [uploadingPhoto, setUploadingPhoto] = useState(false)
+  const [loadingData, setLoadingData] = useState(true)
   const fileInputRef = useRef<HTMLInputElement>(null)
   
+  // Load existing personal info on mount
+  useEffect(() => {
+    const fetchPersonalInfo = async () => {
+      try {
+        setLoadingData(true)
+        const response = await fetch('/api/onboarding/personal-info')
+        if (response.ok) {
+          const data = await response.json()
+          if (data.success && data.data) {
+            const personalInfo = {
+              first_name: data.data.first_name || '',
+              last_name: data.data.last_name || '',
+              email: data.data.email || '',
+              date_of_birth: data.data.date_of_birth || '',
+              phone_number: data.data.phone_number || '',
+              address_line_1: data.data.address_line_1 || '',
+              address_line_2: data.data.address_line_2 || '',
+              city: data.data.city || '',
+              county: data.data.county || '',
+              eircode: data.data.eircode || '',
+              profile_photo: data.data.profile_photo || null,
+            }
+            setFormData(personalInfo)
+            onChange(personalInfo)
+          }
+        }
+      } catch (error) {
+        console.error('Error loading personal info:', error)
+        // Use initialData as fallback
+        setFormData(initialData)
+        onChange(initialData)
+      } finally {
+        setLoadingData(false)
+      }
+    }
+
+    fetchPersonalInfo()
+  }, [])
+
   // Update parent state when form data changes
   const updateFormData = (updates: Partial<PersonalInfo>) => {
     const newData = { ...formData, ...updates }
@@ -108,11 +148,40 @@ export default function PersonalInfoStep({
   }
   
   // Handle form submission
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     
-    if (validateForm()) {
+    if (!validateForm()) {
+      return
+    }
+    
+    try {
+      // Save personal info to backend
+      const response = await fetch('/api/onboarding/personal-info', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      })
+      
+      if (!response.ok) {
+        const errorData = await response.json()
+        if (errorData.errors) {
+          setErrors(errorData.errors)
+          return
+        }
+        throw new Error(errorData.error || 'Failed to save personal information')
+      }
+      
+      // Complete this step
       onComplete(formData)
+      
+    } catch (error) {
+      console.error('Error saving personal info:', error)
+      setErrors({ 
+        submit: error instanceof Error ? error.message : 'Failed to save personal information. Please try again.' 
+      })
     }
   }
   
@@ -171,8 +240,35 @@ export default function PersonalInfoStep({
     }
   }
   
+  // Show loading state while data is being fetched
+  if (loadingData) {
+    return (
+      <div className="space-y-6">
+        <div className="text-center">
+          <h3 className="text-lg font-medium text-gray-900 dark:text-white">
+            Loading Your Information
+          </h3>
+          <p className="mt-2 text-sm text-gray-600 dark:text-gray-400">
+            Please wait while we load your existing information...
+          </p>
+        </div>
+        <div className="bg-white dark:bg-gray-800 rounded-lg p-8 text-center">
+          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600 mx-auto"></div>
+          <p className="mt-4 text-sm text-gray-600 dark:text-gray-400">Loading...</p>
+        </div>
+      </div>
+    )
+  }
+
   return (
     <form onSubmit={handleSubmit} className="space-y-6">
+      {/* Form Submission Error */}
+      {errors.submit && (
+        <div className="bg-red-50 border border-red-200 text-red-800 px-4 py-3 rounded-md text-sm">
+          {errors.submit}
+        </div>
+      )}
+      
       {/* Name Fields */}
       <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
         <div>

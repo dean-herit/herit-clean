@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { ArrowRightIcon, ShieldCheckIcon, ExclamationTriangleIcon, CheckCircleIcon } from '@heroicons/react/24/outline'
 
 interface VerificationStepProps {
@@ -19,6 +19,73 @@ export default function VerificationStep({
   const [verificationStatus, setVerificationStatus] = useState<VerificationStatus>('pending')
   const [error, setError] = useState('')
   const [verificationUrl, setVerificationUrl] = useState<string | null>(null)
+  const [loadingStatus, setLoadingStatus] = useState(true)
+
+  // Check existing verification status on mount
+  useEffect(() => {
+    const checkVerificationStatus = async () => {
+      try {
+        setLoadingStatus(true)
+        const response = await fetch('/api/onboarding/verification-status')
+        if (response.ok) {
+          const data = await response.json()
+          if (data.status === 'verified') {
+            setVerificationStatus('completed')
+            // Auto-complete if already verified
+            setTimeout(() => {
+              onComplete({ verified: true, method: 'existing' })
+            }, 1000)
+          } else if (data.status === 'in_progress' && data.verification_url) {
+            setVerificationStatus('in_progress')
+            setVerificationUrl(data.verification_url)
+            // Continue polling for existing session
+            startPolling(data.verification_url)
+          }
+        }
+      } catch (error) {
+        console.error('Error checking verification status:', error)
+      } finally {
+        setLoadingStatus(false)
+      }
+    }
+
+    checkVerificationStatus()
+  }, [])
+
+  // Polling function for verification status
+  const startPolling = (verificationUrl?: string) => {
+    const pollForCompletion = setInterval(async () => {
+      try {
+        const statusResponse = await fetch('/api/onboarding/verification-status')
+        if (statusResponse.ok) {
+          const statusData = await statusResponse.json()
+          
+          if (statusData.status === 'verified') {
+            clearInterval(pollForCompletion)
+            setVerificationStatus('completed')
+            
+            // Complete onboarding
+            setTimeout(() => {
+              onComplete({ verified: true, method: 'stripe' })
+            }, 1000)
+          } else if (statusData.status === 'failed') {
+            clearInterval(pollForCompletion)
+            setVerificationStatus('failed')
+            setError('Identity verification failed. Please try again.')
+          }
+        }
+      } catch (error) {
+        console.error('Error polling verification status:', error)
+      }
+    }, 2000)
+    
+    // Clear polling after 10 minutes
+    setTimeout(() => {
+      clearInterval(pollForCompletion)
+    }, 10 * 60 * 1000)
+    
+    return pollForCompletion
+  }
   
   // Start verification process
   const startVerification = async () => {
@@ -65,42 +132,8 @@ export default function VerificationStep({
           'width=600,height=800,scrollbars=yes,resizable=yes'
         )
         
-        // Poll for completion
-        const pollForCompletion = setInterval(async () => {
-          try {
-            const statusResponse = await fetch('/api/onboarding/verification-status')
-            if (statusResponse.ok) {
-              const statusData = await statusResponse.json()
-              
-              if (statusData.status === 'verified') {
-                clearInterval(pollForCompletion)
-                setVerificationStatus('completed')
-                if (verificationWindow) {
-                  verificationWindow.close()
-                }
-                
-                // Complete onboarding
-                setTimeout(() => {
-                  onComplete({ verified: true, method: 'stripe' })
-                }, 1000)
-              } else if (statusData.status === 'failed') {
-                clearInterval(pollForCompletion)
-                setVerificationStatus('failed')
-                setError('Identity verification failed. Please try again.')
-                if (verificationWindow) {
-                  verificationWindow.close()
-                }
-              }
-            }
-          } catch (error) {
-            console.error('Error polling verification status:', error)
-          }
-        }, 2000)
-        
-        // Clear polling after 10 minutes
-        setTimeout(() => {
-          clearInterval(pollForCompletion)
-        }, 10 * 60 * 1000)
+        // Start polling for completion
+        startPolling(data.verification_url)
         
       } else {
         throw new Error('No verification URL received')
@@ -127,6 +160,26 @@ export default function VerificationStep({
     }
   }
   
+  // Show loading state while checking verification status
+  if (loadingStatus) {
+    return (
+      <div className="space-y-6">
+        <div className="text-center">
+          <h3 className="text-lg font-medium text-gray-900 dark:text-white">
+            Checking Verification Status
+          </h3>
+          <p className="mt-2 text-sm text-gray-600 dark:text-gray-400">
+            Please wait while we check your identity verification status...
+          </p>
+        </div>
+        <div className="bg-white dark:bg-gray-800 rounded-lg p-8 text-center">
+          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600 mx-auto"></div>
+          <p className="mt-4 text-sm text-gray-600 dark:text-gray-400">Loading...</p>
+        </div>
+      </div>
+    )
+  }
+
   return (
     <div className="space-y-6">
       {/* Header */}

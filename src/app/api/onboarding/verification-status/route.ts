@@ -1,5 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { getSession } from '@/lib/auth'
+import { db } from '@/db/db'
+import { users, auditEvents } from '@/db/schema'
+import { eq } from 'drizzle-orm'
+import Stripe from 'stripe'
 
 export async function GET(request: NextRequest) {
   try {
@@ -9,72 +13,191 @@ export async function GET(request: NextRequest) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
     }
 
-    console.log(`Checking verification status for user ${session.user.id}`)
+    // Get user verification data from database
+    const user = await db.select({
+      verificationStatus: users.verificationStatus,
+      verificationSessionId: users.verificationSessionId,
+      verificationCompleted: users.verificationCompleted,
+      verificationCompletedAt: users.verificationCompletedAt
+    })
+    .from(users)
+    .where(eq(users.email, session.user.email))
+    .limit(1)
+
+    if (!user.length) {
+      return NextResponse.json({ error: 'User not found' }, { status: 404 })
+    }
+
+    const userData = user[0]
     
-    // In a real implementation, you would:
-    // 1. Query your database for the user's verification record
-    // 2. If using Stripe Identity, check the verification session status
-    // 3. Return the current status
-    
-    // Mock implementation for development
-    const useMock = process.env.NODE_ENV === 'development' || !process.env.STRIPE_SECRET_KEY
+    // If no verification session exists
+    if (!userData.verificationSessionId) {
+      return NextResponse.json({
+        status: 'not_started',
+        message: 'No verification session found'
+      })
+    }
+
+    // Mock implementation for development/testing
+    const useMock = process.env.NODE_ENV === 'development' || !process.env.STRIPE_SECRET_KEY || userData.verificationSessionId.startsWith('mock_')
     
     if (useMock) {
-      // Simulate random verification completion for demo purposes
-      const isComplete = Math.random() > 0.7 // 30% chance of being complete
+      // For mock sessions, simulate verification completion after some time
+      const sessionCreatedTime = parseInt(userData.verificationSessionId.split('_')[1]) || Date.now()
+      const timeElapsed = Date.now() - sessionCreatedTime
+      const shouldComplete = timeElapsed > 30000 // Auto-complete after 30 seconds
+      
+      let status = userData.verificationStatus || 'processing'
+      let verifiedAt = userData.verificationCompletedAt
+      
+      // Auto-complete mock verification
+      if (shouldComplete && status === 'processing') {
+        status = 'verified'
+        verifiedAt = new Date()
+        
+        // Update database with completed verification
+        await db.update(users)
+          .set({
+            verificationStatus: 'verified',
+            verificationCompleted: true,
+            verificationCompletedAt: verifiedAt,
+            onboardingCurrentStep: 'completed',
+            onboardingStatus: 'completed',
+            onboardingCompletedAt: verifiedAt,
+            updatedAt: new Date()
+          })
+          .where(eq(users.email, session.user.email))
+
+        // Create audit event
+        await db.insert(auditEvents).values({
+          id: `audit_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`,
+          userId: session.user.email,
+          eventType: 'verification',
+          eventAction: 'verification_completed',
+          resourceType: 'verification_session',
+          resourceId: userData.verificationSessionId,
+          eventData: {
+            sessionType: 'mock',
+            autoCompleted: true,
+            timeElapsedMs: timeElapsed
+          },
+          ipAddress: 'system',
+          userAgent: 'system',
+          eventTime: new Date()
+        })
+      }
       
       return NextResponse.json({
-        status: isComplete ? 'verified' : 'pending',
-        verification_id: `mock_${Date.now()}`,
-        verified_at: isComplete ? new Date().toISOString() : null,
+        status,
+        verification_id: userData.verificationSessionId,
+        verified_at: verifiedAt?.toISOString() || null,
         details: {
-          document_verified: isComplete,
-          liveness_verified: isComplete,
+          document_verified: status === 'verified',
+          liveness_verified: status === 'verified',
+          mock_session: true
         }
       })
     }
 
-    // Real Stripe Identity implementation would go here
+    // Real Stripe Identity implementation
     try {
-      // const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY)
-      // 
-      // Get verification session ID from database or session
-      // const verificationId = await getUserVerificationId(session.user.id)
-      // 
-      // if (!verificationId) {
-      //   return NextResponse.json({
-      //     status: 'not_started',
-      //     message: 'No verification session found'
-      //   })
-      // }
-      // 
-      // const verificationSession = await stripe.identity.verificationSessions.retrieve(verificationId)
-      // 
-      // return NextResponse.json({
-      //   status: verificationSession.status, // 'requires_input', 'processing', 'verified', 'canceled'
-      //   verification_id: verificationSession.id,
-      //   verified_at: verificationSession.verified_at,
-      //   details: {
-      //     document_verified: verificationSession.last_verification_report?.document?.status === 'verified',
-      //     liveness_verified: verificationSession.last_verification_report?.selfie?.status === 'verified',
-      //   }
-      // })
+      const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!)
+      
+      const verificationSession = await stripe.identity.verificationSessions.retrieve(userData.verificationSessionId)
+      
+      // Map Stripe statuses to our application statuses
+      let appStatus = userData.verificationStatus
+      let shouldUpdateUser = false
+      
+      switch (verificationSession.status) {
+        case 'verified':
+          if (appStatus !== 'verified') {
+            appStatus = 'verified'
+            shouldUpdateUser = true
+          }
+          break
+        case 'requires_input':
+        case 'processing':
+          appStatus = 'processing'
+          break
+        case 'canceled':
+          appStatus = 'canceled'
+          break
+        default:
+          appStatus = 'processing'
+      }
+      
+      // Update user record if status changed
+      if (shouldUpdateUser) {
+        const updateData: any = {
+          verificationStatus: appStatus,
+          updatedAt: new Date()
+        }
+        
+        if (appStatus === 'verified') {
+          updateData.verificationCompleted = true
+          updateData.verificationCompletedAt = new Date()
+          updateData.onboardingCurrentStep = 'completed'
+          updateData.onboardingStatus = 'completed'
+          updateData.onboardingCompletedAt = new Date()
+        }
+        
+        await db.update(users)
+          .set(updateData)
+          .where(eq(users.email, session.user.email))
 
-      // For now, return mock verified status
+        // Create audit event
+        await db.insert(auditEvents).values({
+          id: `audit_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`,
+          userId: session.user.email,
+          eventType: 'verification',
+          eventAction: appStatus === 'verified' ? 'verification_completed' : 'verification_status_updated',
+          resourceType: 'verification_session',
+          resourceId: userData.verificationSessionId,
+          eventData: {
+            sessionType: 'stripe',
+            stripeStatus: verificationSession.status,
+            appStatus: appStatus,
+            hasReport: !!verificationSession.last_verification_report
+          },
+          ipAddress: 'stripe_webhook',
+          userAgent: 'system',
+          eventTime: new Date()
+        })
+      }
+      
       return NextResponse.json({
-        status: 'verified',
-        verification_id: `stripe_${Date.now()}`,
-        verified_at: new Date().toISOString(),
+        status: appStatus,
+        verification_id: verificationSession.id,
+        verified_at: null, // verificationSession.verified_at ? new Date(verificationSession.verified_at * 1000).toISOString() : null,
         details: {
-          document_verified: true,
-          liveness_verified: true,
+          document_verified: false, // verificationSession.last_verification_report?.document?.status === 'verified',
+          liveness_verified: false, // verificationSession.last_verification_report?.selfie?.status === 'verified',
+          stripe_status: verificationSession.status
         }
       })
 
-    } catch (stripeError) {
+    } catch (stripeError: any) {
       console.error('Stripe verification status error:', stripeError)
+      
+      // If session not found in Stripe, it might be expired
+      if (stripeError.code === 'resource_missing') {
+        await db.update(users)
+          .set({
+            verificationStatus: 'expired',
+            updatedAt: new Date()
+          })
+          .where(eq(users.email, session.user.email))
+          
+        return NextResponse.json({
+          status: 'expired',
+          verification_id: userData.verificationSessionId,
+          message: 'Verification session expired'
+        })
+      }
+      
       return NextResponse.json(
-        { error: 'Failed to check verification status' },
+        { error: 'Failed to check verification status with Stripe' },
         { status: 500 }
       )
     }
