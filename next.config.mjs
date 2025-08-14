@@ -4,11 +4,6 @@ const nextConfig = {
   output: 'standalone',
   poweredByHeader: false,
   
-  // Sentry integration
-  sentry: {
-    hideSourceMaps: true,
-    widenClientFileUpload: true
-  },
   
   // Security headers
   async headers() {
@@ -37,10 +32,6 @@ const nextConfig = {
     ]
   },
   
-  // Environment variables
-  env: {
-    NEXT_RUNTIME: 'nodejs'
-  },
   
   // Performance optimizations
   experimental: {
