@@ -64,7 +64,11 @@ export default function LoginPage() {
           )}
 
           {/* Login Form */}
-          <div className="bg-transparent backdrop-blur-md p-8 rounded-2xl border border-white/30">
+          <div className="bg-black/30 backdrop-blur-xl p-10 rounded-3xl border border-white/20 shadow-2xl">
+            <div className="text-center mb-8">
+              <h1 className="text-3xl font-serif font-light text-white mb-2">Welcome back</h1>
+              <p className="text-white/70 font-sans text-base">Sign in to continue to your estate planning</p>
+            </div>
             <LoginForm onSignIn={handleSignIn} />
           </div>
         </div>

@@ -44,8 +44,8 @@ const config: Config = {
         }
       },
       backgroundImage: {
-        'herit-hero-1': "url('https://images.squarespace-cdn.com/content/v1/678803bbab27007bfc5ccabf/1736967326406-C9IHTG251VD5FSJRK0S5/unsplash-image-5utisuD5Bdk.jpg')",
-        'herit-hero-2': "url('https://images.squarespace-cdn.com/content/v1/678803bbab27007bfc5ccabf/1736967589199-T1UNH8O5CEXAG1WY1J50/unsplash-image-_XR5rkprHQU.jpg')",
+        'herit-hero-1': "url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3')",
+        'herit-hero-2': "url('https://images.unsplash.com/photo-1518837695005-2083093ee35b?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3')",
       },
     },
   },

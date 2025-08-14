@@ -15,7 +15,7 @@ export function AppleSignInButton({ onSignIn, className = '' }: AppleSignInButto
   return (
     <button
       onClick={handleAppleSignIn}
-      className={`flex items-center justify-center gap-3 px-6 py-3 bg-black hover:bg-gray-900 text-white font-medium rounded-lg transition-colors duration-200 ${className}`}
+      className={`flex items-center justify-center gap-3 px-6 py-4 bg-black hover:bg-gray-900 text-white font-sans font-medium text-lg rounded-2xl transition-all duration-200 shadow-sm hover:shadow-md ${className}`}
       type="button"
     >
       <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">

@@ -89,10 +89,13 @@ export function LoginForm({ onSignIn }: LoginFormProps) {
           {/* Email Authentication Button */}
           <button
             onClick={() => setShowEmailAuth(true)}
-            className="w-full px-6 py-4 bg-white/10 hover:bg-white/20 text-white font-semibold rounded-xl transition-all duration-200 border border-white/20 hover:border-white/30"
+            className="w-full flex items-center justify-center gap-3 px-6 py-4 bg-white/10 hover:bg-white/20 text-white font-sans font-medium text-lg rounded-2xl transition-all duration-200 border border-white/20 hover:border-white/30 backdrop-blur-sm shadow-sm hover:shadow-md"
             type="button"
           >
-            📧 Continue with Email
+            <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+            </svg>
+            <span>Continue with Email</span>
           </button>
 
           {/* Divider */}
