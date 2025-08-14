@@ -55,12 +55,6 @@ export default function LoginPage() {
       <Header />
       <div className="min-h-screen flex items-center justify-center p-4 pt-24">
         <div className="w-full max-w-md">
-          {/* Logo */}
-          <div className="flex items-center justify-center mb-12">
-            <span className="text-5xl font-brand font-bold text-white drop-shadow-lg">
-              Herit
-            </span>
-          </div>
           
           {/* Error Display */}
           {error && (

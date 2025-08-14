@@ -29,14 +29,6 @@ export function LoginForm({ onSignIn }: LoginFormProps) {
 
   return (
     <div className="w-full max-w-md mx-auto space-y-6">
-      <div className="text-center space-y-3">
-        <h1 className="text-3xl font-brand font-bold text-white">
-          Welcome to Herit
-        </h1>
-        <p className="text-white/80 text-lg">
-          Digital Estate Planning Made Simple
-        </p>
-      </div>
 
       {/* Error Display */}
       {authError && (

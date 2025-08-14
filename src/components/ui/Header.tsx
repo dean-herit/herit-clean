@@ -11,12 +11,12 @@ export function Header() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center py-6">
           {/* Logo */}
-          <Link href="/" className="text-2xl font-brand font-bold text-white drop-shadow-lg hover:opacity-80 transition-opacity">
+          <Link href="/" className="text-3xl font-brand font-bold text-white drop-shadow-lg hover:opacity-80 transition-opacity">
             Herit
           </Link>
 
-          {/* Desktop Navigation */}
-          <nav className="hidden md:flex space-x-8">
+          {/* Desktop Navigation - Centered */}
+          <nav className="hidden md:flex space-x-8 absolute left-1/2 transform -translate-x-1/2">
             <a href="https://herit.com#express-interest" className="text-white/90 hover:text-white font-medium transition-colors">
               Express Interest
             </a>
