@@ -1,10 +1,18 @@
 import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
+import { Outfit, Playfair_Display } from 'next/font/google'
 import './globals.css'
 import { CopyProvider } from '@/providers/CopyProvider'
 import { QueryProvider } from '@/providers/QueryProvider'
 
-const inter = Inter({ subsets: ['latin'] })
+const outfit = Outfit({ 
+  subsets: ['latin'],
+  variable: '--font-outfit'
+})
+
+const playfair = Playfair_Display({ 
+  subsets: ['latin'],
+  variable: '--font-playfair'
+})
 
 export const metadata: Metadata = {
   title: 'Herit - Estate Planning Made Simple',
@@ -19,7 +27,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body className={`${outfit.variable} ${playfair.variable} font-sans`}>
         <CopyProvider>
           <QueryProvider>
             {children}
