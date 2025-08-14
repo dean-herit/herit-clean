@@ -13,11 +13,6 @@ export async function GET(request: NextRequest) {
       )
     }
 
-    // Debug: Log the actual values (remove after testing)
-    console.log('DEBUG - googleClientId length:', googleClientId.length)
-    console.log('DEBUG - googleClientId ends with:', googleClientId.slice(-5))
-    console.log('DEBUG - redirectUri length:', redirectUri.length)
-    console.log('DEBUG - redirectUri ends with:', redirectUri.slice(-5))
 
     // Generate state parameter for security
     const state = crypto.randomUUID()
