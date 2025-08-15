@@ -245,16 +245,16 @@ export default function PersonalInfoStep({
     return (
       <div className="space-y-6">
         <div className="text-center">
-          <h3 className="text-lg font-medium text-gray-900 dark:text-white">
+          <h3 className="text-lg font-medium text-theme-text">
             Loading Your Information
           </h3>
-          <p className="mt-2 text-sm text-slate-600 dark:text-slate-400">
+          <p className="mt-2 text-sm text-theme-text-muted">
             Please wait while we load your existing information...
           </p>
         </div>
-        <div className="bg-white dark:bg-gray-800 rounded-lg p-8 text-center">
-          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600 mx-auto"></div>
-          <p className="mt-4 text-sm text-slate-600 dark:text-slate-400">Loading...</p>
+        <div className="bg-theme-surface rounded-theme-xl p-8 text-center">
+          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-theme-brand mx-auto"></div>
+          <p className="mt-4 text-sm text-theme-text-muted">Loading...</p>
         </div>
       </div>
     )
@@ -264,15 +264,15 @@ export default function PersonalInfoStep({
     <form onSubmit={handleSubmit} className="space-y-6">
       {/* Form Submission Error */}
       {errors.submit && (
-        <div className="bg-red-50 border border-red-200 text-red-800 px-4 py-3 rounded-md text-sm">
+        <div className="bg-theme-danger/10 border border-theme-danger/20 text-theme-danger px-4 py-3 rounded-theme-xl text-sm">
           {errors.submit}
         </div>
       )}
       
       {/* Name Fields */}
-      <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
+      <div className="grid grid-cols-1 gap-6 md:grid-cols-2" data-ui="field:first-name">
         <div>
-          <label htmlFor="first_name" className="block text-sm font-medium text-white mb-2">
+          <label htmlFor="first_name" className="block text-sm font-medium text-theme-text mb-2">
             First Name *
           </label>
           <input
@@ -281,18 +281,18 @@ export default function PersonalInfoStep({
             name="first_name"
             value={formData.first_name}
             onChange={(e) => updateFormData({ first_name: e.target.value })}
-            className={`mt-1 block w-full rounded-lg border-0 bg-slate-600 px-3 py-3 text-white placeholder-slate-400 shadow-sm focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-slate-800 sm:text-sm ${
-              errors.first_name ? 'ring-2 ring-red-500' : ''
+            className={`block w-full h-12 rounded-theme-xl border bg-theme-input-bg px-4 py-3 text-theme-text placeholder-theme-text-muted shadow-sm focus:ring-2 focus:ring-theme-brand focus:border-theme-brand sm:text-sm transition-colors ${
+              errors.first_name ? 'border-theme-danger focus:ring-theme-danger' : 'border-theme-input-border'
             }`}
             placeholder="Enter your first name"
           />
           {errors.first_name && (
-            <p className="mt-1 text-sm text-red-600">{errors.first_name}</p>
+            <p className="mt-1 text-sm text-theme-danger">{errors.first_name}</p>
           )}
         </div>
 
         <div>
-          <label htmlFor="last_name" className="block text-sm font-medium text-white mb-2">
+          <label htmlFor="last_name" className="block text-sm font-medium text-theme-text mb-2">
             Last Name *
           </label>
           <input
@@ -301,20 +301,20 @@ export default function PersonalInfoStep({
             name="last_name"
             value={formData.last_name}
             onChange={(e) => updateFormData({ last_name: e.target.value })}
-            className={`mt-1 block w-full rounded-lg border-0 bg-slate-600 px-3 py-3 text-white placeholder-slate-400 shadow-sm focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-slate-800 sm:text-sm ${
-              errors.last_name ? 'ring-2 ring-red-500' : ''
+            className={`block w-full h-12 rounded-theme-xl border bg-theme-input-bg px-4 py-3 text-theme-text placeholder-theme-text-muted shadow-sm focus:ring-2 focus:ring-theme-brand focus:border-theme-brand sm:text-sm transition-colors ${
+              errors.last_name ? 'border-theme-danger focus:ring-theme-danger' : 'border-theme-input-border'
             }`}
             placeholder="Enter your last name"
           />
           {errors.last_name && (
-            <p className="mt-1 text-sm text-red-600">{errors.last_name}</p>
+            <p className="mt-1 text-sm text-theme-danger">{errors.last_name}</p>
           )}
         </div>
       </div>
 
       {/* Email Field (read-only) */}
       <div>
-        <label htmlFor="email" className="block text-sm font-medium text-white mb-2">
+        <label htmlFor="email" className="block text-sm font-medium text-theme-text mb-2">
           Email Address
         </label>
         <input
@@ -322,17 +322,17 @@ export default function PersonalInfoStep({
           id="email"
           value={formData.email}
           readOnly
-          className="mt-1 block w-full rounded-lg border-0 bg-slate-600 px-3 py-3 text-slate-400 cursor-not-allowed sm:text-sm"
+          className="block w-full h-12 rounded-theme-xl border border-theme-input-border bg-theme-surface px-4 py-3 text-theme-text-muted cursor-not-allowed sm:text-sm"
         />
-        <p className="mt-1 text-xs text-slate-500 dark:text-slate-400">
+        <p className="mt-1 text-xs text-theme-text-muted">
           This email is from your account and cannot be changed here.
         </p>
       </div>
 
       {/* Date of Birth and Phone */}
-      <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
+      <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
         <div>
-          <label htmlFor="date_of_birth" className="block text-sm font-medium text-white mb-2">
+          <label htmlFor="date_of_birth" className="block text-sm font-medium text-theme-text mb-2">
             Date of Birth *
           </label>
           <input
@@ -341,17 +341,17 @@ export default function PersonalInfoStep({
             name="date_of_birth"
             value={formData.date_of_birth}
             onChange={(e) => updateFormData({ date_of_birth: e.target.value })}
-            className={`mt-1 block w-full rounded-lg border-0 bg-slate-600 px-3 py-3 text-white placeholder-slate-400 shadow-sm focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-slate-800 sm:text-sm ${
-              errors.date_of_birth ? 'ring-2 ring-red-500' : ''
+            className={`block w-full h-12 rounded-theme-xl border bg-theme-input-bg px-4 py-3 text-theme-text shadow-sm focus:ring-2 focus:ring-theme-brand focus:border-theme-brand sm:text-sm transition-colors ${
+              errors.date_of_birth ? 'border-theme-danger focus:ring-theme-danger' : 'border-theme-input-border'
             }`}
           />
           {errors.date_of_birth && (
-            <p className="mt-1 text-sm text-red-600">{errors.date_of_birth}</p>
+            <p className="mt-1 text-sm text-theme-danger">{errors.date_of_birth}</p>
           )}
         </div>
 
         <div>
-          <label htmlFor="phone_number" className="block text-sm font-medium text-white mb-2">
+          <label htmlFor="phone_number" className="block text-sm font-medium text-theme-text mb-2">
             Phone Number *
           </label>
           <input
@@ -360,13 +360,13 @@ export default function PersonalInfoStep({
             name="phone_number"
             value={formData.phone_number}
             onChange={(e) => updateFormData({ phone_number: e.target.value })}
-            className={`mt-1 block w-full rounded-lg border-0 bg-slate-600 px-3 py-3 text-white placeholder-slate-400 shadow-sm focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-slate-800 sm:text-sm ${
-              errors.phone_number ? 'ring-2 ring-red-500' : ''
+            className={`block w-full h-12 rounded-theme-xl border bg-theme-input-bg px-4 py-3 text-theme-text placeholder-theme-text-muted shadow-sm focus:ring-2 focus:ring-theme-brand focus:border-theme-brand sm:text-sm transition-colors ${
+              errors.phone_number ? 'border-theme-danger focus:ring-theme-danger' : 'border-theme-input-border'
             }`}
             placeholder="+353 85 123 4567"
           />
           {errors.phone_number && (
-            <p className="mt-1 text-sm text-red-600">{errors.phone_number}</p>
+            <p className="mt-1 text-sm text-theme-danger">{errors.phone_number}</p>
           )}
         </div>
       </div>
@@ -374,7 +374,7 @@ export default function PersonalInfoStep({
       {/* Address Fields */}
       <div className="space-y-6">
         <div>
-          <label htmlFor="address_line_1" className="block text-sm font-medium text-white mb-2">
+          <label htmlFor="address_line_1" className="block text-sm font-medium text-theme-text mb-2">
             Street Address *
           </label>
           <input
@@ -383,18 +383,18 @@ export default function PersonalInfoStep({
             name="address_line_1"
             value={formData.address_line_1}
             onChange={(e) => updateFormData({ address_line_1: e.target.value })}
-            className={`mt-1 block w-full rounded-lg border-0 bg-slate-600 px-3 py-3 text-white placeholder-slate-400 shadow-sm focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-slate-800 sm:text-sm ${
-              errors.address_line_1 ? 'ring-2 ring-red-500' : ''
+            className={`block w-full h-12 rounded-theme-xl border bg-theme-input-bg px-4 py-3 text-theme-text placeholder-theme-text-muted shadow-sm focus:ring-2 focus:ring-theme-brand focus:border-theme-brand sm:text-sm transition-colors ${
+              errors.address_line_1 ? 'border-theme-danger focus:ring-theme-danger' : 'border-theme-input-border'
             }`}
             placeholder="Enter your street address"
           />
           {errors.address_line_1 && (
-            <p className="mt-1 text-sm text-red-600">{errors.address_line_1}</p>
+            <p className="mt-1 text-sm text-theme-danger">{errors.address_line_1}</p>
           )}
         </div>
 
         <div>
-          <label htmlFor="address_line_2" className="block text-sm font-medium text-white mb-2">
+          <label htmlFor="address_line_2" className="block text-sm font-medium text-theme-text mb-2">
             Address Line 2
           </label>
           <input
@@ -403,16 +403,16 @@ export default function PersonalInfoStep({
             name="address_line_2"
             value={formData.address_line_2}
             onChange={(e) => updateFormData({ address_line_2: e.target.value })}
-            className="mt-1 block w-full rounded-lg border-0 bg-slate-600 px-3 py-3 text-white placeholder-slate-400 shadow-sm focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-slate-800 sm:text-sm"
+            className="block w-full h-12 rounded-theme-xl border border-theme-input-border bg-theme-input-bg px-4 py-3 text-theme-text placeholder-theme-text-muted shadow-sm focus:ring-2 focus:ring-theme-brand focus:border-theme-brand sm:text-sm transition-colors"
             placeholder="Apartment, suite, etc. (optional)"
           />
         </div>
       </div>
 
       {/* City, County, and Eircode */}
-      <div className="grid grid-cols-1 gap-6 sm:grid-cols-3">
+      <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
         <div>
-          <label htmlFor="city" className="block text-sm font-medium text-white mb-2">
+          <label htmlFor="city" className="block text-sm font-medium text-theme-text mb-2">
             City *
           </label>
           <input
@@ -421,18 +421,18 @@ export default function PersonalInfoStep({
             name="city"
             value={formData.city}
             onChange={(e) => updateFormData({ city: e.target.value })}
-            className={`mt-1 block w-full rounded-lg border-0 bg-slate-600 px-3 py-3 text-white placeholder-slate-400 shadow-sm focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-slate-800 sm:text-sm ${
-              errors.city ? 'ring-2 ring-red-500' : ''
+            className={`block w-full h-12 rounded-theme-xl border bg-theme-input-bg px-4 py-3 text-theme-text placeholder-theme-text-muted shadow-sm focus:ring-2 focus:ring-theme-brand focus:border-theme-brand sm:text-sm transition-colors ${
+              errors.city ? 'border-theme-danger focus:ring-theme-danger' : 'border-theme-input-border'
             }`}
             placeholder="Enter your city"
           />
           {errors.city && (
-            <p className="mt-1 text-sm text-red-600">{errors.city}</p>
+            <p className="mt-1 text-sm text-theme-danger">{errors.city}</p>
           )}
         </div>
 
         <div>
-          <label htmlFor="county" className="block text-sm font-medium text-white mb-2">
+          <label htmlFor="county" className="block text-sm font-medium text-theme-text mb-2">
             County *
           </label>
           <select
@@ -440,22 +440,22 @@ export default function PersonalInfoStep({
             name="county"
             value={formData.county}
             onChange={(e) => updateFormData({ county: e.target.value })}
-            className={`mt-1 block w-full rounded-lg border-0 bg-slate-600 px-3 py-3 text-white shadow-sm focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-slate-800 sm:text-sm ${
-              errors.county ? 'ring-2 ring-red-500' : ''
+            className={`block w-full h-12 rounded-theme-xl border bg-theme-input-bg px-4 py-3 text-theme-text shadow-sm focus:ring-2 focus:ring-theme-brand focus:border-theme-brand sm:text-sm transition-colors ${
+              errors.county ? 'border-theme-danger focus:ring-theme-danger' : 'border-theme-input-border'
             }`}
           >
-            <option value="">Select County</option>
+            <option value="" className="text-theme-text-muted">Select County</option>
             {IRISH_COUNTIES.map(county => (
-              <option key={county} value={county}>{county}</option>
+              <option key={county} value={county} className="text-theme-text">{county}</option>
             ))}
           </select>
           {errors.county && (
-            <p className="mt-1 text-sm text-red-600">{errors.county}</p>
+            <p className="mt-1 text-sm text-theme-danger">{errors.county}</p>
           )}
         </div>
 
         <div>
-          <label htmlFor="eircode" className="block text-sm font-medium text-white mb-2">
+          <label htmlFor="eircode" className="block text-sm font-medium text-theme-text mb-2">
             Eircode *
           </label>
           <input
@@ -464,20 +464,20 @@ export default function PersonalInfoStep({
             name="eircode"
             value={formData.eircode}
             onChange={(e) => updateFormData({ eircode: e.target.value.toUpperCase() })}
-            className={`mt-1 block w-full rounded-lg border-0 bg-slate-600 px-3 py-3 text-white placeholder-slate-400 shadow-sm focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-slate-800 sm:text-sm ${
-              errors.eircode ? 'ring-2 ring-red-500' : ''
+            className={`block w-full h-12 rounded-theme-xl border bg-theme-input-bg px-4 py-3 text-theme-text placeholder-theme-text-muted shadow-sm focus:ring-2 focus:ring-theme-brand focus:border-theme-brand sm:text-sm transition-colors ${
+              errors.eircode ? 'border-theme-danger focus:ring-theme-danger' : 'border-theme-input-border'
             }`}
             placeholder="D02 XY45"
           />
           {errors.eircode && (
-            <p className="mt-1 text-sm text-red-600">{errors.eircode}</p>
+            <p className="mt-1 text-sm text-theme-danger">{errors.eircode}</p>
           )}
         </div>
       </div>
 
       {/* Profile Photo Section */}
       <div>
-        <label className="block text-sm font-medium text-white mb-3">
+        <label className="block text-sm font-medium text-theme-text mb-3">
           Profile Photo (Optional)
         </label>
         
@@ -497,7 +497,7 @@ export default function PersonalInfoStep({
                 type="button"
                 onClick={() => fileInputRef.current?.click()}
                 disabled={uploadingPhoto}
-                className="text-sm text-blue-600 hover:text-blue-500 disabled:opacity-50"
+                className="text-sm text-theme-brand hover:text-theme-accent disabled:opacity-50"
               >
                 Change Photo
               </button>
@@ -505,7 +505,7 @@ export default function PersonalInfoStep({
                 type="button"
                 onClick={handleRemovePhoto}
                 disabled={uploadingPhoto}
-                className="text-sm text-red-600 hover:text-red-500 disabled:opacity-50"
+                className="text-sm text-theme-danger hover:text-theme-danger/80 disabled:opacity-50"
               >
                 Remove
               </button>
@@ -514,20 +514,20 @@ export default function PersonalInfoStep({
         ) : (
           <div
             onClick={() => fileInputRef.current?.click()}
-            className="border-2 border-dashed border-slate-300 dark:border-slate-600 rounded-lg p-6 text-center cursor-pointer hover:border-blue-400 transition-colors"
+            className="border-2 border-dashed border-theme-input-border rounded-theme-xl p-6 text-center cursor-pointer hover:border-theme-brand/50 transition-colors"
           >
             {uploadingPhoto ? (
               <div className="flex items-center justify-center">
                 <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
-                <span className="ml-3 text-slate-600 dark:text-slate-400">Uploading...</span>
+                <span className="ml-3 text-theme-text-muted">Uploading...</span>
               </div>
             ) : (
               <>
-                <PhotoIcon className="mx-auto h-12 w-12 text-slate-400 mb-3" />
-                <p className="text-slate-600 dark:text-slate-400">
+                <PhotoIcon className="mx-auto h-12 w-12 text-theme-text-muted mb-3" />
+                <p className="text-theme-text-muted">
                   Click to upload a profile photo
                 </p>
-                <p className="text-xs text-slate-500 dark:text-slate-500 mt-1">
+                <p className="text-xs text-theme-text-muted mt-1">
                   PNG, JPG up to 5MB
                 </p>
               </>
@@ -536,7 +536,7 @@ export default function PersonalInfoStep({
         )}
         
         {errors.photo && (
-          <p className="mt-1 text-sm text-red-600">{errors.photo}</p>
+          <p className="mt-1 text-sm text-theme-danger">{errors.photo}</p>
         )}
         
         <input
@@ -556,7 +556,7 @@ export default function PersonalInfoStep({
             type="button"
             onClick={onBack}
             disabled={loading}
-            className="px-6 py-2 text-slate-600 dark:text-slate-400 hover:text-gray-800 dark:hover:text-gray-200 disabled:opacity-50"
+            className="px-6 py-3 text-theme-text-muted hover:text-theme-text disabled:opacity-50 transition-colors"
           >
             Back
           </button>
@@ -564,7 +564,7 @@ export default function PersonalInfoStep({
         <button
           type="submit"
           disabled={loading}
-          className="ml-auto inline-flex items-center gap-2 rounded-md bg-blue-600 px-6 py-2 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed"
+          className="ml-auto inline-flex items-center gap-2 rounded-theme-2xl bg-theme-brand px-8 py-3 text-sm font-semibold text-white shadow-sm hover:bg-theme-accent focus:outline-none focus:ring-2 focus:ring-theme-brand focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
         >
           {loading ? 'Saving...' : 'Continue'}
           <ArrowRightIcon className="w-4 h-4" />

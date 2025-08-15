@@ -37,14 +37,14 @@ export function UnifiedHeader({ showNavigation = true, className = '' }: Unified
   const { isAuthenticated } = useAuth()
 
   return (
-    <header className={`sticky top-0 z-40 bg-slate-900/95 backdrop-blur-md border-b border-slate-800 ${className}`}>
+    <header className={`sticky top-0 z-40 bg-theme-bg/95 backdrop-blur-md border-b border-theme-input-border ${className}`}>
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between">
           {/* Logo */}
           <div className="flex items-center">
             <Link 
               href={isAuthenticated ? '/dashboard' : '/'} 
-              className="text-xl font-semibold text-white hover:opacity-90 transition-opacity"
+              className="text-xl font-semibold text-theme-text hover:opacity-90 transition-opacity"
             >
               Herit
             </Link>
@@ -62,8 +62,8 @@ export function UnifiedHeader({ showNavigation = true, className = '' }: Unified
                     href={item.href}
                     className={`px-4 py-2 text-sm font-normal transition-colors rounded-lg ${
                       isActive
-                        ? 'bg-slate-800 text-white font-medium'
-                        : 'text-slate-300 hover:bg-slate-800 hover:text-white'
+                        ? 'bg-theme-surface text-theme-text font-medium'
+                        : 'text-theme-text-muted hover:bg-theme-surface hover:text-theme-text'
                     }`}
                   >
                     {item.name}
@@ -81,26 +81,28 @@ export function UnifiedHeader({ showNavigation = true, className = '' }: Unified
                 PRODUCTION
               </div>
             )}
-            {/* Dark mode toggle */}
+            {/* Theme toggle */}
             <button
               onClick={toggleTheme}
-              className="p-2 rounded-lg hover:bg-slate-800 transition-colors"
-              aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
+              className="p-2 rounded-lg hover:bg-theme-surface transition-colors group"
+              aria-label={`Current theme: ${theme}. Click to switch to next theme.`}
+              title={`Current: ${theme}. Click to cycle themes.`}
             >
-              {theme === 'dark' ? (
-                <SunIcon className="h-5 w-5 text-slate-400 hover:text-slate-300" />
-              ) : (
-                <MoonIcon className="h-5 w-5 text-slate-400 hover:text-slate-300" />
-              )}
+              <div className="flex items-center gap-1">
+                <SunIcon className="h-5 w-5 text-theme-text-muted group-hover:text-theme-text transition-colors" />
+                <span className="text-xs text-theme-text-muted group-hover:text-theme-text capitalize">
+                  {theme}
+                </span>
+              </div>
             </button>
 
             {/* Notifications (if authenticated) */}
             {isAuthenticated && (
               <button
-                className="p-2 rounded-lg hover:bg-slate-800 transition-colors"
+                className="p-2 rounded-lg hover:bg-theme-surface transition-colors"
                 aria-label="Notifications"
               >
-                <BellIcon className="h-5 w-5 text-slate-400 hover:text-slate-300" />
+                <BellIcon className="h-5 w-5 text-theme-text-muted hover:text-theme-text transition-colors" />
               </button>
             )}
 
@@ -111,13 +113,13 @@ export function UnifiedHeader({ showNavigation = true, className = '' }: Unified
             {showNavigation && isAuthenticated && (
               <button
                 type="button"
-                className="md:hidden p-2 rounded-lg hover:bg-slate-800 transition-colors"
+                className="md:hidden p-2 rounded-lg hover:bg-theme-surface transition-colors"
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               >
                 {mobileMenuOpen ? (
-                  <XMarkIcon className="h-6 w-6 text-slate-400" />
+                  <XMarkIcon className="h-6 w-6 text-theme-text-muted" />
                 ) : (
-                  <Bars3Icon className="h-6 w-6 text-slate-400" />
+                  <Bars3Icon className="h-6 w-6 text-theme-text-muted" />
                 )}
               </button>
             )}
@@ -126,7 +128,7 @@ export function UnifiedHeader({ showNavigation = true, className = '' }: Unified
 
         {/* Mobile Navigation */}
         {mobileMenuOpen && showNavigation && isAuthenticated && (
-          <nav className="md:hidden py-2 border-t border-slate-800">
+          <nav className="md:hidden py-2 border-t border-theme-input-border">
             <div className="space-y-1">
               {navigation.map((item) => {
                 const Icon = item.icon
@@ -137,8 +139,8 @@ export function UnifiedHeader({ showNavigation = true, className = '' }: Unified
                     href={item.href}
                     className={`flex items-center gap-3 px-3 py-2 text-sm font-medium rounded-md transition-colors ${
                       isActive
-                        ? 'bg-slate-800 text-white'
-                        : 'text-slate-300 hover:bg-slate-800 hover:text-white'
+                        ? 'bg-theme-surface text-theme-text'
+                        : 'text-theme-text-muted hover:bg-theme-surface hover:text-theme-text'
                     }`}
                     onClick={() => setMobileMenuOpen(false)}
                   >

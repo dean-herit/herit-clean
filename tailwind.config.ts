@@ -14,6 +14,20 @@ const config: Config = {
         brand: ['var(--font-playfair)', 'Georgia', 'serif'],
       },
       colors: {
+        // Theme system colors using CSS variables
+        'theme-bg': 'var(--bg)',
+        'theme-surface': 'var(--surface)',
+        'theme-card': 'var(--card)',
+        'theme-brand': 'var(--brand)',
+        'theme-accent': 'var(--accent)',
+        'theme-text': 'var(--text)',
+        'theme-text-muted': 'var(--text-muted)',
+        'theme-success': 'var(--success)',
+        'theme-danger': 'var(--danger)',
+        'theme-input-bg': 'var(--input-bg)',
+        'theme-input-border': 'var(--input-border)',
+        
+        // Legacy colors for backward compatibility
         background: "var(--background)",
         foreground: "var(--foreground)",
         herit: {
@@ -43,6 +57,14 @@ const config: Config = {
           950: '#4a3611',
         }
       },
+      borderRadius: {
+        'theme-lg': 'var(--r-lg)',
+        'theme-xl': 'var(--r-xl)',
+        'theme-2xl': 'var(--r-2xl)',
+      },
+      boxShadow: {
+        'theme-card': 'var(--shadow-card)',
+      },
       backgroundImage: {
         'herit-hero-1': "url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3')",
         'herit-hero-2': "url('https://images.unsplash.com/photo-1518837695005-2083093ee35b?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3')",
@@ -50,5 +72,19 @@ const config: Config = {
     },
   },
   plugins: [],
+  safelist: [
+    // Safelist theme-based utilities that might be dynamically generated
+    'bg-theme-bg',
+    'bg-theme-surface',
+    'bg-theme-card',
+    'bg-theme-brand',
+    'bg-theme-accent',
+    'text-theme-text',
+    'text-theme-text-muted',
+    'text-theme-brand',
+    'border-theme-input-border',
+    'rounded-theme-2xl',
+    'shadow-theme-card',
+  ],
 };
 export default config;

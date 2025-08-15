@@ -272,16 +272,16 @@ export default function OnboardingPage() {
   }
   
   return (
-    <div className="min-h-screen bg-slate-900">
+    <div className="min-h-screen bg-theme-bg">
       <UnifiedHeader showNavigation={true} />
       
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
         {/* Header */}
         <div className="text-center mb-12">
-          <h1 className="text-3xl font-semibold text-white mb-4">
+          <h1 className="text-3xl font-semibold text-theme-text mb-4">
             Welcome to Herit
           </h1>
-          <p className="text-base text-slate-300 font-normal">
+          <p className="text-base text-theme-text-muted font-normal">
             Let's get you set up with everything you need to create your will
           </p>
         </div>
@@ -296,7 +296,7 @@ export default function OnboardingPage() {
         
         {/* Error Display */}
         {errors.length > 0 && (
-          <div className="mb-8 bg-red-900/10 border border-red-500/20 text-red-300 px-6 py-4 rounded-lg">
+          <div className="mb-8 bg-theme-danger/10 border border-theme-danger/20 text-theme-danger px-6 py-4 rounded-theme-xl">
             <div className="font-medium mb-2">Please correct the following errors:</div>
             <ul className="space-y-1">
               {errors.map((error, index) => (
@@ -307,23 +307,23 @@ export default function OnboardingPage() {
         )}
         
         {/* Current Step Content */}
-        <div className="bg-slate-800 rounded-xl border border-slate-700 shadow-xl">
+        <div className="bg-theme-card rounded-theme-2xl border border-theme-input-border shadow-theme-card">
           <div className="px-8 py-8">
             {/* Step Header */}
             <div className="mb-8">
               <div className="flex items-center space-x-4 mb-4">
                 <div className="flex-shrink-0">
-                  <div className="w-10 h-10 bg-blue-600 rounded-full flex items-center justify-center shadow-lg">
+                  <div className="w-12 h-12 bg-theme-brand rounded-full flex items-center justify-center shadow-lg">
                     <span className="text-white font-semibold">
                       {currentStep + 1}
                     </span>
                   </div>
                 </div>
                 <div>
-                  <h2 className="text-xl font-semibold text-white">
+                  <h2 className="text-xl font-semibold text-theme-text">
                     {STEPS[currentStep].name}
                   </h2>
-                  <p className="text-sm text-slate-300 mt-1 font-normal">
+                  <p className="text-sm text-theme-text-muted mt-1 font-normal">
                     {STEPS[currentStep].description}
                   </p>
                 </div>

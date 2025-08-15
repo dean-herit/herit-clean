@@ -2,27 +2,112 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Theme System - Default Dark Theme */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Legacy variables */
+  --background: #0c1420;
+  --foreground: #e6edf4;
+  
+  /* Theme tokens - Dark theme (legacy "former glory") */
+  --bg: #0c1420;
+  --surface: #121b2a;
+  --card: #1a2435;
+  --brand: #2f66ff;
+  --accent: #6ea8ff;
+  --text: #e6edf4;
+  --text-muted: #9fb0c6;
+  --success: #22c55e;
+  --danger: #ef4444;
+  --input-bg: #0f1a28;
+  --input-border: #263247;
+  
+  /* Design tokens */
+  --r-lg: 0.5rem;
+  --r-xl: 0.75rem;
+  --r-2xl: 1rem;
+  --shadow-card: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* Dark Theme (default) */
+[data-theme="dark"] {
+  --bg: #0c1420;
+  --surface: #121b2a;
+  --card: #1a2435;
+  --brand: #2f66ff;
+  --accent: #6ea8ff;
+  --text: #e6edf4;
+  --text-muted: #9fb0c6;
+  --success: #22c55e;
+  --danger: #ef4444;
+  --input-bg: #0f1a28;
+  --input-border: #263247;
+  --shadow-card: 0 10px 15px -3px rgba(0, 0, 0, 0.2), 0 4px 6px -2px rgba(0, 0, 0, 0.1);
 }
 
+/* Midnight Theme (deeper, cooler) */
+[data-theme="midnight"] {
+  --bg: #0a0f1a;
+  --surface: #0f1621;
+  --card: #161e2c;
+  --brand: #3366ff;
+  --accent: #5c8cff;
+  --text: #e2e8f0;
+  --text-muted: #94a3b8;
+  --success: #10b981;
+  --danger: #f87171;
+  --input-bg: #0c1419;
+  --input-border: #1e293b;
+  --shadow-card: 0 10px 15px -3px rgba(0, 0, 0, 0.3), 0 4px 6px -2px rgba(0, 0, 0, 0.15);
+}
+
+/* Slate Theme (flatter neutral) */
+[data-theme="slate"] {
+  --bg: #0f1318;
+  --surface: #161b22;
+  --card: #1b232d;
+  --brand: #3b82f6;
+  --accent: #60a5fa;
+  --text: #f0f3f8;
+  --text-muted: #9aa9bc;
+  --success: #059669;
+  --danger: #dc2626;
+  --input-bg: #0d1117;
+  --input-border: #21262d;
+  --shadow-card: 0 10px 15px -3px rgba(0, 0, 0, 0.25), 0 4px 6px -2px rgba(0, 0, 0, 0.1);
+}
+
+/* Light Theme (optional for OS sync) */
+[data-theme="light"] {
+  --bg: #ffffff;
+  --surface: #f8fafc;
+  --card: #ffffff;
+  --brand: #2563eb;
+  --accent: #3b82f6;
+  --text: #0f172a;
+  --text-muted: #475569;
+  --success: #16a34a;
+  --danger: #dc2626;
+  --input-bg: #ffffff;
+  --input-border: #d1d5db;
+  --shadow-card: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+/* Global styles */
 body {
-  color: var(--foreground);
-  background: var(--background);
+  color: var(--text);
+  background: var(--bg);
   font-family: var(--font-inter), system-ui, sans-serif;
+  transition: background-color 200ms ease, color 200ms ease;
 }
 
 /* Brand typography styles */
 .font-brand {
   font-family: var(--font-playfair), Georgia, serif;
+}
+
+/* Theme transition effects */
+* {
+  transition: color 150ms ease, background-color 150ms ease, border-color 150ms ease;
 }
 
 @layer utilities {
