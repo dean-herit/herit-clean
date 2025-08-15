@@ -1,8 +1,5 @@
 'use client'
 
-// Prevent static generation for dynamic pages with client-side routing
-export const dynamic = 'force-dynamic'
-
 import { useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 

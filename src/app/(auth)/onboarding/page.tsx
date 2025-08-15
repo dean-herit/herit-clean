@@ -11,9 +11,6 @@ import LegalConsentStep from './components/LegalConsentStep'
 import VerificationStep from './components/VerificationStep'
 import ProgressSteps from './components/ProgressSteps'
 
-// Prevent static generation for dynamic pages
-export const dynamic = 'force-dynamic'
-
 // Types
 type Signature = {
   id: string

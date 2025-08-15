@@ -1,7 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // Production optimizations
-  output: 'standalone',
+  // Production optimizations for Vercel deployment
   poweredByHeader: false,
   
   // Skip TypeScript checking during build
@@ -12,6 +11,12 @@ const nextConfig = {
   // Skip ESLint during build  
   eslint: {
     ignoreDuringBuilds: true,
+  },
+  
+  // Experimental features for better performance with React Query
+  experimental: {
+    optimizePackageImports: ['@heroicons/react', '@headlessui/react', '@tanstack/react-query'],
+    serverComponentsExternalPackages: ['argon2']
   },
   
   
@@ -42,12 +47,6 @@ const nextConfig = {
     ]
   },
   
-  
-  // Performance optimizations
-  experimental: {
-    optimizePackageImports: ['@heroicons/react', '@headlessui/react'],
-    serverComponentsExternalPackages: ['argon2']
-  },
   
   // Bundle analysis
   webpack: (config, { dev, isServer }) => {

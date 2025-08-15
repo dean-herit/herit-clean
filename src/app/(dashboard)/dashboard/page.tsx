@@ -3,9 +3,7 @@
 import { CheckCircleIcon, ClockIcon, UserGroupIcon, BuildingOfficeIcon } from '@heroicons/react/24/outline'
 import Link from 'next/link'
 import { useDashboard } from '@/hooks/use-optimistic'
-
-// Prevent static generation for pages with client-side data fetching
-export const dynamic = 'force-dynamic'
+import { ClientQueryWrapper } from '@/components/providers/ClientQueryWrapper'
 
 interface DashboardMetrics {
   totalAssets: number
@@ -15,7 +13,7 @@ interface DashboardMetrics {
   willProgress: number
 }
 
-export default function DashboardPage() {
+function DashboardContent() {
   const { assets, beneficiaries, isLoading, error } = useDashboard()
 
   // Calculate metrics from loaded data
@@ -310,5 +308,40 @@ export default function DashboardPage() {
         </div>
       )}
     </div>
+  )
+}
+
+export default function DashboardPage() {
+  return (
+    <ClientQueryWrapper
+      fallback={
+        <div className="space-y-8">
+          <div className="bg-white shadow rounded-lg dark:bg-gray-800">
+            <div className="px-6 py-5">
+              <div className="animate-pulse">
+                <div className="h-6 bg-gray-200 dark:bg-gray-700 rounded w-3/4 mb-2"></div>
+                <div className="h-4 bg-gray-200 dark:bg-gray-700 rounded w-1/2"></div>
+              </div>
+            </div>
+          </div>
+          
+          <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
+            {[...Array(4)].map((_, i) => (
+              <div key={i} className="bg-white shadow rounded-lg dark:bg-gray-800">
+                <div className="px-4 py-5 sm:p-6">
+                  <div className="animate-pulse">
+                    <div className="h-12 bg-gray-200 dark:bg-gray-700 rounded mb-4"></div>
+                    <div className="h-4 bg-gray-200 dark:bg-gray-700 rounded w-1/3 mb-2"></div>
+                    <div className="h-6 bg-gray-200 dark:bg-gray-700 rounded w-1/2"></div>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      }
+    >
+      <DashboardContent />
+    </ClientQueryWrapper>
   )
 }

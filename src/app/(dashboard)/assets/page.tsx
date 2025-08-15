@@ -1,8 +1,5 @@
 'use client'
 
-// Prevent static generation for dynamic pages
-export const dynamic = 'force-dynamic'
-
 import { useState } from 'react'
 import { 
   PlusIcon, 
@@ -16,6 +13,7 @@ import {
 } from '@heroicons/react/24/outline'
 import Link from 'next/link'
 import { useAssets } from '@/hooks/use-optimistic'
+import { ClientQueryWrapper } from '@/components/providers/ClientQueryWrapper'
 
 const assetTypes = [
   { id: 'all', name: 'All Assets', icon: DocumentTextIcon, color: 'gray' },
@@ -35,7 +33,7 @@ const colorClasses = {
   indigo: { bg: 'bg-indigo-50 dark:bg-indigo-900/20', text: 'text-indigo-600 dark:text-indigo-400' }
 }
 
-export default function AssetsPage() {
+function AssetsContent() {
   const [selectedType, setSelectedType] = useState('all')
   const [searchTerm, setSearchTerm] = useState('')
   
@@ -320,5 +318,44 @@ export default function AssetsPage() {
         )}
       </div>
     </div>
+  )
+}
+
+export default function AssetsPage() {
+  return (
+    <ClientQueryWrapper
+      fallback={
+        <div className="space-y-6">
+          <div className="flex justify-between items-center">
+            <div>
+              <div className="h-8 bg-gray-200 dark:bg-gray-700 rounded w-32 animate-pulse"></div>
+              <div className="h-4 bg-gray-200 dark:bg-gray-700 rounded w-64 mt-2 animate-pulse"></div>
+            </div>
+            <div className="h-10 bg-gray-200 dark:bg-gray-700 rounded w-24 animate-pulse"></div>
+          </div>
+          
+          <div className="bg-white dark:bg-gray-800 shadow rounded-lg">
+            <div className="p-6">
+              <div className="space-y-4">
+                {[...Array(3)].map((_, i) => (
+                  <div key={i} className="flex items-center justify-between p-4 bg-gray-50 dark:bg-gray-700 rounded-lg">
+                    <div className="flex items-center space-x-4">
+                      <div className="w-12 h-12 bg-gray-200 dark:bg-gray-600 rounded-lg animate-pulse"></div>
+                      <div>
+                        <div className="h-4 bg-gray-200 dark:bg-gray-600 rounded w-32 animate-pulse"></div>
+                        <div className="h-3 bg-gray-200 dark:bg-gray-600 rounded w-24 mt-2 animate-pulse"></div>
+                      </div>
+                    </div>
+                    <div className="h-4 bg-gray-200 dark:bg-gray-600 rounded w-20 animate-pulse"></div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      }
+    >
+      <AssetsContent />
+    </ClientQueryWrapper>
   )
 }
