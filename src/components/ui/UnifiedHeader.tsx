@@ -76,6 +76,12 @@ export function UnifiedHeader({ showNavigation = true, className = '' }: Unified
 
           {/* Right side items */}
           <div className="flex items-center gap-3">
+            {/* Production Environment Banner */}
+            {process.env.NODE_ENV === 'production' && (
+              <div className="hidden md:flex items-center bg-green-600 text-white px-3 py-1 rounded-md text-xs font-medium">
+                PRODUCTION
+              </div>
+            )}
             {/* Dark mode toggle */}
             <button
               onClick={toggleTheme}

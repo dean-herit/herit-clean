@@ -272,7 +272,7 @@ export default function PersonalInfoStep({
       {/* Name Fields */}
       <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
         <div>
-          <label htmlFor="first_name" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
+          <label htmlFor="first_name" className="block text-sm font-medium text-white mb-2">
             First Name *
           </label>
           <input
@@ -281,9 +281,9 @@ export default function PersonalInfoStep({
             name="first_name"
             value={formData.first_name}
             onChange={(e) => updateFormData({ first_name: e.target.value })}
-            className={`mt-1 block w-full rounded-md border ${
-              errors.first_name ? 'border-red-300' : 'border-gray-300 dark:border-gray-600'
-            } px-3 py-2 text-gray-900 dark:text-white dark:bg-gray-700 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500`}
+            className={`mt-1 block w-full rounded-lg border-0 bg-gray-600 px-3 py-3 text-white placeholder-gray-400 shadow-sm focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-gray-800 sm:text-sm ${
+              errors.first_name ? 'ring-2 ring-red-500' : ''
+            }`}
             placeholder="Enter your first name"
           />
           {errors.first_name && (
@@ -292,7 +292,7 @@ export default function PersonalInfoStep({
         </div>
 
         <div>
-          <label htmlFor="last_name" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
+          <label htmlFor="last_name" className="block text-sm font-medium text-white mb-2">
             Last Name *
           </label>
           <input
@@ -301,9 +301,9 @@ export default function PersonalInfoStep({
             name="last_name"
             value={formData.last_name}
             onChange={(e) => updateFormData({ last_name: e.target.value })}
-            className={`mt-1 block w-full rounded-md border ${
-              errors.last_name ? 'border-red-300' : 'border-gray-300 dark:border-gray-600'
-            } px-3 py-2 text-gray-900 dark:text-white dark:bg-gray-700 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500`}
+            className={`mt-1 block w-full rounded-lg border-0 bg-gray-600 px-3 py-3 text-white placeholder-gray-400 shadow-sm focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-gray-800 sm:text-sm ${
+              errors.last_name ? 'ring-2 ring-red-500' : ''
+            }`}
             placeholder="Enter your last name"
           />
           {errors.last_name && (
@@ -314,7 +314,7 @@ export default function PersonalInfoStep({
 
       {/* Email Field (read-only) */}
       <div>
-        <label htmlFor="email" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
+        <label htmlFor="email" className="block text-sm font-medium text-white mb-2">
           Email Address
         </label>
         <input
@@ -322,7 +322,7 @@ export default function PersonalInfoStep({
           id="email"
           value={formData.email}
           readOnly
-          className="mt-1 block w-full rounded-md border border-gray-300 dark:border-gray-600 px-3 py-2 bg-gray-50 dark:bg-gray-600 text-gray-500 dark:text-gray-400 cursor-not-allowed"
+          className="mt-1 block w-full rounded-lg border-0 bg-gray-600 px-3 py-3 text-gray-400 cursor-not-allowed sm:text-sm"
         />
         <p className="mt-1 text-xs text-gray-500 dark:text-gray-400">
           This email is from your account and cannot be changed here.
@@ -332,7 +332,7 @@ export default function PersonalInfoStep({
       {/* Date of Birth and Phone */}
       <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
         <div>
-          <label htmlFor="date_of_birth" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
+          <label htmlFor="date_of_birth" className="block text-sm font-medium text-white mb-2">
             Date of Birth *
           </label>
           <input
@@ -341,9 +341,9 @@ export default function PersonalInfoStep({
             name="date_of_birth"
             value={formData.date_of_birth}
             onChange={(e) => updateFormData({ date_of_birth: e.target.value })}
-            className={`mt-1 block w-full rounded-md border ${
-              errors.date_of_birth ? 'border-red-300' : 'border-gray-300 dark:border-gray-600'
-            } px-3 py-2 text-gray-900 dark:text-white dark:bg-gray-700 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500`}
+            className={`mt-1 block w-full rounded-lg border-0 bg-gray-600 px-3 py-3 text-white placeholder-gray-400 shadow-sm focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-gray-800 sm:text-sm ${
+              errors.date_of_birth ? 'ring-2 ring-red-500' : ''
+            }`}
           />
           {errors.date_of_birth && (
             <p className="mt-1 text-sm text-red-600">{errors.date_of_birth}</p>
@@ -351,7 +351,7 @@ export default function PersonalInfoStep({
         </div>
 
         <div>
-          <label htmlFor="phone_number" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
+          <label htmlFor="phone_number" className="block text-sm font-medium text-white mb-2">
             Phone Number *
           </label>
           <input
@@ -360,9 +360,9 @@ export default function PersonalInfoStep({
             name="phone_number"
             value={formData.phone_number}
             onChange={(e) => updateFormData({ phone_number: e.target.value })}
-            className={`mt-1 block w-full rounded-md border ${
-              errors.phone_number ? 'border-red-300' : 'border-gray-300 dark:border-gray-600'
-            } px-3 py-2 text-gray-900 dark:text-white dark:bg-gray-700 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500`}
+            className={`mt-1 block w-full rounded-lg border-0 bg-gray-600 px-3 py-3 text-white placeholder-gray-400 shadow-sm focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-gray-800 sm:text-sm ${
+              errors.phone_number ? 'ring-2 ring-red-500' : ''
+            }`}
             placeholder="+353 85 123 4567"
           />
           {errors.phone_number && (
@@ -374,7 +374,7 @@ export default function PersonalInfoStep({
       {/* Address Fields */}
       <div className="space-y-6">
         <div>
-          <label htmlFor="address_line_1" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
+          <label htmlFor="address_line_1" className="block text-sm font-medium text-white mb-2">
             Street Address *
           </label>
           <input
@@ -383,9 +383,9 @@ export default function PersonalInfoStep({
             name="address_line_1"
             value={formData.address_line_1}
             onChange={(e) => updateFormData({ address_line_1: e.target.value })}
-            className={`mt-1 block w-full rounded-md border ${
-              errors.address_line_1 ? 'border-red-300' : 'border-gray-300 dark:border-gray-600'
-            } px-3 py-2 text-gray-900 dark:text-white dark:bg-gray-700 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500`}
+            className={`mt-1 block w-full rounded-lg border-0 bg-gray-600 px-3 py-3 text-white placeholder-gray-400 shadow-sm focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-gray-800 sm:text-sm ${
+              errors.address_line_1 ? 'ring-2 ring-red-500' : ''
+            }`}
             placeholder="Enter your street address"
           />
           {errors.address_line_1 && (
@@ -394,7 +394,7 @@ export default function PersonalInfoStep({
         </div>
 
         <div>
-          <label htmlFor="address_line_2" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
+          <label htmlFor="address_line_2" className="block text-sm font-medium text-white mb-2">
             Address Line 2
           </label>
           <input
@@ -403,7 +403,7 @@ export default function PersonalInfoStep({
             name="address_line_2"
             value={formData.address_line_2}
             onChange={(e) => updateFormData({ address_line_2: e.target.value })}
-            className="mt-1 block w-full rounded-md border border-gray-300 dark:border-gray-600 px-3 py-2 text-gray-900 dark:text-white dark:bg-gray-700 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
+            className="mt-1 block w-full rounded-lg border-0 bg-gray-600 px-3 py-3 text-white placeholder-gray-400 shadow-sm focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-gray-800 sm:text-sm"
             placeholder="Apartment, suite, etc. (optional)"
           />
         </div>
@@ -412,7 +412,7 @@ export default function PersonalInfoStep({
       {/* City, County, and Eircode */}
       <div className="grid grid-cols-1 gap-6 sm:grid-cols-3">
         <div>
-          <label htmlFor="city" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
+          <label htmlFor="city" className="block text-sm font-medium text-white mb-2">
             City *
           </label>
           <input
@@ -421,9 +421,9 @@ export default function PersonalInfoStep({
             name="city"
             value={formData.city}
             onChange={(e) => updateFormData({ city: e.target.value })}
-            className={`mt-1 block w-full rounded-md border ${
-              errors.city ? 'border-red-300' : 'border-gray-300 dark:border-gray-600'
-            } px-3 py-2 text-gray-900 dark:text-white dark:bg-gray-700 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500`}
+            className={`mt-1 block w-full rounded-lg border-0 bg-gray-600 px-3 py-3 text-white placeholder-gray-400 shadow-sm focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-gray-800 sm:text-sm ${
+              errors.city ? 'ring-2 ring-red-500' : ''
+            }`}
             placeholder="Enter your city"
           />
           {errors.city && (
@@ -432,7 +432,7 @@ export default function PersonalInfoStep({
         </div>
 
         <div>
-          <label htmlFor="county" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
+          <label htmlFor="county" className="block text-sm font-medium text-white mb-2">
             County *
           </label>
           <select
@@ -440,9 +440,9 @@ export default function PersonalInfoStep({
             name="county"
             value={formData.county}
             onChange={(e) => updateFormData({ county: e.target.value })}
-            className={`mt-1 block w-full rounded-md border ${
-              errors.county ? 'border-red-300' : 'border-gray-300 dark:border-gray-600'
-            } px-3 py-2 text-gray-900 dark:text-white dark:bg-gray-700 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500`}
+            className={`mt-1 block w-full rounded-lg border-0 bg-gray-600 px-3 py-3 text-white shadow-sm focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-gray-800 sm:text-sm ${
+              errors.county ? 'ring-2 ring-red-500' : ''
+            }`}
           >
             <option value="">Select County</option>
             {IRISH_COUNTIES.map(county => (
@@ -455,7 +455,7 @@ export default function PersonalInfoStep({
         </div>
 
         <div>
-          <label htmlFor="eircode" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
+          <label htmlFor="eircode" className="block text-sm font-medium text-white mb-2">
             Eircode *
           </label>
           <input
@@ -464,9 +464,9 @@ export default function PersonalInfoStep({
             name="eircode"
             value={formData.eircode}
             onChange={(e) => updateFormData({ eircode: e.target.value.toUpperCase() })}
-            className={`mt-1 block w-full rounded-md border ${
-              errors.eircode ? 'border-red-300' : 'border-gray-300 dark:border-gray-600'
-            } px-3 py-2 text-gray-900 dark:text-white dark:bg-gray-700 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500`}
+            className={`mt-1 block w-full rounded-lg border-0 bg-gray-600 px-3 py-3 text-white placeholder-gray-400 shadow-sm focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-gray-800 sm:text-sm ${
+              errors.eircode ? 'ring-2 ring-red-500' : ''
+            }`}
             placeholder="D02 XY45"
           />
           {errors.eircode && (
@@ -477,7 +477,7 @@ export default function PersonalInfoStep({
 
       {/* Profile Photo Section */}
       <div>
-        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-3">
+        <label className="block text-sm font-medium text-white mb-3">
           Profile Photo (Optional)
         </label>
         

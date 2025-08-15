@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import { ArrowRightIcon, CheckCircleIcon, UserIcon, PencilSquareIcon, DocumentTextIcon, ShieldCheckIcon } from '@heroicons/react/24/outline'
-import { UnifiedHeader } from '@/components/ui/UnifiedHeader'
+import { DashboardLayout } from '@/components/dashboard/DashboardLayout'
 
 // Force dynamic rendering for user-specific onboarding
 export const dynamic = 'force-dynamic'
@@ -272,72 +272,69 @@ export default function OnboardingPage() {
   }
   
   return (
-    <>
-      <UnifiedHeader showNavigation={false} />
-      <div className="min-h-screen bg-gray-900">
-        <div className="mx-auto max-w-4xl px-6 py-8">
-          {/* Header */}
-          <div className="text-center mb-12 pt-8">
-            <h1 className="text-4xl font-bold text-white mb-4">
-              Welcome to Herit
-            </h1>
-            <p className="text-lg text-gray-300">
-              Let's get you set up with everything you need to create your will
-            </p>
+    <DashboardLayout>
+      <div className="max-w-4xl mx-auto">
+        {/* Header */}
+        <div className="text-center mb-8">
+          <h1 className="text-3xl font-bold text-white mb-4">
+            Welcome to Herit
+          </h1>
+          <p className="text-gray-300">
+            Let's get you set up with everything you need to create your will
+          </p>
+        </div>
+        
+        {/* Progress Steps */}
+        <ProgressSteps
+          steps={STEPS}
+          currentStep={currentStep}
+          completedSteps={completedSteps}
+          onStepClick={goToStep}
+        />
+        
+        {/* Error Display */}
+        {errors.length > 0 && (
+          <div className="mb-6 bg-red-900/20 border border-red-500/30 text-red-300 px-4 py-3 rounded-lg">
+            <div className="font-medium">Please correct the following errors:</div>
+            <ul className="mt-2 list-disc list-inside">
+              {errors.map((error, index) => (
+                <li key={index}>{error}</li>
+              ))}
+            </ul>
           </div>
-          
-          {/* Progress Steps */}
-          <ProgressSteps
-            steps={STEPS}
-            currentStep={currentStep}
-            completedSteps={completedSteps}
-            onStepClick={goToStep}
-          />
-          
-          {/* Error Display */}
-          {errors.length > 0 && (
-            <div className="mb-6 bg-red-900/20 border border-red-500/30 text-red-300 px-4 py-3 rounded-lg">
-              <div className="font-medium">Please correct the following errors:</div>
-              <ul className="mt-2 list-disc list-inside">
-                {errors.map((error, index) => (
-                  <li key={index}>{error}</li>
-                ))}
-              </ul>
-            </div>
-          )}
-          
-          {/* Current Step Content */}
-          <div className="mt-8">
-            <div className="bg-gray-800 rounded-lg shadow-lg border border-gray-700">
-              <div className="px-8 py-6">
-                {/* Step Header */}
-                <div className="mb-6">
-                  <div className="flex items-center space-x-3 mb-2">
-                    <div className="flex-shrink-0">
-                      <div className="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center">
-                        <span className="text-white text-sm font-medium">
-                          {currentStep + 1}
-                        </span>
-                      </div>
-                    </div>
-                    <div>
-                      <h2 className="text-xl font-semibold text-white">
-                        {STEPS[currentStep].name}
-                      </h2>
-                      <p className="text-gray-300">
-                        {STEPS[currentStep].description}
-                      </p>
+        )}
+        
+        {/* Current Step Content */}
+        <div className="mt-8">
+          <div className="bg-gray-800 rounded-lg shadow-lg border border-gray-700">
+            <div className="px-8 py-6">
+              {/* Step Header */}
+              <div className="mb-6">
+                <div className="flex items-center space-x-3 mb-2">
+                  <div className="flex-shrink-0">
+                    <div className="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center">
+                      <span className="text-white text-sm font-medium">
+                        {currentStep + 1}
+                      </span>
                     </div>
                   </div>
+                  <div>
+                    <h2 className="text-xl font-semibold text-white">
+                      {STEPS[currentStep].name}
+                    </h2>
+                    <p className="text-gray-300">
+                      {STEPS[currentStep].description}
+                    </p>
+                  </div>
                 </div>
-                
-                {/* Step Content */}
-                {renderCurrentStep()}
               </div>
+              
+              {/* Step Content */}
+              {renderCurrentStep()}
             </div>
           </div>
         </div>
       </div>
-    </>
+    </DashboardLayout>
   )
 }
