@@ -4,6 +4,9 @@ import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import { ArrowRightIcon, CheckCircleIcon, UserIcon, PencilSquareIcon, DocumentTextIcon, ShieldCheckIcon } from '@heroicons/react/24/outline'
 
+// Force dynamic rendering for user-specific onboarding
+export const dynamic = 'force-dynamic'
+
 // Import step components
 import PersonalInfoStep from './components/PersonalInfoStep'
 import SignatureStep from './components/SignatureStep'

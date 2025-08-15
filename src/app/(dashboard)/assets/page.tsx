@@ -15,6 +15,9 @@ import Link from 'next/link'
 import { useAssets } from '@/hooks/use-optimistic'
 import { ClientQueryWrapper } from '@/components/providers/ClientQueryWrapper'
 
+// Force dynamic rendering for user-specific data
+export const dynamic = 'force-dynamic'
+
 const assetTypes = [
   { id: 'all', name: 'All Assets', icon: DocumentTextIcon, color: 'gray' },
   { id: 'financial', name: 'Financial', icon: BanknotesIcon, color: 'green' },

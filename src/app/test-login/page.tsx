@@ -3,6 +3,9 @@
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 
+// Force dynamic rendering for test page
+export const dynamic = 'force-dynamic'
+
 export default function TestLogin() {
   const [email, setEmail] = useState('test@example.com')
   const [loading, setLoading] = useState(false)

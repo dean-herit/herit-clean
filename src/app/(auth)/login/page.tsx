@@ -6,6 +6,9 @@ import { LoginForm } from '@/components/auth/LoginForm'
 import { BackgroundLayout } from '@/components/ui/BackgroundLayout'
 import { Header } from '@/components/ui/Header'
 
+// Force dynamic rendering for auth pages
+export const dynamic = 'force-dynamic'
+
 export default function LoginPage() {
   const router = useRouter()
   const [isLoading, setIsLoading] = useState(true)
