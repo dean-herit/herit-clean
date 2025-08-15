@@ -4,6 +4,9 @@ import { CheckCircleIcon, ClockIcon, UserGroupIcon, BuildingOfficeIcon } from '@
 import Link from 'next/link'
 import { useDashboard } from '@/hooks/use-optimistic'
 
+// Prevent static generation for pages with client-side data fetching
+export const dynamic = 'force-dynamic'
+
 interface DashboardMetrics {
   totalAssets: number
   totalBeneficiaries: number
