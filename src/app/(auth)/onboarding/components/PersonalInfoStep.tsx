@@ -549,22 +549,12 @@ export default function PersonalInfoStep({
         />
       </div>
 
-      {/* Submit Button */}
-      <div className="flex justify-between pt-6">
-        {onBack && (
-          <button
-            type="button"
-            onClick={onBack}
-            disabled={loading}
-            className="px-6 py-3 text-theme-text-muted hover:text-theme-text disabled:opacity-50 transition-colors"
-          >
-            Back
-          </button>
-        )}
+      {/* Submit Button - Desktop only, mobile handled by sidebar */}
+      <div className="hidden lg:flex justify-end pt-6">
         <button
           type="submit"
           disabled={loading}
-          className="ml-auto inline-flex items-center gap-2 rounded-theme-2xl bg-theme-brand px-8 py-3 text-sm font-semibold text-white shadow-sm hover:bg-theme-accent focus:outline-none focus:ring-2 focus:ring-theme-brand focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+          className="inline-flex items-center gap-2 rounded-theme-2xl bg-theme-brand px-8 py-3 text-sm font-semibold text-white shadow-sm hover:bg-theme-accent focus:outline-none focus:ring-2 focus:ring-theme-brand focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
         >
           {loading ? 'Saving...' : 'Continue'}
           <ArrowRightIcon className="w-4 h-4" />

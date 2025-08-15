@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import { ArrowRightIcon, CheckCircleIcon, UserIcon, PencilSquareIcon, DocumentTextIcon, ShieldCheckIcon } from '@heroicons/react/24/outline'
-import { UnifiedHeader } from '@/components/ui/UnifiedHeader'
+import OnboardingSidebar from '@/components/ui/OnboardingSidebar'
 
 // Force dynamic rendering for user-specific onboarding
 export const dynamic = 'force-dynamic'
@@ -13,7 +13,6 @@ import PersonalInfoStep from './components/PersonalInfoStep'
 import SignatureStep from './components/SignatureStep'
 import LegalConsentStep from './components/LegalConsentStep'
 import VerificationStep from './components/VerificationStep'
-import ProgressSteps from './components/ProgressSteps'
 
 // Types
 type Signature = {
@@ -273,27 +272,17 @@ export default function OnboardingPage() {
   
   return (
     <div className="min-h-screen bg-theme-bg">
-      <UnifiedHeader showNavigation={true} />
-      
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
-        {/* Header */}
-        <div className="text-center mb-12">
-          <h1 className="text-3xl font-semibold text-theme-text mb-4">
-            Welcome to Herit
-          </h1>
-          <p className="text-base text-theme-text-muted font-normal">
-            Let's get you set up with everything you need to create your will
-          </p>
-        </div>
-        
-        {/* Progress Steps */}
-        <ProgressSteps
-          steps={STEPS}
-          currentStep={currentStep}
-          completedSteps={completedSteps}
-          onStepClick={goToStep}
-        />
-        
+      <OnboardingSidebar
+        currentStep={currentStep}
+        completedSteps={completedSteps}
+        onBack={() => setCurrentStep(Math.max(0, currentStep - 1))}
+        onNext={() => {
+          if (currentStep < STEPS.length - 1) {
+            setCurrentStep(currentStep + 1)
+          }
+        }}
+        onStepChange={goToStep}
+      >
         {/* Error Display */}
         {errors.length > 0 && (
           <div className="mb-8 bg-theme-danger/10 border border-theme-danger/20 text-theme-danger px-6 py-4 rounded-theme-xl">
@@ -306,35 +295,32 @@ export default function OnboardingPage() {
           </div>
         )}
         
-        {/* Current Step Content */}
-        <div className="bg-theme-card rounded-theme-2xl border border-theme-input-border shadow-theme-card">
-          <div className="px-8 py-8">
-            {/* Step Header */}
-            <div className="mb-8">
-              <div className="flex items-center space-x-4 mb-4">
-                <div className="flex-shrink-0">
-                  <div className="w-12 h-12 bg-theme-brand rounded-full flex items-center justify-center shadow-lg">
-                    <span className="text-white font-semibold">
-                      {currentStep + 1}
-                    </span>
-                  </div>
-                </div>
-                <div>
-                  <h2 className="text-xl font-semibold text-theme-text">
-                    {STEPS[currentStep].name}
-                  </h2>
-                  <p className="text-sm text-theme-text-muted mt-1 font-normal">
-                    {STEPS[currentStep].description}
-                  </p>
-                </div>
+        {/* Step Header */}
+        <div className="mb-8">
+          <div className="flex items-center space-x-4 mb-4">
+            <div className="flex-shrink-0">
+              <div className="w-12 h-12 bg-theme-brand rounded-full flex items-center justify-center shadow-lg">
+                <span className="text-white font-semibold">
+                  {currentStep + 1}
+                </span>
               </div>
             </div>
-            
-            {/* Step Content */}
-            {renderCurrentStep()}
+            <div>
+              <h1 className="text-2xl font-semibold text-theme-text">
+                {STEPS[currentStep].name}
+              </h1>
+              <p className="text-sm text-theme-text-muted mt-1 font-normal">
+                {STEPS[currentStep].description}
+              </p>
+            </div>
           </div>
         </div>
-      </div>
+        
+        {/* Step Content */}
+        <div className="bg-theme-card rounded-theme-2xl border border-theme-input-border shadow-theme-card p-8">
+          {renderCurrentStep()}
+        </div>
+      </OnboardingSidebar>
     </div>
   )
 }
