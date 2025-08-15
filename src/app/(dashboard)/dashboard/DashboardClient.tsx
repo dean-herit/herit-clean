@@ -2,8 +2,11 @@
 
 import { CheckCircleIcon, ClockIcon, UserGroupIcon, BuildingOfficeIcon } from '@heroicons/react/24/outline'
 import Link from 'next/link'
+import { useEffect } from 'react'
+import { useRouter } from 'next/navigation'
 import { useDashboard } from '@/hooks/use-optimistic'
 import { ClientQueryWrapper } from '@/components/providers/ClientQueryWrapper'
+import { useAuth } from '@/hooks/useAuth'
 
 interface DashboardMetrics {
   totalAssets: number
@@ -14,7 +17,16 @@ interface DashboardMetrics {
 }
 
 function DashboardContent() {
+  const router = useRouter()
+  const { user } = useAuth()
   const { assets, beneficiaries, isLoading, error } = useDashboard()
+  
+  // Check if user needs onboarding
+  useEffect(() => {
+    if (user && user.onboardingStatus !== 'completed') {
+      router.push('/onboarding')
+    }
+  }, [user, router])
 
   // Calculate metrics from loaded data
   const metrics: DashboardMetrics = {

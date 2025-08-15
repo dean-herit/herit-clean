@@ -314,7 +314,7 @@ export async function getSession(): Promise<SessionResult> {
         email: payload.email,
         firstName: null,
         lastName: null,
-        onboardingStatus: isOAuthUser ? 'not_started' : 'not_started',
+        onboardingStatus: 'not_started', // Always not_started for new OAuth users
         onboardingCurrentStep: 'personal_info',
       },
       isAuthenticated: true,

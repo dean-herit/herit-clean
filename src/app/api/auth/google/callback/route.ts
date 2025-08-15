@@ -90,8 +90,12 @@ export async function GET(request: NextRequest) {
       .setExpirationTime('15m') // Match existing auth system
       .sign(secret)
     
+    // Check if user needs onboarding (OAuth users always start with onboarding)
+    // Since this is a new OAuth user, redirect to onboarding
+    const redirectUrl = '/onboarding' // OAuth users need onboarding
+    
     // Set auth cookies using the existing system's cookie names
-    const response = NextResponse.redirect(new URL('/dashboard', request.url))
+    const response = NextResponse.redirect(new URL(redirectUrl, request.url))
     
     response.cookies.set('herit_access_token', accessToken, {
       httpOnly: true,
