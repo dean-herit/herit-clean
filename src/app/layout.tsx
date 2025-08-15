@@ -3,6 +3,7 @@ import type { Metadata } from 'next'
 import './globals.css'
 import { CopyProvider } from '@/providers/CopyProvider'
 import { QueryProvider } from '@/providers/QueryProvider'
+import { ThemeProvider } from '@/providers/ThemeProvider'
 
 // Temporarily disabled due to Google Fonts connectivity issues
 // const inter = Inter({ 
@@ -29,11 +30,13 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="font-sans">
-        <CopyProvider>
-          <QueryProvider>
-            {children}
-          </QueryProvider>
-        </CopyProvider>
+        <ThemeProvider>
+          <CopyProvider>
+            <QueryProvider>
+              {children}
+            </QueryProvider>
+          </CopyProvider>
+        </ThemeProvider>
       </body>
     </html>
   )
