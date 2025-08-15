@@ -1,6 +1,6 @@
 'use client'
 
-import { CheckCircleIcon, ChevronRightIcon } from '@heroicons/react/24/outline'
+import { CheckIcon } from '@heroicons/react/24/solid'
 
 interface Step {
   id: string
@@ -23,106 +23,138 @@ export default function ProgressSteps({
   onStepClick,
 }: ProgressStepsProps) {
   return (
-    <nav aria-label="Progress" className="mb-8">
-      <ol className="space-y-4 md:flex md:space-y-0 md:space-x-8">
+    <nav aria-label="Progress" className="mb-12">
+      {/* Desktop Progress Steps */}
+      <ol className="hidden md:flex md:items-center md:justify-between">
         {steps.map((step, stepIdx) => {
           const isCompleted = completedSteps.includes(stepIdx)
           const isCurrent = stepIdx === currentStep
           const isClickable = stepIdx <= Math.max(...completedSteps, -1) + 1
-          const Icon = step.icon
 
           return (
-            <li key={step.id} className="md:flex-1">
+            <li key={step.id} className="relative flex-1">
               <button
                 onClick={() => isClickable && onStepClick(stepIdx)}
                 disabled={!isClickable}
-                className={`group flex flex-col w-full text-left transition-colors ${
-                  isClickable ? 'cursor-pointer' : 'cursor-not-allowed opacity-50'
+                className={`group w-full text-center transition-all duration-200 ${
+                  isClickable ? 'cursor-pointer' : 'cursor-not-allowed'
                 }`}
               >
-                {isCompleted ? (
-                  // Completed Step
-                  <div className="flex items-center space-x-2 p-3 rounded-lg hover:bg-green-50 dark:hover:bg-green-900/20">
-                    <div className="flex-shrink-0">
-                      <div className="w-10 h-10 bg-green-600 rounded-full flex items-center justify-center">
-                        <CheckCircleIcon className="w-5 h-5 text-white" />
-                      </div>
-                    </div>
-                    <div className="flex-grow">
-                      <span className="text-sm font-medium text-green-600 group-hover:text-green-700">
-                        Step {stepIdx + 1} - Completed
-                      </span>
-                      <p className="text-sm font-medium text-gray-900 dark:text-white">
-                        {step.name}
-                      </p>
-                    </div>
+                {/* Step Circle */}
+                <div className="flex flex-col items-center">
+                  <div
+                    className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-medium transition-all duration-200 ${
+                      isCompleted
+                        ? 'bg-blue-600 text-white'
+                        : isCurrent
+                        ? 'bg-blue-600 text-white'
+                        : 'bg-slate-700 text-slate-400 group-hover:bg-slate-600'
+                    }`}
+                  >
+                    {isCompleted ? (
+                      <CheckIcon className="w-4 h-4" />
+                    ) : (
+                      <span>{stepIdx + 1}</span>
+                    )}
                   </div>
-                ) : isCurrent ? (
-                  // Current Step
-                  <div className="flex items-center space-x-2 p-3 rounded-lg bg-blue-50 dark:bg-blue-900/20 border-2 border-blue-200 dark:border-blue-800">
-                    <div className="flex-shrink-0">
-                      <div className="w-10 h-10 bg-blue-600 rounded-full flex items-center justify-center">
-                        <Icon className="w-5 h-5 text-white" />
-                      </div>
-                    </div>
-                    <div className="flex-grow">
-                      <span className="text-sm font-medium text-blue-600">
-                        Step {stepIdx + 1} - Current
-                      </span>
-                      <p className="text-sm font-medium text-gray-900 dark:text-white">
-                        {step.name}
-                      </p>
-                      <p className="text-xs text-gray-500 dark:text-gray-400">
-                        {step.description}
-                      </p>
-                    </div>
+                  
+                  {/* Step Label */}
+                  <div className="mt-3 max-w-24">
+                    <p
+                      className={`text-sm font-medium transition-colors ${
+                        isCompleted || isCurrent
+                          ? 'text-white'
+                          : 'text-slate-400 group-hover:text-slate-300'
+                      }`}
+                    >
+                      {step.name}
+                    </p>
                   </div>
-                ) : (
-                  // Upcoming Step
-                  <div className="flex items-center space-x-2 p-3 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700">
-                    <div className="flex-shrink-0">
-                      <div className="w-10 h-10 bg-gray-300 dark:bg-gray-600 rounded-full flex items-center justify-center">
-                        <span className="text-sm font-medium text-gray-600 dark:text-gray-300">
-                          {stepIdx + 1}
-                        </span>
-                      </div>
-                    </div>
-                    <div className="flex-grow">
-                      <span className="text-sm font-medium text-gray-500 dark:text-gray-400">
-                        Step {stepIdx + 1}
-                      </span>
-                      <p className="text-sm font-medium text-gray-500 dark:text-gray-400">
-                        {step.name}
-                      </p>
-                    </div>
-                  </div>
-                )}
-                
-                {/* Progress Bar - Only show between steps on desktop */}
-                {stepIdx < steps.length - 1 && (
-                  <div className="hidden md:block absolute top-5 left-full w-8 flex items-center">
-                    <ChevronRightIcon className="w-5 h-5 text-gray-300 dark:text-gray-600" />
-                  </div>
-                )}
+                </div>
               </button>
+
+              {/* Connection Line */}
+              {stepIdx < steps.length - 1 && (
+                <div className="absolute top-4 left-1/2 w-full h-px bg-slate-700 -z-10" 
+                     style={{ transform: 'translateX(50%)', width: 'calc(100% - 2rem)' }} />
+              )}
             </li>
           )
         })}
       </ol>
-      
-      {/* Mobile Progress Bar */}
-      <div className="md:hidden mt-6">
-        <div className="flex justify-between text-xs text-gray-500 dark:text-gray-400 mb-2">
-          <span>Progress</span>
-          <span>{completedSteps.length} of {steps.length} completed</span>
-        </div>
-        <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
-          <div
-            className="bg-blue-600 h-2 rounded-full transition-all duration-300"
-            style={{
-              width: `${(completedSteps.length / steps.length) * 100}%`,
-            }}
-          />
+
+      {/* Mobile Progress Steps */}
+      <div className="md:hidden space-y-4">
+        {steps.map((step, stepIdx) => {
+          const isCompleted = completedSteps.includes(stepIdx)
+          const isCurrent = stepIdx === currentStep
+          const isClickable = stepIdx <= Math.max(...completedSteps, -1) + 1
+
+          return (
+            <button
+              key={step.id}
+              onClick={() => isClickable && onStepClick(stepIdx)}
+              disabled={!isClickable}
+              className={`w-full text-left p-4 rounded-lg border transition-all duration-200 ${
+                isCurrent
+                  ? 'bg-blue-600/10 border-blue-600/20'
+                  : isCompleted
+                  ? 'bg-slate-800 border-slate-700'
+                  : 'bg-slate-800 border-slate-700 opacity-60'
+              } ${isClickable ? 'cursor-pointer hover:border-slate-600' : 'cursor-not-allowed'}`}
+            >
+              <div className="flex items-center space-x-3">
+                {/* Step Circle */}
+                <div
+                  className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-medium ${
+                    isCompleted
+                      ? 'bg-blue-600 text-white'
+                      : isCurrent
+                      ? 'bg-blue-600 text-white'
+                      : 'bg-slate-700 text-slate-400'
+                  }`}
+                >
+                  {isCompleted ? (
+                    <CheckIcon className="w-4 h-4" />
+                  ) : (
+                    <span>{stepIdx + 1}</span>
+                  )}
+                </div>
+
+                {/* Step Content */}
+                <div className="flex-1">
+                  <p
+                    className={`font-medium ${
+                      isCompleted || isCurrent ? 'text-white' : 'text-slate-400'
+                    }`}
+                  >
+                    {step.name}
+                  </p>
+                  {isCurrent && (
+                    <p className="text-sm text-slate-300 mt-1">
+                      {step.description}
+                    </p>
+                  )}
+                </div>
+              </div>
+            </button>
+          )
+        })}
+
+        {/* Mobile Progress Bar */}
+        <div className="mt-6 pt-4 border-t border-slate-700">
+          <div className="flex justify-between text-xs text-slate-400 mb-2">
+            <span>Progress</span>
+            <span>{completedSteps.length} of {steps.length} completed</span>
+          </div>
+          <div className="w-full bg-slate-700 rounded-full h-2">
+            <div
+              className="bg-blue-600 h-2 rounded-full transition-all duration-300"
+              style={{
+                width: `${(completedSteps.length / steps.length) * 100}%`,
+              }}
+            />
+          </div>
         </div>
       </div>
     </nav>

@@ -161,16 +161,16 @@ export default function LegalConsentStep({
     return (
       <div className="space-y-6">
         <div className="text-center">
-          <h3 className="text-lg font-medium text-gray-900 dark:text-white">
+          <h3 className="text-lg font-medium text-slate-900 dark:text-white">
             Loading Legal Agreements
           </h3>
-          <p className="mt-2 text-sm text-gray-600 dark:text-gray-400">
+          <p className="mt-2 text-sm text-slate-600 dark:text-slate-400">
             Please wait while we prepare your legal documents...
           </p>
         </div>
-        <div className="bg-white dark:bg-gray-800 rounded-lg p-8 text-center">
+        <div className="bg-white dark:bg-slate-800 rounded-lg p-8 text-center">
           <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600 mx-auto"></div>
-          <p className="mt-4 text-sm text-gray-600 dark:text-gray-400">Loading documents...</p>
+          <p className="mt-4 text-sm text-slate-600 dark:text-slate-400">Loading documents...</p>
         </div>
       </div>
     )
@@ -180,22 +180,22 @@ export default function LegalConsentStep({
     <form onSubmit={handleSubmit} className="space-y-6">
       {/* Header */}
       <div className="text-center">
-        <h3 className="text-lg font-medium text-gray-900 dark:text-white">
+        <h3 className="text-lg font-medium text-slate-900 dark:text-white">
           Legal Agreements
         </h3>
-        <p className="mt-2 text-sm text-gray-600 dark:text-gray-400">
+        <p className="mt-2 text-sm text-slate-600 dark:text-slate-400">
           Please review and sign each legal agreement using your digital signature
         </p>
       </div>
       
       {/* Selected Signature Display */}
-      <div className="bg-gray-50 dark:bg-gray-800 rounded-lg p-4">
+      <div className="bg-slate-50 dark:bg-slate-800 rounded-lg p-4">
         <div className="flex items-center justify-between">
           <div>
-            <h4 className="text-sm font-medium text-gray-900 dark:text-white">
+            <h4 className="text-sm font-medium text-slate-900 dark:text-white">
               Signing with: {signature.name}
             </h4>
-            <p className="text-xs text-gray-500 dark:text-gray-400">
+            <p className="text-xs text-slate-500 dark:text-slate-400">
               Created {new Date(signature.createdAt).toLocaleDateString()}
             </p>
           </div>
@@ -250,7 +250,7 @@ export default function LegalConsentStep({
               className={`border rounded-lg transition-all ${
                 isSigned
                   ? 'border-green-200 bg-green-50 dark:border-green-800 dark:bg-green-900/20'
-                  : 'border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800'
+                  : 'border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800'
               }`}
             >
               {/* Document Header */}
@@ -258,8 +258,8 @@ export default function LegalConsentStep({
                 <div className="flex items-start justify-between">
                   <div className="flex-grow">
                     <div className="flex items-center space-x-3 mb-2">
-                      <DocumentTextIcon className="w-5 h-5 text-gray-600 dark:text-gray-400" />
-                      <h4 className="text-base font-medium text-gray-900 dark:text-white">
+                      <DocumentTextIcon className="w-5 h-5 text-slate-600 dark:text-slate-400" />
+                      <h4 className="text-base font-medium text-slate-900 dark:text-white">
                         {document.title}
                         {document.required && (
                           <span className="ml-1 text-red-500">*</span>
@@ -277,7 +277,7 @@ export default function LegalConsentStep({
                   <button
                     type="button"
                     onClick={() => toggleDocument(document.id)}
-                    className="flex items-center text-sm text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200"
+                    className="flex items-center text-sm text-slate-500 hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-200"
                   >
                     {isExpanded ? (
                       <>
@@ -293,13 +293,13 @@ export default function LegalConsentStep({
                 
                 {/* Expanded Content */}
                 {isExpanded && (
-                  <div className="mt-4 p-4 bg-gray-50 dark:bg-gray-700 rounded-lg">
+                  <div className="mt-4 p-4 bg-slate-50 dark:bg-slate-700 rounded-lg">
                     <div className="prose prose-sm max-w-none dark:prose-invert">
-                      <div className="text-gray-700 dark:text-gray-300 whitespace-pre-wrap">
+                      <div className="text-slate-700 dark:text-slate-300 whitespace-pre-wrap">
                         {document.content}
                       </div>
                       {document.version && (
-                        <div className="mt-4 text-xs text-gray-500 dark:text-gray-400">
+                        <div className="mt-4 text-xs text-slate-500 dark:text-slate-400">
                           Version: {document.version} | Category: {document.category}
                         </div>
                       )}
@@ -308,7 +308,7 @@ export default function LegalConsentStep({
                 )}
                 
                 {/* Signature Section */}
-                <div className="mt-4 pt-4 border-t border-gray-200 dark:border-gray-600">
+                <div className="mt-4 pt-4 border-t border-slate-200 dark:border-slate-600">
                   {isSigned ? (
                     <div className="flex items-center justify-between p-3 bg-green-100 dark:bg-green-900/30 border border-green-200 dark:border-green-800 rounded-lg">
                       <div className="flex items-center space-x-2">
@@ -327,13 +327,13 @@ export default function LegalConsentStep({
                     </div>
                   ) : (
                     <div className="space-y-3">
-                      <div className="flex items-center space-x-2 text-sm text-gray-600 dark:text-gray-400">
+                      <div className="flex items-center space-x-2 text-sm text-slate-600 dark:text-slate-400">
                         <ExclamationTriangleIcon className="w-4 h-4" />
                         <span>By clicking "Sign Agreement", you agree to the terms above</span>
                       </div>
                       
-                      <div className="flex items-center justify-between p-3 border-2 border-dashed border-gray-300 dark:border-gray-600 rounded-lg">
-                        <span className="text-sm text-gray-700 dark:text-gray-300">
+                      <div className="flex items-center justify-between p-3 border-2 border-dashed border-slate-300 dark:border-slate-600 rounded-lg">
+                        <span className="text-sm text-slate-700 dark:text-slate-300">
                           Click to sign this agreement
                         </span>
                         
@@ -372,7 +372,7 @@ export default function LegalConsentStep({
             type="button"
             onClick={onBack}
             disabled={loading}
-            className="px-6 py-2 text-gray-600 dark:text-gray-400 hover:text-gray-800 dark:hover:text-gray-200 disabled:opacity-50"
+            className="px-6 py-2 text-slate-600 dark:text-slate-400 hover:text-slate-800 dark:hover:text-slate-200 disabled:opacity-50"
           >
             Back
           </button>

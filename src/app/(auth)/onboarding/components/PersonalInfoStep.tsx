@@ -248,13 +248,13 @@ export default function PersonalInfoStep({
           <h3 className="text-lg font-medium text-gray-900 dark:text-white">
             Loading Your Information
           </h3>
-          <p className="mt-2 text-sm text-gray-600 dark:text-gray-400">
+          <p className="mt-2 text-sm text-slate-600 dark:text-slate-400">
             Please wait while we load your existing information...
           </p>
         </div>
         <div className="bg-white dark:bg-gray-800 rounded-lg p-8 text-center">
           <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600 mx-auto"></div>
-          <p className="mt-4 text-sm text-gray-600 dark:text-gray-400">Loading...</p>
+          <p className="mt-4 text-sm text-slate-600 dark:text-slate-400">Loading...</p>
         </div>
       </div>
     )
@@ -281,7 +281,7 @@ export default function PersonalInfoStep({
             name="first_name"
             value={formData.first_name}
             onChange={(e) => updateFormData({ first_name: e.target.value })}
-            className={`mt-1 block w-full rounded-lg border-0 bg-gray-600 px-3 py-3 text-white placeholder-gray-400 shadow-sm focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-gray-800 sm:text-sm ${
+            className={`mt-1 block w-full rounded-lg border-0 bg-slate-600 px-3 py-3 text-white placeholder-slate-400 shadow-sm focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-slate-800 sm:text-sm ${
               errors.first_name ? 'ring-2 ring-red-500' : ''
             }`}
             placeholder="Enter your first name"
@@ -301,7 +301,7 @@ export default function PersonalInfoStep({
             name="last_name"
             value={formData.last_name}
             onChange={(e) => updateFormData({ last_name: e.target.value })}
-            className={`mt-1 block w-full rounded-lg border-0 bg-gray-600 px-3 py-3 text-white placeholder-gray-400 shadow-sm focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-gray-800 sm:text-sm ${
+            className={`mt-1 block w-full rounded-lg border-0 bg-slate-600 px-3 py-3 text-white placeholder-slate-400 shadow-sm focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-slate-800 sm:text-sm ${
               errors.last_name ? 'ring-2 ring-red-500' : ''
             }`}
             placeholder="Enter your last name"
@@ -322,9 +322,9 @@ export default function PersonalInfoStep({
           id="email"
           value={formData.email}
           readOnly
-          className="mt-1 block w-full rounded-lg border-0 bg-gray-600 px-3 py-3 text-gray-400 cursor-not-allowed sm:text-sm"
+          className="mt-1 block w-full rounded-lg border-0 bg-slate-600 px-3 py-3 text-slate-400 cursor-not-allowed sm:text-sm"
         />
-        <p className="mt-1 text-xs text-gray-500 dark:text-gray-400">
+        <p className="mt-1 text-xs text-slate-500 dark:text-slate-400">
           This email is from your account and cannot be changed here.
         </p>
       </div>
@@ -341,7 +341,7 @@ export default function PersonalInfoStep({
             name="date_of_birth"
             value={formData.date_of_birth}
             onChange={(e) => updateFormData({ date_of_birth: e.target.value })}
-            className={`mt-1 block w-full rounded-lg border-0 bg-gray-600 px-3 py-3 text-white placeholder-gray-400 shadow-sm focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-gray-800 sm:text-sm ${
+            className={`mt-1 block w-full rounded-lg border-0 bg-slate-600 px-3 py-3 text-white placeholder-slate-400 shadow-sm focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-slate-800 sm:text-sm ${
               errors.date_of_birth ? 'ring-2 ring-red-500' : ''
             }`}
           />
@@ -360,7 +360,7 @@ export default function PersonalInfoStep({
             name="phone_number"
             value={formData.phone_number}
             onChange={(e) => updateFormData({ phone_number: e.target.value })}
-            className={`mt-1 block w-full rounded-lg border-0 bg-gray-600 px-3 py-3 text-white placeholder-gray-400 shadow-sm focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-gray-800 sm:text-sm ${
+            className={`mt-1 block w-full rounded-lg border-0 bg-slate-600 px-3 py-3 text-white placeholder-slate-400 shadow-sm focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-slate-800 sm:text-sm ${
               errors.phone_number ? 'ring-2 ring-red-500' : ''
             }`}
             placeholder="+353 85 123 4567"
@@ -383,7 +383,7 @@ export default function PersonalInfoStep({
             name="address_line_1"
             value={formData.address_line_1}
             onChange={(e) => updateFormData({ address_line_1: e.target.value })}
-            className={`mt-1 block w-full rounded-lg border-0 bg-gray-600 px-3 py-3 text-white placeholder-gray-400 shadow-sm focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-gray-800 sm:text-sm ${
+            className={`mt-1 block w-full rounded-lg border-0 bg-slate-600 px-3 py-3 text-white placeholder-slate-400 shadow-sm focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-slate-800 sm:text-sm ${
               errors.address_line_1 ? 'ring-2 ring-red-500' : ''
             }`}
             placeholder="Enter your street address"
@@ -403,7 +403,7 @@ export default function PersonalInfoStep({
             name="address_line_2"
             value={formData.address_line_2}
             onChange={(e) => updateFormData({ address_line_2: e.target.value })}
-            className="mt-1 block w-full rounded-lg border-0 bg-gray-600 px-3 py-3 text-white placeholder-gray-400 shadow-sm focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-gray-800 sm:text-sm"
+            className="mt-1 block w-full rounded-lg border-0 bg-slate-600 px-3 py-3 text-white placeholder-slate-400 shadow-sm focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-slate-800 sm:text-sm"
             placeholder="Apartment, suite, etc. (optional)"
           />
         </div>
@@ -421,7 +421,7 @@ export default function PersonalInfoStep({
             name="city"
             value={formData.city}
             onChange={(e) => updateFormData({ city: e.target.value })}
-            className={`mt-1 block w-full rounded-lg border-0 bg-gray-600 px-3 py-3 text-white placeholder-gray-400 shadow-sm focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-gray-800 sm:text-sm ${
+            className={`mt-1 block w-full rounded-lg border-0 bg-slate-600 px-3 py-3 text-white placeholder-slate-400 shadow-sm focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-slate-800 sm:text-sm ${
               errors.city ? 'ring-2 ring-red-500' : ''
             }`}
             placeholder="Enter your city"
@@ -440,7 +440,7 @@ export default function PersonalInfoStep({
             name="county"
             value={formData.county}
             onChange={(e) => updateFormData({ county: e.target.value })}
-            className={`mt-1 block w-full rounded-lg border-0 bg-gray-600 px-3 py-3 text-white shadow-sm focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-gray-800 sm:text-sm ${
+            className={`mt-1 block w-full rounded-lg border-0 bg-slate-600 px-3 py-3 text-white shadow-sm focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-slate-800 sm:text-sm ${
               errors.county ? 'ring-2 ring-red-500' : ''
             }`}
           >
@@ -464,7 +464,7 @@ export default function PersonalInfoStep({
             name="eircode"
             value={formData.eircode}
             onChange={(e) => updateFormData({ eircode: e.target.value.toUpperCase() })}
-            className={`mt-1 block w-full rounded-lg border-0 bg-gray-600 px-3 py-3 text-white placeholder-gray-400 shadow-sm focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-gray-800 sm:text-sm ${
+            className={`mt-1 block w-full rounded-lg border-0 bg-slate-600 px-3 py-3 text-white placeholder-slate-400 shadow-sm focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-slate-800 sm:text-sm ${
               errors.eircode ? 'ring-2 ring-red-500' : ''
             }`}
             placeholder="D02 XY45"
@@ -489,7 +489,7 @@ export default function PersonalInfoStep({
                 alt="Profile"
                 width={80}
                 height={80}
-                className="w-20 h-20 rounded-lg object-cover border border-gray-300 dark:border-gray-600"
+                className="w-20 h-20 rounded-lg object-cover border border-slate-300 dark:border-slate-600"
               />
             </div>
             <div className="flex space-x-3">
@@ -514,20 +514,20 @@ export default function PersonalInfoStep({
         ) : (
           <div
             onClick={() => fileInputRef.current?.click()}
-            className="border-2 border-dashed border-gray-300 dark:border-gray-600 rounded-lg p-6 text-center cursor-pointer hover:border-blue-400 transition-colors"
+            className="border-2 border-dashed border-slate-300 dark:border-slate-600 rounded-lg p-6 text-center cursor-pointer hover:border-blue-400 transition-colors"
           >
             {uploadingPhoto ? (
               <div className="flex items-center justify-center">
                 <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
-                <span className="ml-3 text-gray-600 dark:text-gray-400">Uploading...</span>
+                <span className="ml-3 text-slate-600 dark:text-slate-400">Uploading...</span>
               </div>
             ) : (
               <>
-                <PhotoIcon className="mx-auto h-12 w-12 text-gray-400 mb-3" />
-                <p className="text-gray-600 dark:text-gray-400">
+                <PhotoIcon className="mx-auto h-12 w-12 text-slate-400 mb-3" />
+                <p className="text-slate-600 dark:text-slate-400">
                   Click to upload a profile photo
                 </p>
-                <p className="text-xs text-gray-500 dark:text-gray-500 mt-1">
+                <p className="text-xs text-slate-500 dark:text-slate-500 mt-1">
                   PNG, JPG up to 5MB
                 </p>
               </>
@@ -556,7 +556,7 @@ export default function PersonalInfoStep({
             type="button"
             onClick={onBack}
             disabled={loading}
-            className="px-6 py-2 text-gray-600 dark:text-gray-400 hover:text-gray-800 dark:hover:text-gray-200 disabled:opacity-50"
+            className="px-6 py-2 text-slate-600 dark:text-slate-400 hover:text-gray-800 dark:hover:text-gray-200 disabled:opacity-50"
           >
             Back
           </button>

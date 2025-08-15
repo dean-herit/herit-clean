@@ -165,16 +165,16 @@ export default function VerificationStep({
     return (
       <div className="space-y-6">
         <div className="text-center">
-          <h3 className="text-lg font-medium text-gray-900 dark:text-white">
+          <h3 className="text-lg font-medium text-slate-900 dark:text-white">
             Checking Verification Status
           </h3>
-          <p className="mt-2 text-sm text-gray-600 dark:text-gray-400">
+          <p className="mt-2 text-sm text-slate-600 dark:text-slate-400">
             Please wait while we check your identity verification status...
           </p>
         </div>
-        <div className="bg-white dark:bg-gray-800 rounded-lg p-8 text-center">
+        <div className="bg-white dark:bg-slate-800 rounded-lg p-8 text-center">
           <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600 mx-auto"></div>
-          <p className="mt-4 text-sm text-gray-600 dark:text-gray-400">Loading...</p>
+          <p className="mt-4 text-sm text-slate-600 dark:text-slate-400">Loading...</p>
         </div>
       </div>
     )
@@ -187,26 +187,26 @@ export default function VerificationStep({
         <div className="mx-auto w-16 h-16 bg-blue-100 dark:bg-blue-900/20 rounded-full flex items-center justify-center mb-4">
           <ShieldCheckIcon className="w-8 h-8 text-blue-600 dark:text-blue-400" />
         </div>
-        <h3 className="text-lg font-medium text-gray-900 dark:text-white">
+        <h3 className="text-lg font-medium text-slate-900 dark:text-white">
           Identity Verification Required
         </h3>
-        <p className="mt-2 text-sm text-gray-600 dark:text-gray-400">
+        <p className="mt-2 text-sm text-slate-600 dark:text-slate-400">
           We need to verify your identity to ensure the legal validity of your will. This process takes just a few minutes and includes document verification.
         </p>
       </div>
       
       {/* Verification Status */}
-      <div className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg p-6">
+      <div className="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg p-6">
         {verificationStatus === 'pending' && (
           <div className="text-center space-y-4">
-            <div className="w-12 h-12 bg-gray-100 dark:bg-gray-700 rounded-full flex items-center justify-center mx-auto">
-              <ShieldCheckIcon className="w-6 h-6 text-gray-600 dark:text-gray-400" />
+            <div className="w-12 h-12 bg-slate-100 dark:bg-slate-700 rounded-full flex items-center justify-center mx-auto">
+              <ShieldCheckIcon className="w-6 h-6 text-slate-600 dark:text-slate-400" />
             </div>
             <div>
-              <h4 className="text-base font-medium text-gray-900 dark:text-white">
+              <h4 className="text-base font-medium text-slate-900 dark:text-white">
                 Ready to Verify
               </h4>
-              <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">
+              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
                 Click the button below to start the secure verification process
               </p>
             </div>
@@ -224,7 +224,7 @@ export default function VerificationStep({
               {process.env.NODE_ENV === 'development' && (
                 <button
                   onClick={skipVerification}
-                  className="w-full text-sm text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200"
+                  className="w-full text-sm text-slate-500 hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-200"
                 >
                   Skip Verification (Development Only)
                 </button>
@@ -242,7 +242,7 @@ export default function VerificationStep({
               <h4 className="text-base font-medium text-blue-600 dark:text-blue-400">
                 Verification In Progress
               </h4>
-              <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">
+              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
                 {verificationUrl 
                   ? "Please complete the verification in the popup window. This may take a few minutes."
                   : "Setting up your verification session..."
@@ -276,11 +276,11 @@ export default function VerificationStep({
               <h4 className="text-base font-medium text-green-600 dark:text-green-400">
                 Verification Completed!
               </h4>
-              <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">
+              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
                 Your identity has been successfully verified. You'll be redirected to your dashboard shortly.
               </p>
             </div>
-            <div className="flex items-center justify-center space-x-2 text-sm text-gray-500 dark:text-gray-400">
+            <div className="flex items-center justify-center space-x-2 text-sm text-slate-500 dark:text-slate-400">
               <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-blue-600"></div>
               <span>Completing setup...</span>
             </div>
@@ -301,7 +301,7 @@ export default function VerificationStep({
                   {error}
                 </p>
               )}
-              <p className="text-sm text-gray-600 dark:text-gray-400 mt-2">
+              <p className="text-sm text-slate-600 dark:text-slate-400 mt-2">
                 Don't worry, you can try again. Make sure you have a valid government-issued ID ready.
               </p>
             </div>
@@ -336,14 +336,14 @@ export default function VerificationStep({
             type="button"
             onClick={onBack}
             disabled={loading}
-            className="px-6 py-2 text-gray-600 dark:text-gray-400 hover:text-gray-800 dark:hover:text-gray-200 disabled:opacity-50"
+            className="px-6 py-2 text-slate-600 dark:text-slate-400 hover:text-slate-800 dark:hover:text-slate-200 disabled:opacity-50"
           >
             Back
           </button>
         )}
         <div className="ml-auto">
           {verificationStatus === 'pending' && (
-            <p className="text-xs text-gray-500 dark:text-gray-400 text-right">
+            <p className="text-xs text-slate-500 dark:text-slate-400 text-right">
               This is the final step of your onboarding process
             </p>
           )}

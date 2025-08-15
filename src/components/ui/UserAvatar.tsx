@@ -56,19 +56,19 @@ export function UserAvatar({ className = '' }: UserAvatarProps) {
 
   return (
     <Menu as="div" className={`relative ${className}`}>
-      <Menu.Button className="flex items-center gap-2 p-1 rounded-lg hover:bg-gray-800/50 transition-colors">
+      <Menu.Button className="flex items-center gap-2 p-1 rounded-lg hover:bg-slate-800/50 transition-colors">
         <div className="h-9 w-9 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center text-white font-medium text-sm">
           {getInitials()}
         </div>
         <div className="hidden md:block text-left">
-          <p className="text-sm font-medium text-gray-100">
+          <p className="text-sm font-medium text-slate-100">
             {user?.firstName && user?.lastName 
               ? `${user.firstName} ${user.lastName}`
               : user?.email || 'User'
             }
           </p>
         </div>
-        <ChevronDownIcon className="h-4 w-4 text-gray-400" />
+        <ChevronDownIcon className="h-4 w-4 text-slate-400" />
       </Menu.Button>
 
       <Transition
@@ -80,35 +80,35 @@ export function UserAvatar({ className = '' }: UserAvatarProps) {
         leaveFrom="transform opacity-100 scale-100"
         leaveTo="transform opacity-0 scale-95"
       >
-        <Menu.Items className="absolute right-0 z-50 mt-2 w-56 origin-top-right rounded-lg bg-gray-800 shadow-lg ring-1 ring-black/20 focus:outline-none">
+        <Menu.Items className="absolute right-0 z-50 mt-2 w-56 origin-top-right rounded-lg bg-slate-800 shadow-lg ring-1 ring-black/20 focus:outline-none">
           <div className="p-1">
             {/* User Info */}
-            <div className="px-3 py-2 border-b border-gray-700">
-              <p className="text-sm font-medium text-gray-100">
+            <div className="px-3 py-2 border-b border-slate-700">
+              <p className="text-sm font-medium text-slate-100">
                 {user?.firstName && user?.lastName 
                   ? `${user.firstName} ${user.lastName}`
                   : 'User'
                 }
               </p>
-              <p className="text-xs text-gray-400 truncate">
+              <p className="text-xs text-slate-400 truncate">
                 {user?.email}
               </p>
             </div>
 
             {/* Language Selector */}
-            <div className="py-1 border-b border-gray-700">
+            <div className="py-1 border-b border-slate-700">
               <div className="px-3 py-1">
-                <p className="text-xs text-gray-400 mb-1">Language</p>
+                <p className="text-xs text-slate-400 mb-1">Language</p>
                 {languages.map((lang) => (
                   <Menu.Item key={lang.code}>
                     {({ active }) => (
                       <button
                         onClick={() => handleLanguageChange(lang.code)}
                         className={`${
-                          active ? 'bg-gray-700' : ''
+                          active ? 'bg-slate-700' : ''
                         } ${
-                          selectedLanguage === lang.code ? 'bg-gray-700/50' : ''
-                        } group flex w-full items-center rounded-md px-2 py-2 text-sm text-gray-100`}
+                          selectedLanguage === lang.code ? 'bg-slate-700/50' : ''
+                        } group flex w-full items-center rounded-md px-2 py-2 text-sm text-slate-100`}
                       >
                         <span className="mr-2">{lang.flag}</span>
                         {lang.name}
@@ -129,10 +129,10 @@ export function UserAvatar({ className = '' }: UserAvatarProps) {
                   <button
                     onClick={() => router.push('/profile')}
                     className={`${
-                      active ? 'bg-gray-700' : ''
-                    } group flex w-full items-center rounded-md px-3 py-2 text-sm text-gray-100`}
+                      active ? 'bg-slate-700' : ''
+                    } group flex w-full items-center rounded-md px-3 py-2 text-sm text-slate-100`}
                   >
-                    <UserIcon className="mr-3 h-4 w-4 text-gray-400" />
+                    <UserIcon className="mr-3 h-4 w-4 text-slate-400" />
                     Your Profile
                   </button>
                 )}
@@ -143,10 +143,10 @@ export function UserAvatar({ className = '' }: UserAvatarProps) {
                   <button
                     onClick={() => router.push('/settings')}
                     className={`${
-                      active ? 'bg-gray-700' : ''
-                    } group flex w-full items-center rounded-md px-3 py-2 text-sm text-gray-100`}
+                      active ? 'bg-slate-700' : ''
+                    } group flex w-full items-center rounded-md px-3 py-2 text-sm text-slate-100`}
                   >
-                    <Cog6ToothIcon className="mr-3 h-4 w-4 text-gray-400" />
+                    <Cog6ToothIcon className="mr-3 h-4 w-4 text-slate-400" />
                     Settings
                   </button>
                 )}
@@ -154,13 +154,13 @@ export function UserAvatar({ className = '' }: UserAvatarProps) {
             </div>
 
             {/* Logout */}
-            <div className="py-1 border-t border-gray-700">
+            <div className="py-1 border-t border-slate-700">
               <Menu.Item>
                 {({ active }) => (
                   <button
                     onClick={handleLogout}
                     className={`${
-                      active ? 'bg-gray-700' : ''
+                      active ? 'bg-slate-700' : ''
                     } group flex w-full items-center rounded-md px-3 py-2 text-sm text-red-400`}
                   >
                     <ArrowRightOnRectangleIcon className="mr-3 h-4 w-4" />
